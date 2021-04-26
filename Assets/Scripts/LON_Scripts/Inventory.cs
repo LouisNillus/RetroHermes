@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour
     {
         
     }
-
+    
     public void InitSlots()
     {
         Vector3[] vecs = new Vector3[rows * columns];
