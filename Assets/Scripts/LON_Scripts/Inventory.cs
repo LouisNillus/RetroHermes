@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Inventory : MonoBehaviour
 {
     public List<Slot> slots = new List<Slot>();
     public GameObject slotTemplate;
+
     [Range(0,200)]
     public int yOffset; //In pixels
     [Range(0,200)]
@@ -18,6 +20,8 @@ public class Inventory : MonoBehaviour
     public int rows;
     public int columns;
 
+    public int money = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +32,32 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SellItem();
+        }
     }
-    
+
+    public void SellItem()
+    {
+        GameObject g = EventSystem.current.currentSelectedGameObject;
+        if (g != null && g.GetComponent<Slot>() != null)
+        {
+            Slot s = g.GetComponent<Slot>();
+
+            if (s.IsEmpty()) return;
+            else money += Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName);
+        }
+    }
+
+    public void BuyItem()
+    {
+
+    }
+
+
+
+
     public void InitSlots()
     {
         Vector3[] vecs = new Vector3[rows * columns];

@@ -7,7 +7,7 @@ using TMPro;
 
 public class Slot : MonoBehaviour
 {
-    public Item item;
+    public ItemData item;
     public Image visual;
     int lastAmount;
     public int amount;
@@ -33,6 +33,11 @@ public class Slot : MonoBehaviour
     public bool IsFull()
     {
         return amount >= item.maxStack;
+    }
+
+    public bool IsEmpty()
+    {
+        return amount <= 0;
     }
 
     public void UpdateStackText()
