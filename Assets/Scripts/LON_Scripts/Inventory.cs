@@ -5,20 +5,20 @@ using UnityEngine.EventSystems;
 
 public class Inventory : MonoBehaviour
 {
-    public List<Slot> slots = new List<Slot>();
+    public List<Slot> inventorySlots = new List<Slot>();
     public GameObject slotTemplate;
 
     [Range(0,200)]
-    public int yOffset; //In pixels
+    [SerializeField] int yOffset; //In pixels
     [Range(0,200)]
-    public int xOffset; //In pixels
+    [SerializeField] int xOffset; //In pixels
     [Range(-1000,1000)]
-    public int yMargin; //In pixels
+    [SerializeField] int yMargin; //In pixels
     [Range(-1000,1000)]
-    public int xMargin; //In pixels
+    [SerializeField] int xMargin; //In pixels
 
-    public int rows;
-    public int columns;
+    [SerializeField] int rows;
+    [SerializeField] int columns;
 
     public int money = 0;
 
@@ -46,7 +46,7 @@ public class Inventory : MonoBehaviour
         {
             Slot s = g.GetComponent<Slot>();
 
-            if (s.IsEmpty() || slots.Contains(s) == false) return;
+            if (s.IsEmpty() || inventorySlots.Contains(s) == false) return;
             else
             {
                 money += Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName);
@@ -62,26 +62,30 @@ public class Inventory : MonoBehaviour
         {
             Slot s = g.GetComponent<Slot>();
 
-            if (s.IsEmpty() || slots.Contains(s) == true) return;
+            if (s.IsEmpty() || inventorySlots.Contains(s) == true) return;
             else
             {
-                if(HasItem(s.item))
+                if(EnoughMoney(Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName)))
                 {
-                    GetItem(s.item).amount++;
-                    s.amount--;
-                }
-                else if(AnySlotAvailable())
-                {
-                    GetFirstAvailableSlot().item = s.item;
-                    GetFirstAvailableSlot().amount++;
-                    s.amount--;
-                }
-                else
-                {
-                    return;
-                }
+                    if(HasItem(s.item, true))
+                    {
+                        GetItem(s.item).amount++;
+                        s.amount--;
+                    }
+                    else if(AnySlotAvailable())
+                    {
+                        Slot slot = GetFirstAvailableSlot();
+                        slot.item = s.item;
+                        slot.amount++;
+                        s.amount--;
+                    }
+                    else
+                    {
+                        return;
+                    }
 
-                Pay(Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName));
+                    Pay(Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName));
+                }
             }
         }
     }
@@ -100,7 +104,7 @@ public class Inventory : MonoBehaviour
                 vecs[i * j].y = i * -(slotTemplate.GetComponent<RectTransform>().rect.height + yOffset) + yMargin;
                 vecs[i * j].x = j * (slotTemplate.GetComponent<RectTransform>().rect.width + xOffset) + xMargin;
                 GameObject go = Instantiate(slotTemplate, vecs[i*j], Quaternion.identity);
-                slots.Add(go.GetComponent<Slot>());
+                inventorySlots.Add(go.GetComponent<Slot>());
                 go.transform.SetParent(this.transform, false);
             }
         }
@@ -108,7 +112,7 @@ public class Inventory : MonoBehaviour
 
     public bool AnySlotAvailable()
     {
-        foreach(Slot s in slots)
+        foreach(Slot s in inventorySlots)
         {
             if (s.item == null) return true;
         }
@@ -118,7 +122,7 @@ public class Inventory : MonoBehaviour
 
     public Slot GetFirstAvailableSlot()
     {
-        foreach (Slot s in slots)
+        foreach (Slot s in inventorySlots)
         {
             if (s.item == null) return s;
         }
@@ -126,10 +130,12 @@ public class Inventory : MonoBehaviour
         return null;
     }
 
-    public bool HasItem(ItemData item)
+    public bool HasItem(ItemData item, bool checkMaxStack = false)
     {
-        foreach (Slot s in slots)
+        foreach (Slot s in inventorySlots)
         {
+            if (checkMaxStack && s.locked) return false;
+
             if (s.item == item) return true;
         }
 
@@ -138,12 +144,19 @@ public class Inventory : MonoBehaviour
 
     public Slot GetItem(ItemData item)
     {
-        foreach (Slot s in slots)
+        foreach (Slot s in inventorySlots)
         {
             if (s.item == item) return s;
         }
 
         return null;
+    }
+
+
+    public bool EnoughMoney(int price)
+    {
+        if (money - price >= 0) return true;
+        else return false;
     }
 
     public void Pay(int price)
