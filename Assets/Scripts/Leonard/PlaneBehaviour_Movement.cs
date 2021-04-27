@@ -1,20 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Build;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class PlaneMovement : MonoBehaviour
+public class PlaneBehaviour_Movement : MonoBehaviour
 {
-    [SerializeField] public float speed, rotSpeed;
+    [SerializeField] public float baseSpeed, baseRotation;
     [SerializeField] GameObject planeViz;
 
-    public Vector3 direction;
-    public Rigidbody rigidbody;
-    [HideInInspector] public Vector3 yaw;
-    [HideInInspector] public Vector3 roll;
-    [HideInInspector] public Vector3 prevRoll;
+    [Space][Header("Debugging")]
+    [ReadOnly] public Vector3 direction;
+    private Vector3 yaw;
+    private Vector3 roll;
+    private Vector3 prevRoll;
 
     private float t = 0.0f, interpTime = 0.5f;
     private bool resetAxis = false;
@@ -22,8 +18,7 @@ public class PlaneMovement : MonoBehaviour
     private void Awake()
     {
         roll = yaw = transform.eulerAngles;
-        direction = Vector3.forward * speed;
-        rigidbody = GetComponent<Rigidbody>();
+        direction = Vector3.forward * baseSpeed;
     }
 
     void Update()
@@ -57,19 +52,19 @@ public class PlaneMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             resetAxis = false;
-            yaw.y += rotSpeed * Time.deltaTime;
+            yaw.y += baseRotation * Time.deltaTime;
 
-            roll.y += rotSpeed * Time.deltaTime;
-            roll.z -= rotSpeed * Time.deltaTime;
+            roll.y += baseRotation * Time.deltaTime;
+            roll.z -= baseRotation * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             resetAxis = false;
-            yaw.y -= rotSpeed * Time.deltaTime;
+            yaw.y -= baseRotation * Time.deltaTime;
 
-            roll.y -= rotSpeed * Time.deltaTime;
-            roll.z += rotSpeed * Time.deltaTime;
+            roll.y -= baseRotation * Time.deltaTime;
+            roll.z += baseRotation * Time.deltaTime;
         }
     }
 
