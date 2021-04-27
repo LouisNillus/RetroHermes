@@ -301,7 +301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445987592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -15.5, y: 0, z: 16.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 31413698}
@@ -324,6 +324,7 @@ MonoBehaviour:
   speed: 30
   rotSpeed: 60
   planeViz: {fileID: 31413696}
+  direction: {x: 0, y: 0, z: 0}
   yaw: {x: 0, y: 0, z: 0}
   roll: {x: 0, y: 0, z: 0}
   prevRoll: {x: 0, y: 0, z: 0}
@@ -646,13 +647,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138971658}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 0.0000029653306, z: -0, w: -1}
   m_LocalPosition: {x: 4.9, y: 0, z: 133.4}
   m_LocalScale: {x: 97.40463, y: 15.492615, z: 158.0274}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 360, z: 0}
 --- !u!114 &2138971663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,7 +666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48ed6c74d5f1d54795e077b6b74e77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windForce: 30
+  windForce: 40
   planeRef: {fileID: 0}
-  updateFrequency: 30
   windDirection: {x: 0, y: 0, z: 0}

@@ -10,20 +10,26 @@ public class PlaneMovement : MonoBehaviour
     [SerializeField] public float speed, rotSpeed;
     [SerializeField] GameObject planeViz;
 
+    public Vector3 direction;
+    public Rigidbody rigidbody;
     [HideInInspector] public Vector3 yaw;
     [HideInInspector] public Vector3 roll;
     [HideInInspector] public Vector3 prevRoll;
-    
+
     private float t = 0.0f, interpTime = 0.5f;
     private bool resetAxis = false;
 
     private void Awake()
     {
         roll = yaw = transform.eulerAngles;
+        direction = Vector3.forward * speed;
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        Debug.DrawRay(transform.position, transform.forward * 20);
+        
         if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
             resetAxis = true;
@@ -41,9 +47,9 @@ public class PlaneMovement : MonoBehaviour
         // rotation
         planeViz.transform.eulerAngles = roll;
         transform.eulerAngles = yaw;
-        
+
         // movement
-        transform.Translate(transform.forward * (speed * Time.deltaTime));
+        transform.Translate(direction * Time.deltaTime);
     }
 
     private void CheckInputs()
@@ -52,7 +58,7 @@ public class PlaneMovement : MonoBehaviour
         {
             resetAxis = false;
             yaw.y += rotSpeed * Time.deltaTime;
-            
+
             roll.y += rotSpeed * Time.deltaTime;
             roll.z -= rotSpeed * Time.deltaTime;
         }
@@ -61,7 +67,7 @@ public class PlaneMovement : MonoBehaviour
         {
             resetAxis = false;
             yaw.y -= rotSpeed * Time.deltaTime;
-            
+
             roll.y -= rotSpeed * Time.deltaTime;
             roll.z += rotSpeed * Time.deltaTime;
         }

@@ -7,9 +7,6 @@ public class Wind_Behaviour : MonoBehaviour
     [SerializeField] private float windForce;
     [SerializeField] PlaneMovement planeRef;
 
-    [SerializeField] private int updateFrequency;
-    private int tick;
-
     [SerializeField] Vector3 windDirection;
 
     // Update is called once per frame
@@ -19,11 +16,10 @@ public class Wind_Behaviour : MonoBehaviour
 
         if (planeRef)
         {
-            float pushedDirection = Vector3.Dot(planeRef.transform.forward.normalized, windDirection.normalized) * windForce;
-            Debug.Log(pushedDirection);
-            
-            planeRef.yaw.y += pushedDirection * Time.deltaTime;
-            planeRef.roll.y += pushedDirection * Time.deltaTime;
+            float pushedDirection = Vector3.Dot(-planeRef.transform.forward.normalized, windDirection.normalized) * windForce;
+            //planeRef.rigidbody.AddForce(pushedDirection, ForceMode.Impulse);
+            planeRef.direction.x += pushedDirection * Time.deltaTime;
+            planeRef.direction.z += pushedDirection * Time.deltaTime;
         }
     }
 
@@ -34,6 +30,7 @@ public class Wind_Behaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        planeRef.direction = Vector3.forward * planeRef.speed;
         planeRef = null;
     }
 }
