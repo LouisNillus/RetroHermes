@@ -859,9 +859,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1730e0f00257f74ca0725d42e0f48ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planeViz: {fileID: 31413696}
   baseSpeed: 30
   baseRotation: 90
-  planeViz: {fileID: 31413696}
+  rotLimit: 60
+  resetSpeed: 30
   direction: {x: 0, y: 0, z: 0}
 --- !u!54 &1445987595
 Rigidbody:

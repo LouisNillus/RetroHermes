@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class PlaneBehaviour_Movement : MonoBehaviour
 {
-    [SerializeField] public float baseSpeed, baseRotation;
     [SerializeField] GameObject planeViz;
+    [SerializeField] public float baseSpeed, baseRotation, rotLimit;
 
-    [Space][Header("Debugging")]
-    [ReadOnly] public Vector3 direction;
+    [SerializeField] float resetSpeed = 1.5f;
+    private bool resetAxis = false;
+
+    [Space] [Header("Debugging")] [ReadOnly]
+    public Vector3 direction;
+
     private Vector3 yaw;
     private Vector3 roll;
-    private Vector3 prevRoll;
 
-    private float t = 0.0f, interpTime = 0.5f;
-    private bool resetAxis = false;
 
     private void Awake()
     {
@@ -23,15 +24,8 @@ public class PlaneBehaviour_Movement : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(transform.position, transform.forward * 20);
-        
-        if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            resetAxis = true;
-            prevRoll = planeViz.transform.eulerAngles;
-        }
-
-        CheckInputs(); // update plane rotation + orientation
+        if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)) resetAxis = true;
+        if (Input.anyKey) CheckInputs(); // update plane rotation + orientation
         if (resetAxis) ResetPlaneAxis(); // rotate plane back to original pos
 
         MovePlane();
@@ -53,9 +47,8 @@ public class PlaneBehaviour_Movement : MonoBehaviour
         {
             resetAxis = false;
             yaw.y += baseRotation * Time.deltaTime;
-
             roll.y += baseRotation * Time.deltaTime;
-            roll.z -= baseRotation * Time.deltaTime;
+            roll.z -= roll.z > -rotLimit ? baseRotation * Time.deltaTime : 0;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -64,21 +57,18 @@ public class PlaneBehaviour_Movement : MonoBehaviour
             yaw.y -= baseRotation * Time.deltaTime;
 
             roll.y -= baseRotation * Time.deltaTime;
-            roll.z += baseRotation * Time.deltaTime;
+            roll.z += roll.z < rotLimit ? baseRotation * Time.deltaTime : 0;
         }
     }
 
     // rotate plane to indicate in which direction it is travelling
     void ResetPlaneAxis()
     {
-        roll.z = Mathf.Lerp(prevRoll.z, 0, t);
+        roll.z = roll.z < 0 ? roll.z + resetSpeed * Time.deltaTime : roll.z - resetSpeed * Time.deltaTime;
 
-        t += interpTime * Time.deltaTime;
-
-        if (t >= 1.0f || roll.z == 0)
+        if (roll.z == 0)
         {
             resetAxis = false;
-            t = 0.0f;
         }
     }
 }
