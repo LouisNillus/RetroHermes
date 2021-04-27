@@ -1,18 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Cargo_Crocodile : MonoBehaviour
+public class Cargo_Crocodile : AbstractCargo
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override void ApplyEffect() => Debug.Log("Crocodile");
 }

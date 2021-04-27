@@ -2,17 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cargo_Explosives : MonoBehaviour
+public class Cargo_Explosives : AbstractCargo
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override void ApplyEffect() => Debug.Log("Explosives");
 }
