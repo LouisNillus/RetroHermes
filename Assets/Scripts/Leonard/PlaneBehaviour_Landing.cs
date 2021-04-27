@@ -1,9 +1,10 @@
-using System;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
-public class LandingBehaviour : MonoBehaviour
+public class PlaneBehaviour_Landing : MonoBehaviour
 {
-    private CityBehaviour currentCity;
+    [Header("Debugging")]
+    [ReadOnly][SerializeField] private CityBehaviour currentCity;
 
     private void Update()
     {
