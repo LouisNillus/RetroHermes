@@ -49,6 +49,24 @@ public class Inventory : MonoBehaviour
             if (s.IsEmpty() || inventorySlots.Contains(s) == false) return;
             else
             {
+                if (HasItem(s.item, true))
+                {
+                    GetItem(s.item).amount++;
+                    s.amount--;
+                }
+                else if (AnySlotAvailable())
+                {
+                    Slot slot = GetFirstAvailableSlot();
+                    slot.item = s.item;
+                    slot.amount++;
+                    s.amount--;
+                }
+                else
+                {
+                    return;
+                }
+
+
                 money += Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName);
                 s.amount--;
             }
