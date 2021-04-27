@@ -10,11 +10,12 @@ public class PlaneMovement : MonoBehaviour
     [SerializeField] public float speed, rotSpeed;
     [SerializeField] GameObject planeViz;
 
-    public Vector3 direction;
-    public Rigidbody rigidbody;
+    [HideInInspector] public Vector3 direction;
     [HideInInspector] public Vector3 yaw;
     [HideInInspector] public Vector3 roll;
     [HideInInspector] public Vector3 prevRoll;
+
+    private LandingBehaviour _landingBehaviour;
 
     private float t = 0.0f, interpTime = 0.5f;
     private bool resetAxis = false;
@@ -23,7 +24,8 @@ public class PlaneMovement : MonoBehaviour
     {
         roll = yaw = transform.eulerAngles;
         direction = Vector3.forward * speed;
-        rigidbody = GetComponent<Rigidbody>();
+        
+        _landingBehaviour = GetComponent<LandingBehaviour>();
     }
 
     void Update()

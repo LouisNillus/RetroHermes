@@ -17,7 +17,6 @@ public class Wind_Behaviour : MonoBehaviour
         if (planeRef)
         {
             float pushedDirection = Vector3.Dot(-planeRef.transform.forward.normalized, windDirection.normalized) * windForce;
-            //planeRef.rigidbody.AddForce(pushedDirection, ForceMode.Impulse);
             planeRef.direction.x += pushedDirection * Time.deltaTime;
             planeRef.direction.z += pushedDirection * Time.deltaTime;
         }

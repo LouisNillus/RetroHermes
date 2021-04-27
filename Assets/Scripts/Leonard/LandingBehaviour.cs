@@ -3,25 +3,27 @@ using UnityEngine;
 
 public class LandingBehaviour : MonoBehaviour
 {
-    private bool isOverCity;
+    private CityBehaviour currentCity;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y) && isOverCity) LandingSequence();
+        if (Input.GetKeyDown(KeyCode.Y) && currentCity) LandingSequence();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<CityBehaviour>()) isOverCity = true;
+        currentCity = other?.GetComponent<CityBehaviour>();
     }
 
     private void OnTriggerExit(Collider other)
-    {        
-        if (other.GetComponent<CityBehaviour>()) isOverCity = false;
+    {
+        if (currentCity) currentCity = null;
     }
 
     private void LandingSequence()
     {
         Debug.Log("Landed in City");
+        currentCity.SetIslandPrices();
+        currentCity.OpenShop();
     }
 }
