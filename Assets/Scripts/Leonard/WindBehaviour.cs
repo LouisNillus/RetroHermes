@@ -12,8 +12,6 @@ public class WindBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        windDirection = transform.forward;
-
         if (planeBehaviourRef)
         {
             float pushedDirection = Vector3.Dot(-planeBehaviourRef.transform.forward.normalized, windDirection.normalized) * windForce;
@@ -24,6 +22,8 @@ public class WindBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        windDirection = transform.forward;
+        
         if (other.GetComponent<PlaneBehaviour_Movement>())
             planeBehaviourRef = other.GetComponent<PlaneBehaviour_Movement>();
     }
