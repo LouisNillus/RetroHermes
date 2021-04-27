@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
 {
-    [SerializeField] float baseIntegrity;
+    [SerializeField] public float baseIntegrity;
     [SerializeField] Text integrityText;
     
     [Space][Header("Debugging")]
@@ -28,7 +28,7 @@ public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
         integrityText.text = currentIntegrity.ToString();
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         currentIntegrity -= currentIntegrity > 0 ? damageAmount : 0;
         integrityText.text = currentIntegrity.ToString();

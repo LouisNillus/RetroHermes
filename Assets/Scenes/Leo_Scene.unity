@@ -588,9 +588,11 @@ GameObject:
   - component: {fileID: 1181054758}
   - component: {fileID: 1181054757}
   - component: {fileID: 1181054756}
+  - component: {fileID: 1181054762}
+  - component: {fileID: 1181054761}
   - component: {fileID: 1181054760}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Storm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -681,10 +683,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1181054755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edccdb5a224b69540a36e1759fcbcb70, type: 3}
+  m_Script: {fileID: 11500000, guid: acf0cfb44f8f7fd4a8d8cc1517e65abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planeIntegrity: {fileID: 0}
+  damagePercentage: 0.5
+--- !u!114 &1181054761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181054755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ddc77647f5b7444382377c1169c0114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1181054762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181054755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5cd3839403cef4ab64cf404ca29034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cloudBehaviours:
+  - {fileID: 1181054760}
+  - {fileID: 1181054761}
 --- !u!1 &1270531590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,6 +1382,8 @@ GameObject:
   - component: {fileID: 1879196228}
   - component: {fileID: 1879196227}
   - component: {fileID: 1879196226}
+  - component: {fileID: 1879196231}
+  - component: {fileID: 1879196230}
   m_Layer: 0
   m_Name: Cloud
   m_TagString: Untagged
@@ -1437,6 +1468,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1879196230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879196225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ddc77647f5b7444382377c1169c0114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1879196231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879196225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5cd3839403cef4ab64cf404ca29034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cloudBehaviours:
+  - {fileID: 1879196230}
 --- !u!1 &1912400788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,6 +1696,7 @@ GameObject:
   - component: {fileID: 2138971661}
   - component: {fileID: 2138971660}
   - component: {fileID: 2138971659}
+  - component: {fileID: 2138971664}
   - component: {fileID: 2138971663}
   m_Layer: 0
   m_Name: Wind
@@ -1738,3 +1796,17 @@ MonoBehaviour:
   windForce: 40
   planeBehaviourRef: {fileID: 0}
   windDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &2138971664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138971658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5cd3839403cef4ab64cf404ca29034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cloudBehaviours:
+  - {fileID: 2138971663}

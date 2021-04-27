@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class WindBehaviour : MonoBehaviour
+public class CloudBehavior_Wind : AbstractCloudBehaviour
 {
     [SerializeField] private float windForce;
     
