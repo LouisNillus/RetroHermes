@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlaneBehaviour_Fuel : PlaneBehaviour
+public class PlaneBehaviour_Fuel : AbstractPlaneBehaviour
 {
     [SerializeField] private float baseFuel;
 

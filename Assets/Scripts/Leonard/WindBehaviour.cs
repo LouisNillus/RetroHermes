@@ -30,7 +30,10 @@ public class WindBehaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        planeBehaviourRef.ResetSpeed();
-        planeBehaviourRef = null;
+        if (planeBehaviourRef)
+        {
+            planeBehaviourRef.ResetSpeed();
+            planeBehaviourRef = null;
+        }
     }
 }

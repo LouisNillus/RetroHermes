@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PlaneManager : MonoBehaviour
 {
-    [SerializeField] private PlaneBehaviour[] _planeBehaviours;
+    [SerializeField] private AbstractPlaneBehaviour[] _planeBehaviours;
 }

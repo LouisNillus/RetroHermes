@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class PlaneBehaviour_Movement : PlaneBehaviour
+public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
 {
     [SerializeField] GameObject planeViz;
     [SerializeField] private float baseSpeed, speedMultiplier, baseRotation, rotLimit;

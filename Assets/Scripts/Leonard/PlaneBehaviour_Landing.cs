@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-public class PlaneBehaviour_Landing : PlaneBehaviour
+public class PlaneBehaviour_Landing : AbstractPlaneBehaviour
 {
     [Header("Debugging")] [ReadOnly] [SerializeField]
     private CityBehaviour currentCity;

@@ -2,4 +2,4 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaneBehaviour : MonoBehaviour { }
+public abstract class AbstractPlaneBehaviour : MonoBehaviour { }
