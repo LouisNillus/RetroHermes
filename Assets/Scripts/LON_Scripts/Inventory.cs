@@ -34,6 +34,7 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            BuyItem();
             SellItem();
         }
     }
@@ -45,14 +46,44 @@ public class Inventory : MonoBehaviour
         {
             Slot s = g.GetComponent<Slot>();
 
-            if (s.IsEmpty()) return;
-            else money += Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName);
+            if (s.IsEmpty() || slots.Contains(s) == false) return;
+            else
+            {
+                money += Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName);
+                s.amount--;
+            }
         }
     }
 
     public void BuyItem()
     {
+        GameObject g = EventSystem.current.currentSelectedGameObject;
+        if (g != null && g.GetComponent<Slot>() != null)
+        {
+            Slot s = g.GetComponent<Slot>();
 
+            if (s.IsEmpty() || slots.Contains(s) == true) return;
+            else
+            {
+                if(HasItem(s.item))
+                {
+                    GetItem(s.item).amount++;
+                    s.amount--;
+                }
+                else if(AnySlotAvailable())
+                {
+                    GetFirstAvailableSlot().item = s.item;
+                    GetFirstAvailableSlot().amount++;
+                    s.amount--;
+                }
+                else
+                {
+                    return;
+                }
+
+                Pay(Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName));
+            }
+        }
     }
 
 
@@ -73,5 +104,55 @@ public class Inventory : MonoBehaviour
                 go.transform.SetParent(this.transform, false);
             }
         }
+    }
+
+    public bool AnySlotAvailable()
+    {
+        foreach(Slot s in slots)
+        {
+            if (s.item == null) return true;
+        }
+
+        return false;
+    }
+
+    public Slot GetFirstAvailableSlot()
+    {
+        foreach (Slot s in slots)
+        {
+            if (s.item == null) return s;
+        }
+
+        return null;
+    }
+
+    public bool HasItem(ItemData item)
+    {
+        foreach (Slot s in slots)
+        {
+            if (s.item == item) return true;
+        }
+
+        return false;
+    }
+
+    public Slot GetItem(ItemData item)
+    {
+        foreach (Slot s in slots)
+        {
+            if (s.item == item) return s;
+        }
+
+        return null;
+    }
+
+    public void Pay(int price)
+    {
+        money -= price;
+    }
+
+    public void Earn(int value)
+    {
+        money += value;
     }
 }

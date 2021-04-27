@@ -19,6 +19,7 @@ public class Slot : MonoBehaviour
     {
         UpdateStackText();
         OnStackValueChange.AddListener(UpdateStackText);
+        OnStackValueChange.AddListener(ClearSlot);
     }
 
     private void Update()
@@ -30,6 +31,8 @@ public class Slot : MonoBehaviour
         }
     }
     
+
+
     public bool IsFull()
     {
         return amount >= item.maxStack;
@@ -38,6 +41,14 @@ public class Slot : MonoBehaviour
     public bool IsEmpty()
     {
         return amount <= 0;
+    }
+
+    public void ClearSlot()
+    {
+        if (amount <= 0)
+        {
+            item = null;
+        }
     }
 
     public void UpdateStackText()
