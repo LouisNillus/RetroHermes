@@ -30,7 +30,7 @@ public class WindBehaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        planeBehaviourRef.direction = Vector3.forward * planeBehaviourRef.baseSpeed;
+        planeBehaviourRef.ResetSpeed();
         planeBehaviourRef = null;
     }
 }

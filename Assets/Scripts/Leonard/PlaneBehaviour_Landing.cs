@@ -1,10 +1,15 @@
+using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-public class PlaneBehaviour_Landing : MonoBehaviour
+public class PlaneBehaviour_Landing : PlaneBehaviour
 {
-    [Header("Debugging")]
-    [ReadOnly][SerializeField] private CityBehaviour currentCity;
+    [Header("Debugging")] [ReadOnly] [SerializeField]
+    private CityBehaviour currentCity;
+
+    private PlaneBehaviour_Fuel fuelBehaviour;
+
+    private void Awake() => fuelBehaviour = GetComponent<PlaneBehaviour_Fuel>();
 
     private void Update()
     {
@@ -26,5 +31,6 @@ public class PlaneBehaviour_Landing : MonoBehaviour
         Debug.Log("Landed in City");
         currentCity.SetIslandPrices();
         currentCity.OpenShop();
+        fuelBehaviour.Refuel();
     }
 }

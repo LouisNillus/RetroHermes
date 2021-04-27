@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlaneBehaviour_Integrity : MonoBehaviour
+public class PlaneBehaviour_Integrity : PlaneBehaviour
 {
     [SerializeField] float baseIntegrity;
     [SerializeField] Text integrityText;

@@ -817,6 +817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1445987593}
+  - component: {fileID: 1445987600}
   - component: {fileID: 1445987594}
   - component: {fileID: 1445987598}
   - component: {fileID: 1445987599}
@@ -861,9 +862,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planeViz: {fileID: 31413696}
   baseSpeed: 30
+  speedMultiplier: 2
   baseRotation: 90
   rotLimit: 60
   resetSpeed: 30
+  currentSpeed: 0
   direction: {x: 0, y: 0, z: 0}
 --- !u!54 &1445987595
 Rigidbody:
@@ -939,6 +942,23 @@ MonoBehaviour:
   fuelSlider: {fileID: 1645305465}
   fuelText: {fileID: 1323871337}
   currentFuel: 0
+--- !u!114 &1445987600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445987592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6456ac1eb3b45834c8a283a16c697bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _planeBehaviours:
+  - {fileID: 1445987597}
+  - {fileID: 1445987599}
+  - {fileID: 1445987598}
+  - {fileID: 1445987594}
 --- !u!1 &1533877570
 GameObject:
   m_ObjectHideFlags: 0
