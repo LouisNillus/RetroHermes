@@ -76,4 +76,6 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     }
 
     public void ResetSpeed() => direction = Vector3.forward * (currentSpeed = baseSpeed);
+
+    public void HeavyLoad() => currentSpeed = baseSpeed / 2;
 }
