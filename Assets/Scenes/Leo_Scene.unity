@@ -167,6 +167,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   islandPrices: {fileID: 0}
+  shopItemTemplate: {fileID: 0}
+  currentIsland: {fileID: 0}
+  allItems: []
 --- !u!1001 &31413695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -729,7 +732,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf0cfb44f8f7fd4a8d8cc1517e65abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePercentage: 0.05
+  planedamagePercentage: 0.05
+  cargodamagePercentage: 0.1
 --- !u!114 &1181054761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,11 +1230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6456ac1eb3b45834c8a283a16c697bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _planeBehaviours:
-  - {fileID: 1445987597}
-  - {fileID: 1445987599}
-  - {fileID: 1445987598}
-  - {fileID: 1445987594}
+  _planeIntegrity: {fileID: 0}
+  _cargoManager: {fileID: 0}
 --- !u!114 &1445987601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,6 +1244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca95c4a9aa0cbde489137a992015b139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bananaCargo: {fileID: 0}
 --- !u!1 &1533877570
 GameObject:
   m_ObjectHideFlags: 0

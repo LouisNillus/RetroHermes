@@ -3,7 +3,7 @@ using UnityEngine;
 public class Cargo_Crocodile : AbstractCargo
 {
     private float elapsedTime;
-    [SerializeField] private float thrashFrequency;
+    [SerializeField] private float thrashFrequency = 10f;
     
     public override void ApplyEffect()
     {
