@@ -44,31 +44,32 @@ public class Inventory : MonoBehaviour
         GameObject g = EventSystem.current.currentSelectedGameObject;
         if (g != null && g.GetComponent<Slot>() != null)
         {
-            Slot s = g.GetComponent<Slot>();
+            Slot slot = g.GetComponent<Slot>();
 
-            if (s.IsEmpty() || inventorySlots.Contains(s) == false) return;
+            if (slot.IsEmpty() || inventorySlots.Contains(slot) == false) return;
             else
             {
-                if (HasItem(s.item, true))
+                if (HasItem(slot.item.itemName, true))
                 {
-                    GetItem(s.item).amount++;
-                    s.amount--;
+                    GetItem(slot.item.itemName).amount++;
+                    slot.item.amount--;
                 }
                 else if (AnySlotAvailable())
                 {
-                    Slot slot = GetFirstAvailableSlot();
-                    slot.item = s.item;
-                    slot.amount++;
-                    s.amount--;
+                    Item item = GetFirstAvailableSlot().item;
+                    item.data = slot.item.data;
+                    item = slot.item;
+                    item.amount++;
+                    slot.item.amount--;
                 }
                 else
                 {
                     return;
                 }
 
-                CargoManager.instance.RemoveCargo(s.itemName);
-                money += Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName);
-                s.amount--;
+                CargoManager.instance.RemoveCargo(slot.itemName);
+                Earn(Shop.instance.islandPrices.FindItemPriceByName(slot.item.itemName));
+                slot.item.amount--;
             }
         }
     }
@@ -78,32 +79,33 @@ public class Inventory : MonoBehaviour
         GameObject g = EventSystem.current.currentSelectedGameObject;
         if (g != null && g.GetComponent<Slot>() != null)
         {
-            Slot s = g.GetComponent<Slot>();
+            Slot slot = g.GetComponent<Slot>();
 
-            if (s.IsEmpty() || inventorySlots.Contains(s) == true) return;
+            if (slot.IsEmpty() || inventorySlots.Contains(slot) == true) return;
             else
             {
-                if(EnoughMoney(Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName)))
+                if(EnoughMoney(Shop.instance.islandPrices.FindItemPriceByName(slot.item.itemName)))
                 {
-                    if(HasItem(s.item, true))
+                    if(HasItem(slot.item.itemName, true))
                     {
-                        GetItem(s.item).amount++;
-                        s.amount--;
+                        GetItem(slot.item.itemName).amount++;
+                        slot.item.amount--;
                     }
                     else if(AnySlotAvailable())
                     {
-                        Slot slot = GetFirstAvailableSlot();
-                        slot.item = s.item;
-                        slot.amount++;
-                        s.amount--;
+                        Item item = GetFirstAvailableSlot().item;
+                        item.data = slot.item.data;
+                        item = slot.item;
+                        item.amount++;
+                        slot.item.amount--;
                     }
                     else
                     {
                         return;
                     }
 
-                    CargoManager.instance.AddCargo(s.itemName);
-                    Pay(Shop.instance.islandPrices.FindItemPriceByName(s.itemName));
+                    CargoManager.instance.AddCargo(slot.itemName);
+                    Pay(Shop.instance.islandPrices.FindItemPriceByName(slot.itemName));
                 }
             }
         }
@@ -149,23 +151,23 @@ public class Inventory : MonoBehaviour
         return null;
     }
 
-    public bool HasItem(ItemData item, bool checkMaxStack = false)
+    public bool HasItem(ItemType item, bool checkMaxStack = false)
     {
         foreach (Slot s in inventorySlots)
         {
             if (checkMaxStack && s.locked) return false;
 
-            if (s.item == item) return true;
+            if (s.item.itemName == item) return true;
         }
 
         return false;
     }
 
-    public Slot GetItem(ItemData item)
+    public Item GetItem(ItemType item)
     {
         foreach (Slot s in inventorySlots)
         {
-            if (s.item == item) return s;
+            if (s.item.itemName == item) return s.item;
         }
 
         return null;

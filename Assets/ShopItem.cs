@@ -26,7 +26,7 @@ public class ShopItem : MonoBehaviour
     {
         itemName.text = slot.itemName.ToString();
         islandPrice.text = Shop.instance.islandPrices.FindItemPriceByName(slot.itemName).ToString() + "$/unit";
-        slot.visual.sprite = slot.item.sprite != null ? slot.item.sprite : null;
+        slot.visual.sprite = slot.item.data.sprite != null ? slot.item.data.sprite : null;
     }
 
     public void UpdateSlot()

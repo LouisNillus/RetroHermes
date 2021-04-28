@@ -8,13 +8,12 @@ using TMPro;
 public class Slot : MonoBehaviour
 {
     [Header("Refs")]
-    public ItemData item;
+    public Item item;
     public Image visual;
     public TextMeshProUGUI stackText;
 
     [Header("Data")]
     public bool unlimitedStack = false;
-    public int amount;
     int lastAmount;
     public ItemType itemName;
 
@@ -32,27 +31,28 @@ public class Slot : MonoBehaviour
 
     private void Update()
     {
-        if (item != null && lastAmount != amount)
+        if (item != null && lastAmount != item.amount)
         {
             OnStackValueChange.Invoke();
-            lastAmount = amount;
+            lastAmount = item.amount;
         }
     }
-   
 
     public bool IsFull()
     {
-        return amount >= item.maxStack;
+        Debug.Log((item == null).ToString() + " " + (item.data == null).ToString());
+        Debug.Log(item.amount + " " + this.gameObject.name + " " + item.data.maxStack);
+        return item.amount >= item.data.maxStack;
     }
 
     public bool IsEmpty()
     {
-        return amount <= 0;
+        return item.amount <= 0;
     }
 
     public void ClearSlot()
     {
-        if (amount <= 0)
+        if (item.amount <= 0)
         {
             item = null;
             locked = false;
@@ -61,7 +61,7 @@ public class Slot : MonoBehaviour
 
     public void StackOverflow()
     {
-        if (IsFull() && unlimitedStack == false)
+        if (IsFull() && item.unlimitedStack == false)
         {
             locked = true;
         }
@@ -70,7 +70,7 @@ public class Slot : MonoBehaviour
 
     public void UpdateStackText()
     {
-        stackText.text = amount > 0 ? amount.ToString() : "";
+        stackText.text = item.amount > 0 ? item.amount.ToString() : "";
     }
 
 

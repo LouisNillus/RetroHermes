@@ -29,12 +29,14 @@ public class Shop : MonoBehaviour
         {
             GameObject go = Instantiate(shopItemTemplate, this.transform.position, Quaternion.identity);
 
-            ShopItem si = go.GetComponent<ShopItem>();
-            ItemPrice ip = currentIsland.shopStocks[i];
+            Slot slot = go.GetComponent<ShopItem>().slot;
+            Item ip = currentIsland.shopStocks[i];
 
-            si.slot.unlimitedStack = ip.unlimitedStack;
-            si.slot.itemName = ip.itemName;
-            si.slot.amount = ip.amount;
+            slot.item = ip;
+            slot.item.data = ip.data;
+            /*slot.unlimitedStack = ip.unlimitedStack;
+            slot.itemName = ip.itemName;
+            slot.amount = ip.amount;*/
 
             allItems.Add(go);
 
@@ -56,7 +58,7 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < allItems.Count; i++)
         {
             ShopItem si = allItems[i].GetComponent<ShopItem>();
-            ItemPrice ip = new ItemPrice(si.slot.amount, si.slot.unlimitedStack, si.slot.itemName, islandPrices.FindItemPriceByName(si.slot.itemName));
+            Item ip = new Item(si.slot.item.amount, si.slot.unlimitedStack, si.slot.itemName, islandPrices.FindItemPriceByName(si.slot.itemName));
             currentIsland.shopStocks.Add(ip);
         }
     }
@@ -71,7 +73,7 @@ public class Shop : MonoBehaviour
             }
             else
             {
-                stock.GetComponent<ShopItem>().slot.amount += quantity;
+                stock.GetComponent<ShopItem>().slot.item.amount += quantity;
             }
         }
     }

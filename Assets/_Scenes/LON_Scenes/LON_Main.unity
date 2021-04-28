@@ -242,7 +242,7 @@ MonoBehaviour:
   xMargin: 120
   rows: 2
   columns: 4
-  money: 0
+  money: 259
 --- !u!114 &333464962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &333464963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,6 +501,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &982066921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 982066923}
+  - component: {fileID: 982066922}
+  m_Layer: 0
+  m_Name: CargoManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &982066922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982066921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca95c4a9aa0cbde489137a992015b139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &982066923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982066921}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 865.9865, y: 951.4507, z: -1072.8241}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1081674110
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,15 +640,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopStocks:
-  - amount: 30
+  - data: {fileID: 11400000, guid: fbed24aa1c5bc2e49bcfd404681c912c, type: 2}
+    amount: 30
     unlimitedStack: 1
-    data: {fileID: 11400000, guid: 1d110f77d00fca841ba134a100b92453, type: 2}
     itemName: 0
     price: 10
-  - amount: 8
+  - data: {fileID: 11400000, guid: 25d5e0bafa14f564cb591454997143a0, type: 2}
+    amount: 8
     unlimitedStack: 1
-    data: {fileID: 11400000, guid: 25d5e0bafa14f564cb591454997143a0, type: 2}
-    itemName: 2
+    itemName: 3
     price: 50
   islandPrices: {fileID: 11400000, guid: 90d42a667726b7a4d81e9e18b25ebf0a, type: 2}
 --- !u!4 &1397381863
