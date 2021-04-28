@@ -21,11 +21,11 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     {
         roll = yaw = transform.eulerAngles;
         currentSpeed = baseSpeed;
-        
+
         direction = Vector3.forward * currentSpeed;
     }
 
-    void Update()
+    public void MovementLogic()
     {
         if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)) resetAxis = true;
         if (Input.GetKeyUp(KeyCode.UpArrow)) ResetSpeed();
@@ -65,7 +65,8 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
             roll.z += roll.z < rotLimit ? baseRotation * Time.deltaTime : 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow)) direction = Vector3.forward * (currentSpeed = (baseSpeed * speedMultiplier));
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            direction = Vector3.forward * (currentSpeed = (baseSpeed * speedMultiplier));
     }
 
     // rotate plane to indicate in which direction it is travelling
@@ -78,4 +79,6 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     public void ResetSpeed() => direction = Vector3.forward * (currentSpeed = baseSpeed);
 
     public void HeavyLoad() => currentSpeed = baseSpeed / 2;
+
+    public void KillSpeed() => currentSpeed = 0;
 }
