@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class CityBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private IslandPrices myPrices;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void SetIslandPrices() => Shop.instance.islandPrices = myPrices;
+    public void OpenShop() {} //TODO : Open the shop
 }
