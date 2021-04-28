@@ -2,29 +2,37 @@ using UnityEngine;
 
 public class CloudBehaviour_Storm : AbstractCloudBehaviour
 {
-    private PlaneBehaviour_Integrity planeIntegrityRef;
+    private PlaneManager planeIntegrityRef;
     private float totalDamage;
     float elapsedTime;
     private float damageFrequency = 1f;
-    [SerializeField] private float damagePercentage = 0.05f;
+    [SerializeField] private float planedamagePercentage = 0.05f;
+    [SerializeField] private float cargodamagePercentage = 0.1f;
 
     private void Update()
     {
-        elapsedTime += Time.deltaTime;
-        if (elapsedTime >= damageFrequency)
+        if (planeIntegrityRef)
         {
-            elapsedTime = 0;
-            planeIntegrityRef?.TakeDamage(planeIntegrityRef.baseIntegrity * damagePercentage);
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= damageFrequency)
+            {
+                elapsedTime = 0;
+                planeIntegrityRef.StormDamage(planedamagePercentage, cargodamagePercentage);
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlaneBehaviour_Integrity>()) planeIntegrityRef = other.GetComponent<PlaneBehaviour_Integrity>();
-    } 
-    
+        if (other.GetComponent<PlaneManager>()) planeIntegrityRef = other.GetComponent<PlaneManager>();
+    }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<PlaneBehaviour_Integrity>() && planeIntegrityRef) planeIntegrityRef = null;
+        if (other.GetComponent<PlaneManager>() && planeIntegrityRef)
+        {
+            elapsedTime = 0;
+            planeIntegrityRef = null;
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using JetBrains.Annotations;
@@ -6,7 +7,9 @@ using UnityEngine;
 public class CargoManager : MonoBehaviour
 {
     [ShowInInspector] Dictionary<ItemType, int> cargoTypes = new Dictionary<ItemType, int>();
-    private List<AbstractCargo> cargoHold = new List<AbstractCargo>();
+    public List<AbstractCargo> cargoHold { get; private set;}
+
+    private void Awake() => cargoHold = new List<AbstractCargo>();
 
     void Update()
     {
