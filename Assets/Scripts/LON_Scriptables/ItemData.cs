@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New ItemData", menuName = "ItemData")]
 public class ItemData : ScriptableObject
 {
-    public string itemName;
+    public ItemType itemName;
     public int maxStack;
     public Sprite sprite;
-
 }

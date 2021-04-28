@@ -10,6 +10,7 @@ public class Slot : MonoBehaviour
     public ItemData item;
     public Image visual;
     int lastAmount;
+    public bool unlimitedStack = false;
     public int amount;
     public TextMeshProUGUI stackText;
     public bool locked { get; private set; }
@@ -32,8 +33,7 @@ public class Slot : MonoBehaviour
             lastAmount = amount;
         }
     }
-    
-
+   
 
     public bool IsFull()
     {
@@ -56,7 +56,7 @@ public class Slot : MonoBehaviour
 
     public void StackOverflow()
     {
-        if (IsFull())
+        if (IsFull() && unlimitedStack == false)
         {
             locked = true;
         }

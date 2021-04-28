@@ -6,24 +6,36 @@ using TMPro;
 public class ShopItem : MonoBehaviour
 {
     public Slot slot;
+    bool token = true;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI islandPrice;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        OnSlotItemChange.AddListener(UpdateInfos);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateSlot();
     }
 
     public void UpdateInfos()
     {
-        //if()
+        itemName.text = slot.item.itemName.ToString();
+        islandPrice.text = Shop.instance.islandPrices.FindItemPriceByName(slot.item.itemName).ToString() + "$/unit";
+        slot.visual.sprite = slot.item.sprite != null ? slot.item.sprite : null;
+    }
+
+    public void UpdateSlot()
+    {
+        if (slot.item != null && token)
+        {
+            OnSlotItemChange.Invoke();
+        }
+        else if (slot.item == null) token = true;
     }
 
     [HideInInspector] public UnityEvent OnSlotItemChange;
