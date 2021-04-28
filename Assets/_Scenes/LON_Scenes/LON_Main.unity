@@ -596,7 +596,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56ed1f3ebc9ed74bb5a77c65d35da67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopStocks: []
+  shopStocks:
+  - amount: 30
+    unlimitedStack: 1
+    data: {fileID: 11400000, guid: 1d110f77d00fca841ba134a100b92453, type: 2}
+    itemName: 0
+    price: 10
+  - amount: 8
+    unlimitedStack: 1
+    data: {fileID: 11400000, guid: 25d5e0bafa14f564cb591454997143a0, type: 2}
+    itemName: 2
+    price: 50
   islandPrices: {fileID: 11400000, guid: 90d42a667726b7a4d81e9e18b25ebf0a, type: 2}
 --- !u!4 &1397381863
 Transform:
