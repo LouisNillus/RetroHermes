@@ -32,6 +32,7 @@ public class Slot : MonoBehaviour
     {
         if (item != null && lastAmount != item.amount)
         {
+            visual.sprite = item.data.sprite != null ? item.data.sprite : null;
             OnStackValueChange.Invoke();
             lastAmount = item.amount;
             ClearSlot();
@@ -50,8 +51,9 @@ public class Slot : MonoBehaviour
 
     public void ClearSlot()
     {
-        if (item.amount <= 0)
+        if (IsEmpty())
         {
+            visual.sprite = null;
             item = new Item();
             locked = false;          
         }

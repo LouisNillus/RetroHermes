@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class CityBehaviour : MonoBehaviour
 {
-    [SerializeField] private IslandPrices myPrices;
+    [SerializeField] private Island island;
 
-    public void SetIslandPrices() => Shop.instance.islandPrices = myPrices;
-    public void OpenShop() { } //TODO : Open the shop
+    //public void SetIslandPrices() => Shop.instance.islandPrices = myPrices;
+    public void OpenShop()
+    {
+        Shop.instance.islandPanel.SetActive(true);
+        island.ShopSubscribe();
+    }
 }

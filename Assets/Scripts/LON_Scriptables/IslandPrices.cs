@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Island Prices", menuName ="Island Prices")]
 public class IslandPrices : ScriptableObject
 {
-    public List<Item> prices = new List<Item>();
+    public List<ItemPrice> prices = new List<ItemPrice>();
 
     public int FindItemPriceByName(ItemType name)
     {
-        foreach(Item item in prices)
+        foreach(ItemPrice item in prices)
         {
             if (name == item.itemName)
             {
@@ -19,4 +19,10 @@ public class IslandPrices : ScriptableObject
 
         return 0;
     }
+}
+[System.Serializable]
+public class ItemPrice
+{
+    public ItemType itemName;
+    public int price;
 }

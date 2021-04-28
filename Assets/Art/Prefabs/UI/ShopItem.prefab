@@ -188,9 +188,6 @@ MonoBehaviour:
   slot: {fileID: 1500313359187166257}
   itemName: {fileID: 4946917036481603623}
   islandPrice: {fileID: 4946917037711113442}
-  OnSlotItemChange:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &4946917037711113440
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,16 +342,20 @@ PrefabInstance:
       value: Slot
       objectReference: {fileID: 0}
     - target: {fileID: 4581441714581886636, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581441714581886636, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4581441714581886636, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4581441714581886636, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5618065103689599174, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
       propertyPath: m_fontColor.b
