@@ -2,5 +2,8 @@
 
 public class Cargo_Eggs : AbstractCargo
 {
-    public override void ApplyEffect() => Debug.Log("Eggs");
+    public override void ApplyEffect()
+    {
+        
+    }
 }

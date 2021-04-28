@@ -7,5 +7,5 @@ public class CityBehaviour : MonoBehaviour
     [SerializeField] private IslandPrices myPrices;
 
     public void SetIslandPrices() => Shop.instance.islandPrices = myPrices;
-    public void OpenShop() {} //TODO : Open the shop
+    public void OpenShop() { } //TODO : Open the shop
 }
