@@ -66,7 +66,7 @@ public class Inventory : MonoBehaviour
                     return;
                 }
 
-
+                CargoManager.instance.RemoveCargo(s.itemName);
                 money += Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName);
                 s.amount--;
             }
@@ -102,7 +102,8 @@ public class Inventory : MonoBehaviour
                         return;
                     }
 
-                    Pay(Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName));
+                    CargoManager.instance.AddCargo(s.itemName);
+                    Pay(Shop.instance.islandPrices.FindItemPriceByName(s.itemName));
                 }
             }
         }
