@@ -56,7 +56,7 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < allItems.Count; i++)
         {
             ShopItem si = allItems[i].GetComponent<ShopItem>();
-            ItemPrice ip = new ShopStock(si.slot.amount, si.slot.unlimitedStack, si.slot.item);
+            ItemPrice ip = new ItemPrice(si.slot.amount, si.slot.unlimitedStack, si.slot.item, si.slot.item.itemName, islandPrices.FindItemPriceByName(si.slot.item.itemName));
             currentIsland.shopStocks.Add(ip);
         }
     }

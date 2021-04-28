@@ -4,9 +4,13 @@ using UnityEngine;
 
 public enum ItemType 
 {
-    Coffee,
     Bananas,
-    Jewels,
-    Oil,
-    Wheat
+    Bottles,
+    Crocodile,
+    Eggs,
+    Explosive,
+    Grease,
+    Magnets,
+    Ore,
+    Paintings
 }
