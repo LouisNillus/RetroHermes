@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum ItemType 
 {
+    Null,
     Bananas,
     Bottles,
     Crocodile,

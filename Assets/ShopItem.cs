@@ -20,13 +20,14 @@ public class ShopItem : MonoBehaviour
     void Update()
     {
         UpdateSlot();
+        ZeroStockKill();
     }
 
     public void UpdateInfos()
     {
-        itemName.text = slot.itemName.ToString();
-        islandPrice.text = Shop.instance.islandPrices.FindItemPriceByName(slot.itemName).ToString() + "$/unit";
-        slot.visual.sprite = slot.item.sprite != null ? slot.item.sprite : null;
+        itemName.text = slot.item.itemName.ToString();
+        islandPrice.text = Shop.instance.islandPrices.FindItemPriceByName(slot.item.itemName).ToString() + "$/unit";
+        slot.visual.sprite = slot.item.data.sprite != null ? slot.item.data.sprite : null;
     }
 
     public void UpdateSlot()
@@ -36,6 +37,15 @@ public class ShopItem : MonoBehaviour
             OnSlotItemChange.Invoke();
         }
         else if (slot.item == null) token = true;
+    }
+
+    public void ZeroStockKill()
+    {
+        if(slot.item.amount <= 0)
+        {
+            Shop.instance.allItems.Remove(this.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 
     [HideInInspector] public UnityEvent OnSlotItemChange;

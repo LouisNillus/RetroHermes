@@ -5,18 +5,21 @@ using UnityEngine;
 
 public class PillarBehaviour : MonoBehaviour
 {
-    [SerializeField] PlaneBehaviour_Integrity planeIntegrity;
+    [SerializeField] PlaneManager planeIntegrityRef;
+    [SerializeField] private float planedamagePercentage = 0.15f;
+    [SerializeField] private float cargodamagePercentage = 0.20f;
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlaneBehaviour_Integrity>())
+        if (other.GetComponent<PlaneManager>())
         {
-            planeIntegrity = other.GetComponent<PlaneBehaviour_Integrity>();
-            planeIntegrity.TakeDamage();
-            
-            // TODO : destroy pillar animation (?)
-            
-            Destroy(this);
+            planeIntegrityRef = other.GetComponent<PlaneManager>();
+            planeIntegrityRef.PillarDamage(planedamagePercentage, cargodamagePercentage);
         }
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<PlaneManager>() && planeIntegrityRef) planeIntegrityRef = null;
     }
 }

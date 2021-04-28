@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
@@ -8,17 +9,15 @@ using TMPro;
 public class Slot : MonoBehaviour
 {
     [Header("Refs")]
-    public ItemData item;
+    public Item item;
     public Image visual;
     public TextMeshProUGUI stackText;
 
     [Header("Data")]
     public bool unlimitedStack = false;
-    public int amount;
     int lastAmount;
-    public ItemType itemName;
 
-    public bool locked { get; private set; }
+    [ShowInInspector] public bool locked { get; private set; }
 
     [HideInInspector] public UnityEvent OnStackValueChange;
 
@@ -27,41 +26,40 @@ public class Slot : MonoBehaviour
         UpdateStackText();
         OnStackValueChange.AddListener(UpdateStackText);
         OnStackValueChange.AddListener(StackOverflow);
-        OnStackValueChange.AddListener(ClearSlot);
     }
 
     private void Update()
     {
-        if (item != null && lastAmount != amount)
+        if (item != null && lastAmount != item.amount)
         {
             OnStackValueChange.Invoke();
-            lastAmount = amount;
+            lastAmount = item.amount;
+            ClearSlot();
         }
     }
-   
 
     public bool IsFull()
     {
-        return amount >= item.maxStack;
+        return item.amount >= item.data.maxStack;
     }
 
     public bool IsEmpty()
     {
-        return amount <= 0;
+        return item.amount <= 0;
     }
 
     public void ClearSlot()
     {
-        if (amount <= 0)
+        if (item.amount <= 0)
         {
-            item = null;
-            locked = false;
+            item = new Item();
+            locked = false;          
         }
     }
 
     public void StackOverflow()
     {
-        if (IsFull() && unlimitedStack == false)
+        if (item != null && IsFull() && item.unlimitedStack == false)
         {
             locked = true;
         }
@@ -70,7 +68,8 @@ public class Slot : MonoBehaviour
 
     public void UpdateStackText()
     {
-        stackText.text = amount > 0 ? amount.ToString() : "";
+        if(item != null)
+        stackText.text = item.amount > 0 ? item.amount.ToString() : "";
     }
 
 

@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2486320aad377b143bb8859c1ca0b106, type: 3}
   m_Name: Ore
   m_EditorClassIdentifier: 
-  itemName: 0
   maxStack: 20
-  sprite: {fileID: 21300000, guid: e542b37becbaf6d45ae16792f87ab126, type: 3}
+  sprite: {fileID: 21300000, guid: ab3d638d114eb2d4f867cdba1610d22d, type: 3}

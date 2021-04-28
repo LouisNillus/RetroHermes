@@ -29,12 +29,10 @@ public class Shop : MonoBehaviour
         {
             GameObject go = Instantiate(shopItemTemplate, this.transform.position, Quaternion.identity);
 
-            ShopItem si = go.GetComponent<ShopItem>();
-            ItemPrice ip = currentIsland.shopStocks[i];
+            Slot slot = go.GetComponent<ShopItem>().slot;
+            Item ip = currentIsland.shopStocks[i];
 
-            si.slot.unlimitedStack = ip.unlimitedStack;
-            si.slot.itemName = ip.itemName;
-            si.slot.amount = ip.amount;
+            slot.item = ip;
 
             allItems.Add(go);
 
@@ -56,24 +54,67 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < allItems.Count; i++)
         {
             ShopItem si = allItems[i].GetComponent<ShopItem>();
-            ItemPrice ip = new ItemPrice(si.slot.amount, si.slot.unlimitedStack, si.slot.itemName, islandPrices.FindItemPriceByName(si.slot.itemName));
+            Item ip = new Item(si.slot.item.amount, si.slot.unlimitedStack, si.slot.item.itemName, islandPrices.FindItemPriceByName(si.slot.item.itemName));
             currentIsland.shopStocks.Add(ip);
         }
     }
 
-    public void AddStock(ItemType itemName, int quantity)
+    public void AddStock(Item item, int quantity = 1, bool newStock = false)
     {
+        if (newStock) NewSlotShop(item);
+
         foreach(GameObject stock in allItems)
         {
-            if(stock.GetComponent<ShopItem>().slot.itemName != itemName)
+            if(stock.GetComponent<ShopItem>().slot.item.itemName != item.itemName)
             {
                 continue;
             }
             else
             {
-                stock.GetComponent<ShopItem>().slot.amount += quantity;
+                stock.GetComponent<ShopItem>().slot.item.amount += quantity;
             }
         }
+    }
+
+    public static bool HasItemShop(ItemType item, bool checkMaxStack = false)
+    {
+        foreach (GameObject go in instance.allItems)
+        {
+            ShopItem si = go.GetComponent<ShopItem>();
+
+            if (checkMaxStack && si.slot.locked) return false;
+
+            if (si.slot.item.itemName == item) return true;
+        }
+
+        return false;
+    }
+
+    public static Item GetItemShop(ItemType item)
+    {
+        foreach (GameObject go in instance.allItems)
+        {
+            ShopItem si = go.GetComponent<ShopItem>();
+
+            if (si.slot.item.itemName == item) return si.slot.item;
+        }
+
+        return null;
+    }
+
+    public void NewSlotShop(Item item)
+    {
+        GameObject go = Instantiate(shopItemTemplate, this.transform.position, Quaternion.identity);
+
+        Slot slot = go.GetComponent<ShopItem>().slot;
+        
+
+        slot.item = new Item(item.amount, true, item.itemName, 0);
+        slot.item.data = item.data;
+
+        allItems.Add(go);
+
+        go.transform.SetParent(this.transform, false);
     }
 
 }

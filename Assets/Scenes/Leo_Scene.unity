@@ -746,6 +746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddc77647f5b7444382377c1169c0114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  travelDistance: 300
+  travelTime: 6
 --- !u!114 &1181054762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1230,8 +1232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6456ac1eb3b45834c8a283a16c697bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _planeIntegrity: {fileID: 0}
-  _cargoManager: {fileID: 0}
+  _planeMovement: {fileID: 1445987594}
+  _planeIntegrity: {fileID: 1445987598}
+  _planeFuel: {fileID: 1445987599}
+  _planeLanding: {fileID: 1445987597}
+  _cargoManager: {fileID: 1445987601}
 --- !u!114 &1445987601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,7 +1249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca95c4a9aa0cbde489137a992015b139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bananaCargo: {fileID: 0}
+  garbage: 
 --- !u!1 &1533877570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,6 +1543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddc77647f5b7444382377c1169c0114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  travelDistance: 0
+  travelTime: 0
 --- !u!114 &1879196231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1851,7 +1858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48ed6c74d5f1d54795e077b6b74e77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windForce: 40
+  windForce: 90
   planeBehaviourRef: {fileID: 0}
   windDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &2138971664

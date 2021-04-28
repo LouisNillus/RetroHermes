@@ -5,15 +5,12 @@ using Sirenix.OdinInspector;
 public class PlaneBehaviour_Landing : AbstractPlaneBehaviour
 {
     [Header("Debugging")] [ReadOnly] [SerializeField]
-    private CityBehaviour currentCity;
-
-    private PlaneBehaviour_Fuel fuelBehaviour;
-
-    private void Awake() => fuelBehaviour = GetComponent<PlaneBehaviour_Fuel>();
+    public CityBehaviour currentCity;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y) && currentCity) LandingSequence();
+        if (Input.GetKeyDown(KeyCode.Y) && currentCity) 
+            PlaneManager.instance.LandingSequence();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,13 +21,5 @@ public class PlaneBehaviour_Landing : AbstractPlaneBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (currentCity) currentCity = null;
-    }
-
-    private void LandingSequence()
-    {
-        Debug.Log("Landed in City");
-        currentCity.SetIslandPrices();
-        currentCity.OpenShop();
-        fuelBehaviour.Refuel();
     }
 }
