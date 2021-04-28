@@ -3,11 +3,19 @@ using UnityEngine;
 public class CloudBehaviour_Storm : AbstractCloudBehaviour
 {
     private PlaneBehaviour_Integrity planeIntegrityRef;
+    private float totalDamage;
+    float elapsedTime;
+    private float damageFrequency = 1f;
     [SerializeField] private float damagePercentage = 0.05f;
 
     private void Update()
     {
-        if (planeIntegrityRef) planeIntegrityRef.TakeDamage(planeIntegrityRef.baseIntegrity * damagePercentage);
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime >= damageFrequency)
+        {
+            elapsedTime = 0;
+            planeIntegrityRef?.TakeDamage(planeIntegrityRef.baseIntegrity * damagePercentage);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

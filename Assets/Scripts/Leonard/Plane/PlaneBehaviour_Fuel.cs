@@ -14,7 +14,6 @@ public class PlaneBehaviour_Fuel : AbstractPlaneBehaviour
     private float depletionRate;
 
     [SerializeField] Slider fuelSlider;
-    [SerializeField] Text fuelText;
 
     [Space][Header("Debugging")]
     [ReadOnly] [SerializeField] private float currentFuel;
@@ -28,7 +27,6 @@ public class PlaneBehaviour_Fuel : AbstractPlaneBehaviour
     {
         currentFuel -= currentFuel > 0 ? Time.deltaTime * depletionRate : 0;
         fuelSlider.value = (currentFuel / baseFuel);
-        fuelText.text = (Mathf.Round(currentFuel * 1000f) / 1000f).ToString();
         
         if (currentFuel <= 0) Debug.Log("You Crashed.");
     }
