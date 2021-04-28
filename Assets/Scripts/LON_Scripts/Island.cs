@@ -21,18 +21,3 @@ public class Island : MonoBehaviour
         Shop.instance.FillShopWithItems();
     }
 }
-
-[System.Serializable]
-public class ShopStock
-{
-    public int amount;
-    public bool unlimitedStack;
-    public ItemData data;
-
-    public ShopStock(int amount, bool unlimitedStack, ItemData data)
-    {
-        this.amount = amount;
-        this.unlimitedStack = unlimitedStack;
-        this.data = data;
-    }
-}

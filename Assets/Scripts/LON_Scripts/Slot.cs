@@ -7,12 +7,17 @@ using TMPro;
 
 public class Slot : MonoBehaviour
 {
+    [Header("Refs")]
     public ItemData item;
     public Image visual;
-    int lastAmount;
+    public TextMeshProUGUI stackText;
+
+    [Header("Data")]
     public bool unlimitedStack = false;
     public int amount;
-    public TextMeshProUGUI stackText;
+    int lastAmount;
+    public ItemType itemName;
+
     public bool locked { get; private set; }
 
     [HideInInspector] public UnityEvent OnStackValueChange;

@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class PlaneManager : MonoBehaviour
 {
-    [SerializeField] private AbstractPlaneBehaviour[] _planeBehaviours;
+    [SerializeField] PlaneBehaviour_Integrity _planeIntegrity;
+    [SerializeField] private CargoManager _cargoManager;
 
-    public void StormDamage()
+    public void StormDamage(float planeDamage, float cargoDamage)
     {
-        // TODO : damage to hull integrity
-        // TODO : damage to all goods
+        _planeIntegrity.TakeDamage(_planeIntegrity.baseIntegrity * planeDamage);
+        
+        foreach (var cargo in _cargoManager.cargoHold)
+            cargo.StormDamage(cargoDamage);
     }
 }

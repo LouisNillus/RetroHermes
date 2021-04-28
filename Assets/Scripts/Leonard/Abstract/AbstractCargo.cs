@@ -1,8 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractCargo : MonoBehaviour
+public class AbstractCargo
 {
-    public abstract void ApplyEffect();
+    private float baseIntegrity = 100f;
+    private float currentIntegrity;
+
+    public virtual void ApplyEffect() { }
+
+    public virtual void StormDamage(float stormDamagePercentage)
+    {
+        currentIntegrity -= currentIntegrity > 0 ? baseIntegrity * stormDamagePercentage : 0;
+        //integrityText.text = currentIntegrity.ToString();
+    }
+
+   // public virtual void PillarDamage();
 }
