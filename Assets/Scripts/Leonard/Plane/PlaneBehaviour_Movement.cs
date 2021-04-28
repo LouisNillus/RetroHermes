@@ -17,6 +17,10 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     private Vector3 yaw;
     private Vector3 roll;
 
+    private float t, step;
+    bool swayingPlane;
+    private float swayStart, swayTarget, swayTime = .5f;
+
     private void Awake()
     {
         roll = yaw = transform.eulerAngles;
@@ -32,6 +36,8 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
 
         if (Input.anyKey) CheckInputs(); // update plane rotation + orientation
         if (resetAxis) ResetPlaneAxis(); // rotate plane back to original pos
+
+        if (swayingPlane) RotatePlane();
 
         MovePlane();
     }
@@ -81,4 +87,20 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     public void HeavyLoad() => speedMultiplier = 0.8f;
 
     public void KillSpeed() => speedMultiplier = 0;
+
+    public void SwayPlane(int swayDirection)
+    {
+        swayTarget = (swayStart = transform.eulerAngles.y) + swayDirection;
+        swayingPlane = true;
+        t = 0;
+    }
+
+    public void RotatePlane()
+    {
+        t += Time.deltaTime;
+        step = t / swayTime;
+        yaw.y = Mathf.Lerp(swayStart, swayTarget, step);
+        roll.y = Mathf.Lerp(swayStart, swayTarget, step);
+        if (yaw.y == swayTarget) swayingPlane = false;
+    }
 }
