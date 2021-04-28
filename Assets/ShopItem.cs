@@ -20,6 +20,7 @@ public class ShopItem : MonoBehaviour
     void Update()
     {
         UpdateSlot();
+        ZeroStockKill();
     }
 
     public void UpdateInfos()
@@ -36,6 +37,15 @@ public class ShopItem : MonoBehaviour
             OnSlotItemChange.Invoke();
         }
         else if (slot.item == null) token = true;
+    }
+
+    public void ZeroStockKill()
+    {
+        if(slot.item.amount <= 0)
+        {
+            Shop.instance.allItems.Remove(this.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 
     [HideInInspector] public UnityEvent OnSlotItemChange;

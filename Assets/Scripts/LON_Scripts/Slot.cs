@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
@@ -16,7 +17,7 @@ public class Slot : MonoBehaviour
     public bool unlimitedStack = false;
     int lastAmount;
 
-    public bool locked { get; private set; }
+    [ShowInInspector] public bool locked { get; private set; }
 
     [HideInInspector] public UnityEvent OnStackValueChange;
 
@@ -25,7 +26,6 @@ public class Slot : MonoBehaviour
         UpdateStackText();
         OnStackValueChange.AddListener(UpdateStackText);
         OnStackValueChange.AddListener(StackOverflow);
-        OnStackValueChange.AddListener(ClearSlot);    
     }
 
     private void Update()
@@ -34,13 +34,12 @@ public class Slot : MonoBehaviour
         {
             OnStackValueChange.Invoke();
             lastAmount = item.amount;
+            ClearSlot();
         }
     }
 
     public bool IsFull()
     {
-        Debug.Log((item == null).ToString() + " " + (item.data == null).ToString());
-        Debug.Log(item.data);
         return item.amount >= item.data.maxStack;
     }
 
@@ -53,14 +52,14 @@ public class Slot : MonoBehaviour
     {
         if (item.amount <= 0)
         {
-            item = null;
-            locked = false;
+            item = new Item();
+            locked = false;          
         }
     }
 
     public void StackOverflow()
     {
-        if (IsFull() && item.unlimitedStack == false)
+        if (item != null && IsFull() && item.unlimitedStack == false)
         {
             locked = true;
         }
@@ -69,6 +68,7 @@ public class Slot : MonoBehaviour
 
     public void UpdateStackText()
     {
+        if(item != null)
         stackText.text = item.amount > 0 ? item.amount.ToString() : "";
     }
 

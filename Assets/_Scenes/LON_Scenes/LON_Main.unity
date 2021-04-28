@@ -530,6 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca95c4a9aa0cbde489137a992015b139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  garbage: 
 --- !u!4 &982066923
 Transform:
   m_ObjectHideFlags: 0
@@ -643,12 +644,12 @@ MonoBehaviour:
   - data: {fileID: 11400000, guid: fbed24aa1c5bc2e49bcfd404681c912c, type: 2}
     amount: 30
     unlimitedStack: 1
-    itemName: 0
+    itemName: 1
     price: 10
   - data: {fileID: 11400000, guid: 25d5e0bafa14f564cb591454997143a0, type: 2}
     amount: 8
     unlimitedStack: 1
-    itemName: 3
+    itemName: 4
     price: 50
   islandPrices: {fileID: 11400000, guid: 90d42a667726b7a4d81e9e18b25ebf0a, type: 2}
 --- !u!4 &1397381863

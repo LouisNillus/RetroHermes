@@ -33,9 +33,6 @@ public class Shop : MonoBehaviour
             Item ip = currentIsland.shopStocks[i];
 
             slot.item = ip;
-            slot.item.itemName = ip.itemName;
-            slot.item.amount = ip.amount;
-            slot.item.data = ip.data;
 
             allItems.Add(go);
 
@@ -62,11 +59,13 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void AddStock(ItemType itemName, int quantity)
+    public void AddStock(Item item, int quantity = 1, bool newStock = false)
     {
+        if (newStock) NewSlotShop(item);
+
         foreach(GameObject stock in allItems)
         {
-            if(stock.GetComponent<ShopItem>().slot.item.itemName != itemName)
+            if(stock.GetComponent<ShopItem>().slot.item.itemName != item.itemName)
             {
                 continue;
             }
@@ -75,6 +74,47 @@ public class Shop : MonoBehaviour
                 stock.GetComponent<ShopItem>().slot.item.amount += quantity;
             }
         }
+    }
+
+    public static bool HasItemShop(ItemType item, bool checkMaxStack = false)
+    {
+        foreach (GameObject go in instance.allItems)
+        {
+            ShopItem si = go.GetComponent<ShopItem>();
+
+            if (checkMaxStack && si.slot.locked) return false;
+
+            if (si.slot.item.itemName == item) return true;
+        }
+
+        return false;
+    }
+
+    public static Item GetItemShop(ItemType item)
+    {
+        foreach (GameObject go in instance.allItems)
+        {
+            ShopItem si = go.GetComponent<ShopItem>();
+
+            if (si.slot.item.itemName == item) return si.slot.item;
+        }
+
+        return null;
+    }
+
+    public void NewSlotShop(Item item)
+    {
+        GameObject go = Instantiate(shopItemTemplate, this.transform.position, Quaternion.identity);
+
+        Slot slot = go.GetComponent<ShopItem>().slot;
+        
+
+        slot.item = new Item(item.amount, true, item.itemName, 0);
+        slot.item.data = item.data;
+
+        allItems.Add(go);
+
+        go.transform.SetParent(this.transform, false);
     }
 
 }

@@ -44,32 +44,24 @@ public class Inventory : MonoBehaviour
         GameObject g = EventSystem.current.currentSelectedGameObject;
         if (g != null && g.GetComponent<Slot>() != null)
         {
-            Slot slot = g.GetComponent<Slot>();
-
-            if (slot.IsEmpty() || inventorySlots.Contains(slot) == false) return;
+            Slot invSlot = g.GetComponent<Slot>();
+            if (invSlot.item == null ||invSlot.IsEmpty() || inventorySlots.Contains(invSlot) == false) return;
             else
             {
-                if (HasItem(slot.item.itemName, true))
+
+                Debug.Log("Can Sell");
+                if (Shop.HasItemShop(invSlot.item.itemName, true)) //maybe false ?
                 {
-                    GetItem(slot.item.itemName).amount++;
-                    slot.item.amount--;
-                }
-                else if (AnySlotAvailable())
-                {
-                    Item item = GetFirstAvailableSlot().item;
-                    item = slot.item;
-                    item.data = slot.item.data;
-                    item.amount++;
-                    slot.item.amount--;
+                    Shop.instance.AddStock(invSlot.item, 1, false);
                 }
                 else
                 {
-                    return;
+                    Shop.instance.AddStock(invSlot.item, 1, true);
                 }
 
-                CargoManager.instance.RemoveCargo(slot.item.itemName);
-                Earn(Shop.instance.islandPrices.FindItemPriceByName(slot.item.itemName));
-                slot.item.amount--;
+                CargoManager.instance.RemoveCargo(invSlot.item.itemName);
+                Earn(Shop.instance.islandPrices.FindItemPriceByName(invSlot.item.itemName));
+                invSlot.item.amount--;
             }
         }
     }
@@ -80,23 +72,24 @@ public class Inventory : MonoBehaviour
         if (g != null && g.GetComponent<Slot>() != null)
         {
             Slot shopSlot = g.GetComponent<Slot>();
-
-            if (shopSlot.IsEmpty() || inventorySlots.Contains(shopSlot) == true) return;
+            Debug.Log(shopSlot.gameObject.name);
+            if (shopSlot.item == null || shopSlot.IsEmpty() || inventorySlots.Contains(shopSlot) == true) return;
             else
             {
+                Debug.Log("Can Buy");
                 if(EnoughMoney(Shop.instance.islandPrices.FindItemPriceByName(shopSlot.item.itemName)))
                 {
                     if(HasItem(shopSlot.item.itemName, true))
                     {
-                        Debug.Log("A");
                         GetItem(shopSlot.item.itemName).amount++;
                         shopSlot.item.amount--;
                     }
                     else if(AnySlotAvailable())
                     {
                         Slot invSlot = GetFirstAvailableSlot();
-                        Debug.Log(invSlot.item.data + " INVDATA");
                         invSlot.item.data = shopSlot.item.data;
+                        invSlot.item.itemName = shopSlot.item.itemName;
+
                         invSlot.item.amount++;
                         shopSlot.item.amount--;
                     }
@@ -119,14 +112,17 @@ public class Inventory : MonoBehaviour
     public void InitSlots()
     {
         Vector3[] vecs = new Vector3[rows * columns];
+        int a = 0;
 
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
+                a++;
                 vecs[i * j].y = i * -(slotTemplate.GetComponent<RectTransform>().rect.height + yOffset) + yMargin;
                 vecs[i * j].x = j * (slotTemplate.GetComponent<RectTransform>().rect.width + xOffset) + xMargin;
                 GameObject go = Instantiate(slotTemplate, vecs[i*j], Quaternion.identity);
+                go.name += a;
                 inventorySlots.Add(go.GetComponent<Slot>());
                 go.transform.SetParent(this.transform, false);
             }
@@ -174,7 +170,6 @@ public class Inventory : MonoBehaviour
 
         return null;
     }
-
 
     public bool EnoughMoney(int price)
     {

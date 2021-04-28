@@ -14,27 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prices:
   - data: {fileID: 11400000, guid: fbed24aa1c5bc2e49bcfd404681c912c, type: 2}
-    amount: 0
+    amount: 10
     unlimitedStack: 0
-    itemName: 0
+    itemName: 1
     price: 10
   - data: {fileID: 11400000, guid: 1d110f77d00fca841ba134a100b92453, type: 2}
-    amount: 0
-    unlimitedStack: 0
-    itemName: 2
-    price: 5
-  - data: {fileID: 11400000, guid: 25d5e0bafa14f564cb591454997143a0, type: 2}
-    amount: 0
+    amount: 10
     unlimitedStack: 0
     itemName: 3
+    price: 5
+  - data: {fileID: 11400000, guid: 25d5e0bafa14f564cb591454997143a0, type: 2}
+    amount: 10
+    unlimitedStack: 0
+    itemName: 4
     price: 20
   - data: {fileID: 11400000, guid: 33873a94bbb66c94b820dbc9cd0f9580, type: 2}
-    amount: 0
-    unlimitedStack: 0
-    itemName: 6
-    price: 50
-  - data: {fileID: 11400000, guid: 6ea898fd82c73ce4ea3926bca46f31f5, type: 2}
-    amount: 0
+    amount: 10
     unlimitedStack: 0
     itemName: 7
+    price: 50
+  - data: {fileID: 11400000, guid: 6ea898fd82c73ce4ea3926bca46f31f5, type: 2}
+    amount: 10
+    unlimitedStack: 0
+    itemName: 8
     price: 20

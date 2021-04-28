@@ -27,4 +27,9 @@ public class Item
         this.itemName = itemName;
         this.price = price;
     }
+
+    public Item()
+    {
+
+    }
 }
