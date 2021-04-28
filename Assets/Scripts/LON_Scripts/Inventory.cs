@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
     public List<Slot> inventorySlots = new List<Slot>();
     public GameObject slotTemplate;
+
+    public GameObject inventoryParent;
+    [SerializeField] TextMeshProUGUI sellingPrice;
+    [SerializeField] TextMeshProUGUI moneyCount;
 
     [Range(0,200)]
     [SerializeField] int yOffset; //In pixels
@@ -32,10 +37,14 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        DisplaySellingPrice();
+        moneyCount.text = money.ToString() + "$";
         if (Input.GetKeyDown(KeyCode.Space))
         {
             BuyItem();
             SellItem();
+            Shop.instance.SaveStocks();
         }
     }
 
@@ -45,7 +54,7 @@ public class Inventory : MonoBehaviour
         if (g != null && g.GetComponent<Slot>() != null)
         {
             Slot invSlot = g.GetComponent<Slot>();
-            if (invSlot.item == null ||invSlot.IsEmpty() || inventorySlots.Contains(invSlot) == false) return;
+            if (invSlot.item == null ||invSlot.IsEmpty() || Shop.instance.SellableHere(invSlot.item.itemName) == false || inventorySlots.Contains(invSlot) == false) return;
             else
             {
 
@@ -81,6 +90,7 @@ public class Inventory : MonoBehaviour
                 {
                     if(HasItem(shopSlot.item.itemName, true))
                     {
+                        Debug.Log("Add more items");
                         GetItem(shopSlot.item.itemName).amount++;
                         shopSlot.item.amount--;
                     }
@@ -124,7 +134,7 @@ public class Inventory : MonoBehaviour
                 GameObject go = Instantiate(slotTemplate, vecs[i*j], Quaternion.identity);
                 go.name += a;
                 inventorySlots.Add(go.GetComponent<Slot>());
-                go.transform.SetParent(this.transform, false);
+                go.transform.SetParent(inventoryParent.transform, false);
             }
         }
     }
@@ -153,9 +163,14 @@ public class Inventory : MonoBehaviour
     {
         foreach (Slot s in inventorySlots)
         {
-            if (checkMaxStack && s.locked) return false;
-
-            if (s.item.itemName == item) return true;
+            if (s.item.itemName == item)
+            {
+                if (checkMaxStack && s.IsFull())
+                {
+                    continue;
+                }
+                else return true;
+            }
         }
 
         return false;
@@ -165,7 +180,14 @@ public class Inventory : MonoBehaviour
     {
         foreach (Slot s in inventorySlots)
         {
-            if (s.item.itemName == item) return s.item;
+            if (s.item.itemName == item)
+            {
+                if (s.IsFull())
+                {
+                    continue;
+                }
+                else return s.item;
+            }
         }
 
         return null;
@@ -185,5 +207,20 @@ public class Inventory : MonoBehaviour
     public void Earn(int value)
     {
         money += value;
+    }
+
+    public void DisplaySellingPrice()
+    {
+        GameObject g = EventSystem.current.currentSelectedGameObject;
+        if (g != null && g.GetComponent<Slot>() != null)
+        {
+            Slot shopSlot = g.GetComponent<Slot>();
+            if (shopSlot.item == null || shopSlot.IsEmpty() || inventorySlots.Contains(shopSlot) == false) return;
+            else if(inventorySlots.Contains(shopSlot))
+            {
+                sellingPrice.text = "Selling Price : " + Shop.instance.islandPrices.FindItemPriceByName(shopSlot.item.itemName) + "$/unit";
+            }
+            else sellingPrice.text = "";
+        }
     }
 }

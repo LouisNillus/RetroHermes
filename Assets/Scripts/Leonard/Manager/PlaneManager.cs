@@ -25,7 +25,7 @@ public class PlaneManager : MonoBehaviour
     {
         Debug.Log("Landed in City");
         landed = true;
-        _planeLanding.currentCity.SetIslandPrices();
+        //_planeLanding.currentCity.SetIslandPrices();
         _planeLanding.currentCity.OpenShop();
         _planeFuel.Refuel();
         _planeMovement.KillSpeed();

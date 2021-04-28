@@ -9,6 +9,9 @@ public class Shop : MonoBehaviour
     public GameObject shopItemTemplate;
     public Island currentIsland;
 
+    public GameObject shopParent;
+    public GameObject islandPanel;
+
     public List<GameObject> allItems = new List<GameObject>();
     
 
@@ -22,6 +25,15 @@ public class Shop : MonoBehaviour
         //FillShopWithItems();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            PlaneManager.instance.TakeOff();
+            ShopState(false);
+        }
+    }
+
     public void FillShopWithItems()
     {
         ClearShop();
@@ -33,10 +45,11 @@ public class Shop : MonoBehaviour
             Item ip = currentIsland.shopStocks[i];
 
             slot.item = ip;
+            slot.item.unlimitedStack = true;
 
             allItems.Add(go);
 
-            go.transform.SetParent(this.transform, false);
+            go.transform.SetParent(shopParent.transform, false);
         }
     }
 
@@ -46,15 +59,17 @@ public class Shop : MonoBehaviour
         {
             Destroy(allItems[i]);
         }
+        allItems.Clear();
     }
 
-    public void SaveStocks()
+    public void SaveStocks() //FULL PAS OPTI
     {
         currentIsland.shopStocks.Clear();
         for (int i = 0; i < allItems.Count; i++)
         {
             ShopItem si = allItems[i].GetComponent<ShopItem>();
-            Item ip = new Item(si.slot.item.amount, si.slot.unlimitedStack, si.slot.item.itemName, islandPrices.FindItemPriceByName(si.slot.item.itemName));
+            Item ip = new Item(si.slot.item.amount, true, si.slot.item.itemName);
+            ip.data = si.slot.item.data;
             currentIsland.shopStocks.Add(ip);
         }
     }
@@ -109,12 +124,27 @@ public class Shop : MonoBehaviour
         Slot slot = go.GetComponent<ShopItem>().slot;
         
 
-        slot.item = new Item(item.amount, true, item.itemName, 0);
+        slot.item = new Item(0, true, item.itemName);
         slot.item.data = item.data;
 
         allItems.Add(go);
 
-        go.transform.SetParent(this.transform, false);
+        go.transform.SetParent(shopParent.transform, false);
     }
 
+    public void ShopState(bool value)
+    {
+        islandPanel.SetActive(value);
+    }
+
+    public bool SellableHere(ItemType itemName)
+    {
+        foreach(ItemPrice ip in currentIsland.islandPrices.prices)
+        {
+            if (ip.itemName == itemName) return true;
+        }
+
+        Debug.Log("We don't buy " + itemName.ToString() + " here");
+        return false;
+    }
 }

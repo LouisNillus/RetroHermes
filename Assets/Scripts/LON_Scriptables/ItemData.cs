@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "New ItemData", menuName = "ItemData")]
 public class ItemData : ScriptableObject
@@ -12,20 +13,18 @@ public class ItemData : ScriptableObject
 [System.Serializable]
 public class Item
 {
+    [Header("Item")]
+    public ItemType itemName;
     public ItemData data;
     public int amount;
-    public bool unlimitedStack;
-    public ItemType itemName;
-    public int price;
-
+    [ReadOnly] public bool unlimitedStack;
     
 
-    public Item(int amount, bool unlimitedStack, ItemType itemName, int price)
+    public Item(int amount, bool unlimitedStack, ItemType itemName)
     {
         this.amount = amount;
         this.unlimitedStack = unlimitedStack;
         this.itemName = itemName;
-        this.price = price;
     }
 
     public Item()
