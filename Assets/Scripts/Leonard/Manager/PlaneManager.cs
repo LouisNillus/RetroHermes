@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlaneManager : MonoBehaviour
 {
     [SerializeField] public PlaneBehaviour_Movement _planeMovement;
-    [SerializeField]  PlaneBehaviour_Integrity _planeIntegrity;
+    [SerializeField] PlaneBehaviour_Integrity _planeIntegrity;
     [SerializeField] PlaneBehaviour_Fuel _planeFuel;
     [SerializeField] PlaneBehaviour_Landing _planeLanding;
     private bool landed;
@@ -43,7 +42,7 @@ public class PlaneManager : MonoBehaviour
 
     // TODO : TakeOff Call
     public void TakeOff() => landed = false;
-    
+
     public void StormDamage(float planeDamage, float cargoDamage)
     {
         _planeIntegrity.TakeDamage(_planeIntegrity.baseIntegrity * planeDamage);
