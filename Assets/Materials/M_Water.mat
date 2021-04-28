@@ -70,8 +70,8 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Tiling1: 0.2
-    - _Tiling2: 0.6
+    - _Tiling1: 0.06
+    - _Tiling2: 0.18
     - _TimeStep: 8
     - _UVSec: 0
     - _ZWrite: 1
@@ -80,5 +80,5 @@ Material:
     - _Color1: {r: 0, g: 0.5, b: 0.48765433, a: 1}
     - _Color2: {r: 0.01960786, g: 0.7921569, b: 0.7682385, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Scrolling: {r: 0, g: -0.3, b: 0, a: 0.2}
+    - _Scrolling: {r: 0, g: -0.43, b: 0, a: 0.2}
   m_BuildTextureStacks: []
