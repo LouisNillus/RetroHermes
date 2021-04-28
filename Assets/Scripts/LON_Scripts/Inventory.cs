@@ -57,8 +57,8 @@ public class Inventory : MonoBehaviour
                 else if (AnySlotAvailable())
                 {
                     Item item = GetFirstAvailableSlot().item;
-                    item.data = slot.item.data;
                     item = slot.item;
+                    item.data = slot.item.data;
                     item.amount++;
                     slot.item.amount--;
                 }
@@ -67,7 +67,7 @@ public class Inventory : MonoBehaviour
                     return;
                 }
 
-                CargoManager.instance.RemoveCargo(slot.itemName);
+                CargoManager.instance.RemoveCargo(slot.item.itemName);
                 Earn(Shop.instance.islandPrices.FindItemPriceByName(slot.item.itemName));
                 slot.item.amount--;
             }
@@ -79,33 +79,35 @@ public class Inventory : MonoBehaviour
         GameObject g = EventSystem.current.currentSelectedGameObject;
         if (g != null && g.GetComponent<Slot>() != null)
         {
-            Slot slot = g.GetComponent<Slot>();
+            Slot shopSlot = g.GetComponent<Slot>();
 
-            if (slot.IsEmpty() || inventorySlots.Contains(slot) == true) return;
+            if (shopSlot.IsEmpty() || inventorySlots.Contains(shopSlot) == true) return;
             else
             {
-                if(EnoughMoney(Shop.instance.islandPrices.FindItemPriceByName(slot.item.itemName)))
+                if(EnoughMoney(Shop.instance.islandPrices.FindItemPriceByName(shopSlot.item.itemName)))
                 {
-                    if(HasItem(slot.item.itemName, true))
+                    if(HasItem(shopSlot.item.itemName, true))
                     {
-                        GetItem(slot.item.itemName).amount++;
-                        slot.item.amount--;
+                        Debug.Log("A");
+                        GetItem(shopSlot.item.itemName).amount++;
+                        shopSlot.item.amount--;
                     }
                     else if(AnySlotAvailable())
                     {
-                        Item item = GetFirstAvailableSlot().item;
-                        item.data = slot.item.data;
-                        item = slot.item;
-                        item.amount++;
-                        slot.item.amount--;
+                        Slot invSlot = GetFirstAvailableSlot();
+                        Debug.Log(invSlot.item.data + " INVDATA");
+                        invSlot.item.data = shopSlot.item.data;
+                        invSlot.item.amount++;
+                        shopSlot.item.amount--;
                     }
                     else
                     {
+                        Debug.Log("Exit");
                         return;
                     }
 
-                    CargoManager.instance.AddCargo(slot.itemName);
-                    Pay(Shop.instance.islandPrices.FindItemPriceByName(slot.itemName));
+                    CargoManager.instance.AddCargo(shopSlot.item.itemName);
+                    Pay(Shop.instance.islandPrices.FindItemPriceByName(shopSlot.item.itemName));
                 }
             }
         }
@@ -135,7 +137,7 @@ public class Inventory : MonoBehaviour
     {
         foreach(Slot s in inventorySlots)
         {
-            if (s.item == null) return true;
+            if (s.item.itemName == ItemType.Null) return true;
         }
 
         return false;
@@ -145,7 +147,7 @@ public class Inventory : MonoBehaviour
     {
         foreach (Slot s in inventorySlots)
         {
-            if (s.item == null) return s;
+            if (s.item.itemName == ItemType.Null) return s;
         }
 
         return null;

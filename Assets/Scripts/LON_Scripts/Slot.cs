@@ -15,7 +15,6 @@ public class Slot : MonoBehaviour
     [Header("Data")]
     public bool unlimitedStack = false;
     int lastAmount;
-    public ItemType itemName;
 
     public bool locked { get; private set; }
 
@@ -26,7 +25,7 @@ public class Slot : MonoBehaviour
         UpdateStackText();
         OnStackValueChange.AddListener(UpdateStackText);
         OnStackValueChange.AddListener(StackOverflow);
-        OnStackValueChange.AddListener(ClearSlot);
+        OnStackValueChange.AddListener(ClearSlot);    
     }
 
     private void Update()
@@ -41,7 +40,7 @@ public class Slot : MonoBehaviour
     public bool IsFull()
     {
         Debug.Log((item == null).ToString() + " " + (item.data == null).ToString());
-        Debug.Log(item.amount + " " + this.gameObject.name + " " + item.data.maxStack);
+        Debug.Log(item.data);
         return item.amount >= item.data.maxStack;
     }
 

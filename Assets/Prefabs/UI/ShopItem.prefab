@@ -344,6 +344,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot
       objectReference: {fileID: 0}
+    - target: {fileID: 4581441714581886636, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581441714581886636, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581441714581886636, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618065103689599174, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618065103689599174, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618065103689599174, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618065103689599174, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5797493747572524039, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
       propertyPath: item
       value: 
