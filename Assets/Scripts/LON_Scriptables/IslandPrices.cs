@@ -24,6 +24,18 @@ public class IslandPrices : ScriptableObject
 [System.Serializable]
 public class ItemPrice
 {
+    public int amount;
+    public bool unlimitedStack;
+    public ItemData data;
     public ItemType itemName;
     public int price;
+
+    public ItemPrice(int amount, bool unlimitedStack, ItemData data, ItemType itemName, int price)
+    {
+        this.amount = amount;
+        this.unlimitedStack = unlimitedStack;
+        this.data = data;
+        this.itemName = itemName;
+        this.price = price;
+    }
 }

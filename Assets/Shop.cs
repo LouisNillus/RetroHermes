@@ -30,11 +30,11 @@ public class Shop : MonoBehaviour
             GameObject go = Instantiate(shopItemTemplate, this.transform.position, Quaternion.identity);
 
             ShopItem si = go.GetComponent<ShopItem>();
-            ShopStock ss = currentIsland.shopStocks[i];
+            ItemPrice ip = currentIsland.shopStocks[i];
 
-            si.slot.unlimitedStack = ss.unlimitedStack;
-            si.slot.item = ss.data;
-            si.slot.amount = ss.amount;
+            si.slot.unlimitedStack = ip.unlimitedStack;
+            si.slot.item = ip.data;
+            si.slot.amount = ip.amount;
 
             allItems.Add(go);
 
@@ -56,8 +56,8 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < allItems.Count; i++)
         {
             ShopItem si = allItems[i].GetComponent<ShopItem>();
-            ShopStock ss = new ShopStock(si.slot.amount, si.slot.unlimitedStack, si.slot.item);
-            currentIsland.shopStocks.Add(ss);
+            ItemPrice ip = new ShopStock(si.slot.amount, si.slot.unlimitedStack, si.slot.item);
+            currentIsland.shopStocks.Add(ip);
         }
     }
 

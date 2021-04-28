@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class Island : MonoBehaviour
 {
-    public List<ShopStock> shopStocks = new List<ShopStock>();
+    public List<ItemPrice> shopStocks = new List<ItemPrice>();
     public IslandPrices islandPrices;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -26,9 +20,6 @@ public class Island : MonoBehaviour
 
         Shop.instance.FillShopWithItems();
     }
-
-
-
 }
 
 [System.Serializable]
