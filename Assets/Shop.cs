@@ -33,7 +33,7 @@ public class Shop : MonoBehaviour
             ItemPrice ip = currentIsland.shopStocks[i];
 
             si.slot.unlimitedStack = ip.unlimitedStack;
-            si.slot.item = ip.data;
+            si.slot.itemName = ip.itemName;
             si.slot.amount = ip.amount;
 
             allItems.Add(go);
@@ -56,8 +56,23 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < allItems.Count; i++)
         {
             ShopItem si = allItems[i].GetComponent<ShopItem>();
-            ItemPrice ip = new ItemPrice(si.slot.amount, si.slot.unlimitedStack, si.slot.item, si.slot.item.itemName, islandPrices.FindItemPriceByName(si.slot.item.itemName));
+            ItemPrice ip = new ItemPrice(si.slot.amount, si.slot.unlimitedStack, si.slot.itemName, islandPrices.FindItemPriceByName(si.slot.itemName));
             currentIsland.shopStocks.Add(ip);
+        }
+    }
+
+    public void AddStock(ItemType itemName, int quantity)
+    {
+        foreach(GameObject stock in allItems)
+        {
+            if(stock.GetComponent<ShopItem>().slot.itemName != itemName)
+            {
+                continue;
+            }
+            else
+            {
+                stock.GetComponent<ShopItem>().slot.amount += quantity;
+            }
         }
     }
 
