@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Sirenix.OdinInspector;
 
 public class MissionManager : MonoBehaviour
 {
 
+    public TextMeshProUGUI missionName;
     public TextMeshProUGUI missionText;
     public ShippingMission currentMission;
 
@@ -29,7 +31,11 @@ public class MissionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(currentMission != null)
+        {
+            missionName.text = "#" + (missionIndex + 1) + " " + currentMission.missionName;
+            missionText.text = currentMission.missionText;
+        }
     }
 
     public void LoadMission(ShippingMission sm)
@@ -41,13 +47,15 @@ public class MissionManager : MonoBehaviour
     public void CheckShipping(ItemType soldItem)
     {
         if(currentMission.destinationID == Shop.instance.currentIsland.ID && currentMission.complete == false)
-        for (int i = 0; i < currentMission.packages.Count; i++)
         {
-            ShippingPackage sp = currentMission.packages[i];
-            if (soldItem == sp.itemName) sp.quantity--;
-        }
+            for (int i = 0; i < currentMission.packages.Count; i++)
+            {
+                ShippingPackage sp = currentMission.packages[i];
+                if (soldItem == sp.itemName) sp.quantity--;
+            }
 
-        MissionCompletion();
+            MissionCompletion();
+        }
     }
 
     public void MissionCompletion()
@@ -59,9 +67,11 @@ public class MissionManager : MonoBehaviour
 
         Inventory.instance.Earn(currentMission.reward);
 
+        currentMission.complete = true;
+
         missionIndex++;
         missionIndex = Mathf.Clamp(missionIndex, 0, missions.Count - 1);
-
+        
         currentMission = missions[missionIndex];
     }
 }
@@ -69,12 +79,15 @@ public class MissionManager : MonoBehaviour
 [System.Serializable]
 public class ShippingMission
 {
-    public List<ShippingPackage> packages = new List<ShippingPackage>();
+    public string missionName;
+    [TextArea(2,3)]
+    public string missionText;
     [Range(0,4)]
     public int destinationID;
     [Range(0,2000)]
     public int reward;
-    public bool complete = false;
+    [ReadOnly] public bool complete = false;
+    public List<ShippingPackage> packages = new List<ShippingPackage>();
 
 }
 
