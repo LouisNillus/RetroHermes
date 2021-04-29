@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3f4242de226a94d9984c6468c4763f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planeManager: {fileID: 1445987600}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!114 &105780203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1517,15 +1517,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1730e0f00257f74ca0725d42e0f48ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   planeViz: {fileID: 31413696}
   baseSpeed: 30
+  maxSpeed: 0
   speedMultiplier: 2
+  direction: {x: 0, y: 0, z: 0}
+  defaultSpeedMultiplier: 0
   baseRotation: 90
   rotLimit: 60
-  defaultSpeedMultiplier: 0
-  resetSpeed: 30
   currentSpeed: 0
-  direction: {x: 0, y: 0, z: 0}
+  isFullSpeed: 0
+  isTurning: 0
 --- !u!54 &1445987595
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1617,6 +1625,7 @@ MonoBehaviour:
   _planeLanding: {fileID: 1445987597}
   _cargoManager: {fileID: 1445987601}
   isInCloud: 0
+  compass: {fileID: 0}
 --- !u!114 &1445987601
 MonoBehaviour:
   m_ObjectHideFlags: 0
