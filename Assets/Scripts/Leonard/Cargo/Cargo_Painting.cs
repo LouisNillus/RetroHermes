@@ -14,6 +14,8 @@ public class Cargo_Painting : AbstractCargo
    
     public override void ApplyEffect()
     {
+        Debug.Log("Updating");
+        
         if (PlaneManager.instance.isInCloud)
         {
             // if in cloud for more than 5 seconds

@@ -5,7 +5,6 @@ using UnityEngine;
 public class CargoManager : MonoBehaviour
 {
     [ShowInInspector] public List<AbstractCargo> cargoHold { get; private set; }
-    public List<int> garbage;
     private bool collect;
 
     public static CargoManager instance;
@@ -24,9 +23,6 @@ public class CargoManager : MonoBehaviour
             if (cargoItem.cargoDestroyed)
                 DestroyCargo(cargoHold.IndexOf(cargoItem));
         }
-
-        // if (Input.GetKeyDown(KeyCode.A)) AddCargo(ItemType.Grease);
-        // if (Input.GetKeyDown(KeyCode.Z)) RemoveCargo(ItemType.Bananas);
     }
 
     // called when the player buys cargo of a certain type
