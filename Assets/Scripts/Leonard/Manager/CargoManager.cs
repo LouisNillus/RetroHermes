@@ -5,7 +5,6 @@ using UnityEngine;
 public class CargoManager : MonoBehaviour
 {
     [ShowInInspector] public List<AbstractCargo> cargoHold { get; private set; }
-    public List<int> garbage;
     private bool collect;
 
     public static CargoManager instance;
@@ -18,15 +17,16 @@ public class CargoManager : MonoBehaviour
 
     void Update()
     {
-        foreach (var cargoItem in cargoHold)
+        for (int i = 0; i < cargoHold.Count; i++)
         {
-            cargoItem.ApplyEffect();
-            if (cargoItem.cargoDestroyed)
-                DestroyCargo(cargoHold.IndexOf(cargoItem));
+            cargoHold[i].ApplyEffect();
+            if (cargoHold[i].cargoDestroyed)
+            {
+                PlaneManager.instance.compass.TrackPlayerNorth();
+                cargoHold.RemoveAt(i);
+                i--;
+            }
         }
-
-        // if (Input.GetKeyDown(KeyCode.A)) AddCargo(ItemType.Grease);
-        // if (Input.GetKeyDown(KeyCode.Z)) RemoveCargo(ItemType.Bananas);
     }
 
     // called when the player buys cargo of a certain type
@@ -108,6 +108,4 @@ public class CargoManager : MonoBehaviour
                 break;
         }
     }
-
-    public void DestroyCargo(int index) => cargoHold.RemoveAt(index);
 }

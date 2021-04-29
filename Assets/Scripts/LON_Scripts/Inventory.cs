@@ -126,6 +126,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < rows; i++)
         {
+
             for (int j = 0; j < columns; j++)
             {
                 a++;
@@ -137,6 +138,8 @@ public class Inventory : MonoBehaviour
                 go.transform.SetParent(inventoryParent.transform, false);
             }
         }
+
+        EventSystem.current.SetSelectedGameObject(inventorySlots[0].gameObject);
     }
 
     public bool AnySlotAvailable()

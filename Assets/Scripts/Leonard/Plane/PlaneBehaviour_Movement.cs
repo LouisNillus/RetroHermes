@@ -23,6 +23,9 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     bool swayingPlane;
     private float swayStart, swayTarget, swayTime = .5f;
 
+    public bool isFullSpeed;
+    public bool isTurning;
+
     private void Awake()
     {
         defaultSpeedMultiplier = speedMultiplier;
@@ -59,6 +62,7 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            isTurning = true;
             resetAxis = false;
             yaw.y += baseRotation * Time.deltaTime;
             roll.y += baseRotation * Time.deltaTime;
@@ -67,6 +71,7 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
+            isTurning = true;
             resetAxis = false;
             yaw.y -= baseRotation * Time.deltaTime;
 
@@ -75,12 +80,16 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
             direction = Vector3.forward * (currentSpeed = (baseSpeed * speedMultiplier));
+            isFullSpeed = true;
+        }
     }
 
     // rotate plane to indicate in which direction it is travelling
     void ResetPlaneAxis()
     {
+        isTurning = false;
         roll.z = roll.z < 0 ? roll.z + resetSpeed * Time.deltaTime : roll.z - resetSpeed * Time.deltaTime;
         if (roll.z == 0) resetAxis = false;
     }
@@ -88,8 +97,10 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     public void ResetSpeed()
     {
         direction = Vector3.forward * (currentSpeed = baseSpeed);
-        speedMultiplier = defaultSpeedMultiplier;
+        isFullSpeed = false;
     }
+
+    public void Takeoff() => speedMultiplier = defaultSpeedMultiplier;
 
     public void HeavyLoad() => speedMultiplier = 0.8f;
 

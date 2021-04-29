@@ -14,7 +14,6 @@ public class Cargo_Crocodile : AbstractCargo
         {
             PlaneManager.instance._planeMovement.SwayPlane(Random.Range(minAngle, maxAngle));
             elapsedTime = 0;
-            // TODO : sway the plane in a random direction
         }
     }
 }

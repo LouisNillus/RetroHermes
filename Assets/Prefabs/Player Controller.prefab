@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f370fa64fcc37d4cb027600cfb83107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
+  timerText: {fileID: 1451230021774609888}
 --- !u!1 &1451230021836359412
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +330,7 @@ MonoBehaviour:
   _planeLanding: {fileID: 1451230021914633348}
   _cargoManager: {fileID: 1451230021914633368}
   isInCloud: 0
+  compass: {fileID: 1451230022724792931}
 --- !u!114 &1451230021914633347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +352,8 @@ MonoBehaviour:
   resetSpeed: 30
   currentSpeed: 0
   direction: {x: 0, y: 0, z: 0}
+  isFullSpeed: 0
+  isTurning: 0
 --- !u!114 &1451230021914633351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca95c4a9aa0cbde489137a992015b139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  garbage: 
 --- !u!54 &1451230021914633346
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -432,7 +434,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451230021914633345}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 22, y: 12, z: 18}
@@ -515,7 +517,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1451230022936312772}
   m_FillRect: {fileID: 1451230021754064856}
   m_HandleRect: {fileID: 1451230022936312773}
@@ -841,7 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3f4242de226a94d9984c6468c4763f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planeManager: {fileID: 1451230021914633369}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &1451230022848820561
 GameObject:
   m_ObjectHideFlags: 0
