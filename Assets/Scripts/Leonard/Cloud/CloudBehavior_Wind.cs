@@ -27,4 +27,21 @@ public class CloudBehavior_Wind : AbstractCloudBehaviour
             planeManagerRef = null;
         }
     }
+
+    BoxCollider boxCollider;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+
+        if (boxCollider == null)
+        {
+            boxCollider = GetComponent<BoxCollider>();
+        }
+        Gizmos.DrawWireCube(transform.position, new Vector3(boxCollider.size.x, boxCollider.size.y, boxCollider.size.z));
+        
+        Vector3 pos = transform.position + (transform.forward * -100) + new Vector3(0,200,0);
+        
+        Gizmos.DrawLine(transform.position + new Vector3(0,200,0), pos );
+        Gizmos.DrawWireSphere(pos, 10);
+    }
 }
