@@ -22,6 +22,7 @@ public class CargoManager : MonoBehaviour
             cargoHold[i].ApplyEffect();
             if (cargoHold[i].cargoDestroyed)
             {
+                PlaneManager.instance.compass.TrackPlayerNorth();
                 cargoHold.RemoveAt(i);
                 i--;
             }

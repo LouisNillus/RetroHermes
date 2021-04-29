@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class Cargo_Magnets : AbstractCargo
 {
-    public override void ApplyEffect()
-    {
-    }
+    public override void ApplyEffect() => PlaneManager.instance.compass.RandomCompass();
 }
