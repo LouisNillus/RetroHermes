@@ -6,9 +6,4 @@ using UnityEngine;
 public class CloudManager : MonoBehaviour
 {
     [SerializeField] private AbstractCloudBehaviour[] _cloudBehaviours;
-
-    private void Update()
-    {
-        
-    }
 }

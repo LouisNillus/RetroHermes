@@ -14,15 +14,9 @@ public class AbstractCargo
     {
     }
 
-    public virtual void StormDamage(float stormDamagePercentage)
+    public virtual void SpecifyDamage(float damagePercentage, DamageType damageType)
     {
-        currentIntegrity -= currentIntegrity > 0 ? baseIntegrity * stormDamagePercentage : 0;
-        if (currentIntegrity <= 0) cargoDestroyed = true;
-    }
-
-    public virtual void PillarDamage(float pillarDamagePercentage)
-    {
-        currentIntegrity -= currentIntegrity > 0 ? baseIntegrity * pillarDamagePercentage : 0;
+        currentIntegrity -= currentIntegrity > 0 ? baseIntegrity * damagePercentage : 0;
         if (currentIntegrity <= 0) cargoDestroyed = true;
     }
 }

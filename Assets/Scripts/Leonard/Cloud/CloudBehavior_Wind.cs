@@ -4,36 +4,27 @@ using UnityEngine;
 public class CloudBehavior_Wind : AbstractCloudBehaviour
 {
     [SerializeField] private float windForce;
-    
-    [Space][Header("Debugging")]
-    [ReadOnly] [SerializeField] PlaneBehaviour_Movement planeBehaviourRef;
     [ReadOnly] [SerializeField] Vector3 windDirection;
 
     // Update is called once per frame
     void Update()
     {
-        if (planeBehaviourRef)
+        if (planeManagerRef)
         {
-            float pushedDirection = Vector3.Dot(-planeBehaviourRef.transform.forward.normalized, windDirection.normalized) * windForce;
-            planeBehaviourRef.direction.x += pushedDirection * Time.deltaTime;
-            planeBehaviourRef.direction.z += pushedDirection * Time.deltaTime;
+            windDirection = transform.forward;
+            float pushedDirection =
+                Vector3.Dot(-planeManagerRef.transform.forward.normalized, windDirection.normalized) * windForce;
+            planeManagerRef._planeMovement.direction.x += pushedDirection * Time.deltaTime;
+            planeManagerRef._planeMovement.direction.z += pushedDirection * Time.deltaTime;
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        windDirection = transform.forward;
-        
-        if (other.GetComponent<PlaneBehaviour_Movement>())
-            planeBehaviourRef = other.GetComponent<PlaneBehaviour_Movement>();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (planeBehaviourRef)
+        if (other.GetComponent<PlaneManager>())
         {
-            planeBehaviourRef.ResetSpeed();
-            planeBehaviourRef = null;
+            planeManagerRef._planeMovement.ResetSpeed();
+            planeManagerRef = null;
         }
     }
 }
