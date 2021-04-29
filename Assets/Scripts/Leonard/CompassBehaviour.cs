@@ -1,14 +1,12 @@
-using System;
 using UnityEngine;
 
 public class CompassBehaviour : MonoBehaviour
 {
-    [SerializeField] private PlaneManager planeManager;
-    private Vector3 rotation;
+    public Vector3 rotation;
 
-    private void Update()
-    {
-        rotation.z = planeManager.transform.eulerAngles.y;
-        transform.eulerAngles = rotation;
-    }
+    public void Update() => transform.eulerAngles = rotation;
+
+    public void TrackPlayerNorth() => rotation.z = PlaneManager.instance.transform.eulerAngles.y;
+    
+    public void RandomCompass() => ++rotation.z;
 }

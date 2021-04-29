@@ -17,11 +17,15 @@ public class CargoManager : MonoBehaviour
 
     void Update()
     {
-        foreach (var cargoItem in cargoHold)
+        for (int i = 0; i < cargoHold.Count; i++)
         {
-            cargoItem.ApplyEffect();
-            if (cargoItem.cargoDestroyed)
-                DestroyCargo(cargoHold.IndexOf(cargoItem));
+            cargoHold[i].ApplyEffect();
+            if (cargoHold[i].cargoDestroyed)
+            {
+                PlaneManager.instance.compass.TrackPlayerNorth();
+                cargoHold.RemoveAt(i);
+                i--;
+            }
         }
     }
 
@@ -104,6 +108,4 @@ public class CargoManager : MonoBehaviour
                 break;
         }
     }
-
-    public void DestroyCargo(int index) => cargoHold.RemoveAt(index);
 }
