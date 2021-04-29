@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class Cargo_Explosive : AbstractCargo
 {
-    public override void ApplyEffect() => Debug.Log("Explosives");
+    public override void ApplyEffect() 
+    {
+    }
 }

@@ -13,30 +13,30 @@ public class ShopItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        OnSlotItemChange.AddListener(UpdateInfos);
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateSlot();
+        ZeroStockKill();
+        UpdateInfos();
     }
 
     public void UpdateInfos()
     {
-        itemName.text = slot.itemName.ToString();
-        islandPrice.text = Shop.instance.islandPrices.FindItemPriceByName(slot.itemName).ToString() + "$/unit";
-        slot.visual.sprite = slot.item.sprite != null ? slot.item.sprite : null;
-    }
-
-    public void UpdateSlot()
-    {
-        if (slot.item != null && token)
+        if(slot.item != null)
         {
-            OnSlotItemChange.Invoke();
+            itemName.text = slot.item.itemName.ToString();
+            islandPrice.text = Shop.instance.islandPrices.FindItemPriceByName(slot.item.itemName).ToString() + "$/unit";
+            slot.visual.sprite = slot.item.data.sprite != null ? slot.item.data.sprite : null;
         }
-        else if (slot.item == null) token = true;
     }
-
-    [HideInInspector] public UnityEvent OnSlotItemChange;
+    public void ZeroStockKill()
+    {
+        if(slot.item.amount <= 0)
+        {
+            Shop.instance.allItems.Remove(this.gameObject);
+            Destroy(this.gameObject);
+        }
+    }
 }

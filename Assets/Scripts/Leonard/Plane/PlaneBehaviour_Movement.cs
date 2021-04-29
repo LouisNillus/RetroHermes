@@ -6,6 +6,8 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     [SerializeField] GameObject planeViz;
     [SerializeField] private float baseSpeed, speedMultiplier, baseRotation, rotLimit;
 
+    public float defaultSpeedMultiplier;
+
     [SerializeField] float resetSpeed = 1.5f;
     private bool resetAxis = false;
 
@@ -17,21 +19,28 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     private Vector3 yaw;
     private Vector3 roll;
 
+    private float t, step;
+    bool swayingPlane;
+    private float swayStart, swayTarget, swayTime = .5f;
+
     private void Awake()
     {
+        defaultSpeedMultiplier = speedMultiplier;
         roll = yaw = transform.eulerAngles;
         currentSpeed = baseSpeed;
-        
+
         direction = Vector3.forward * currentSpeed;
     }
 
-    void Update()
+    public void MovementLogic()
     {
         if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)) resetAxis = true;
         if (Input.GetKeyUp(KeyCode.UpArrow)) ResetSpeed();
 
         if (Input.anyKey) CheckInputs(); // update plane rotation + orientation
         if (resetAxis) ResetPlaneAxis(); // rotate plane back to original pos
+
+        if (swayingPlane) RotatePlane();
 
         MovePlane();
     }
@@ -65,7 +74,8 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
             roll.z += roll.z < rotLimit ? baseRotation * Time.deltaTime : 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow)) direction = Vector3.forward * (currentSpeed = (baseSpeed * speedMultiplier));
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            direction = Vector3.forward * (currentSpeed = (baseSpeed * speedMultiplier));
     }
 
     // rotate plane to indicate in which direction it is travelling
@@ -75,5 +85,29 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         if (roll.z == 0) resetAxis = false;
     }
 
-    public void ResetSpeed() => direction = Vector3.forward * (currentSpeed = baseSpeed);
+    public void ResetSpeed()
+    {
+        direction = Vector3.forward * (currentSpeed = baseSpeed);
+        speedMultiplier = defaultSpeedMultiplier;
+    }
+
+    public void HeavyLoad() => speedMultiplier = 0.8f;
+
+    public void KillSpeed() => speedMultiplier = 0;
+
+    public void SwayPlane(int swayDirection)
+    {
+        swayTarget = (swayStart = transform.eulerAngles.y) + swayDirection;
+        swayingPlane = true;
+        t = 0;
+    }
+
+    public void RotatePlane()
+    {
+        t += Time.deltaTime;
+        step = t / swayTime;
+        yaw.y = Mathf.Lerp(swayStart, swayTarget, step);
+        roll.y = Mathf.Lerp(swayStart, swayTarget, step);
+        if (yaw.y == swayTarget) swayingPlane = false;
+    }
 }

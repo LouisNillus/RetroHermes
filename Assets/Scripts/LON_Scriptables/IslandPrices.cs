@@ -9,31 +9,20 @@ public class IslandPrices : ScriptableObject
 
     public int FindItemPriceByName(ItemType name)
     {
-        foreach(ItemPrice ip in prices)
+        foreach(ItemPrice item in prices)
         {
-            if (name == ip.itemName)
+            if (name == item.itemName)
             {
-                return ip.price;
+                return item.price;
             }
         }
 
         return 0;
     }
 }
-
 [System.Serializable]
 public class ItemPrice
 {
-    public int amount;
-    public bool unlimitedStack;
     public ItemType itemName;
     public int price;
-
-    public ItemPrice(int amount, bool unlimitedStack, ItemType itemName, int price)
-    {
-        this.amount = amount;
-        this.unlimitedStack = unlimitedStack;
-        this.itemName = itemName;
-        this.price = price;
-    }
 }

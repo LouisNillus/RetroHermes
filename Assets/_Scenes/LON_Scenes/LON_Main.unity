@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 310780452}
   - component: {fileID: 310780453}
-  - component: {fileID: 310780454}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -148,16 +147,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310780451}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 333464965}
+  m_Father: {fileID: 1146410119}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 262, y: 340}
+  m_AnchoredPosition: {x: 814, y: -13.999966}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &310780453
@@ -186,22 +185,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &310780454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 310780451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e9ee4e1e1b303645ad5aa521e5cfb73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  islandPrices: {fileID: 11400000, guid: 90d42a667726b7a4d81e9e18b25ebf0a, type: 2}
-  shopItemTemplate: {fileID: 4946917036502757049, guid: 7355876fe0b94324ea6d50fb28fdc248, type: 3}
-  currentIsland: {fileID: 0}
-  allItems: []
 --- !u!1 &333464960
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +198,7 @@ GameObject:
   - component: {fileID: 333464963}
   - component: {fileID: 333464962}
   - component: {fileID: 333464961}
+  - component: {fileID: 333464966}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -236,13 +220,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventorySlots: []
   slotTemplate: {fileID: 414025457382272760, guid: 1bf6ccf9157b3cc40a47a2e40deef960, type: 3}
+  inventoryParent: {fileID: 1146410118}
   yOffset: 10
   xOffset: 10
   yMargin: -340
   xMargin: 120
   rows: 2
   columns: 4
-  money: 0
+  money: 259
 --- !u!114 &333464962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +244,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &333464963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,8 +300,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 310780452}
-  - {fileID: 1443316949}
+  - {fileID: 1146410119}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -325,6 +309,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &333464966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333464960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9ee4e1e1b303645ad5aa521e5cfb73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  islandPrices: {fileID: 11400000, guid: 90d42a667726b7a4d81e9e18b25ebf0a, type: 2}
+  shopItemTemplate: {fileID: 4946917036502757049, guid: 7355876fe0b94324ea6d50fb28fdc248, type: 3}
+  currentIsland: {fileID: 0}
+  shopParent: {fileID: 310780451}
+  tradingPanel: {fileID: 0}
+  allItems: []
 --- !u!1 &437503043
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +503,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &982066921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 982066923}
+  - component: {fileID: 982066922}
+  m_Layer: 0
+  m_Name: CargoManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &982066922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982066921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca95c4a9aa0cbde489137a992015b139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbage: 
+--- !u!4 &982066923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982066921}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 865.9865, y: 951.4507, z: -1072.8241}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1081674110
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +613,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1146410118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1146410119}
+  m_Layer: 5
+  m_Name: IslandPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1146410119
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146410118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 310780452}
+  - {fileID: 1443316949}
+  m_Father: {fileID: 333464965}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1397381861
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,15 +680,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopStocks:
-  - amount: 30
+  - data: {fileID: 11400000, guid: fbed24aa1c5bc2e49bcfd404681c912c, type: 2}
+    amount: 30
     unlimitedStack: 1
-    data: {fileID: 11400000, guid: 1d110f77d00fca841ba134a100b92453, type: 2}
-    itemName: 0
+    itemName: 1
     price: 10
-  - amount: 8
+  - data: {fileID: 11400000, guid: 25d5e0bafa14f564cb591454997143a0, type: 2}
+    amount: 8
     unlimitedStack: 1
-    data: {fileID: 11400000, guid: 25d5e0bafa14f564cb591454997143a0, type: 2}
-    itemName: 2
+    itemName: 4
     price: 50
   islandPrices: {fileID: 11400000, guid: 90d42a667726b7a4d81e9e18b25ebf0a, type: 2}
 --- !u!4 &1397381863
@@ -647,16 +730,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443316948}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 333464965}
+  m_Father: {fileID: 1146410119}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 301}
+  m_AnchoredPosition: {x: 552, y: -53}
   m_SizeDelta: {x: 417, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1443316950

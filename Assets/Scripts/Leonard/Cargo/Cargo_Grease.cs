@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Cargo_Grease : AbstractCargo
 {
-    public override void ApplyEffect() => Debug.Log("Grease");
-
-    public override void StormDamage(float stormDamagePercentage)
+    public override void ApplyEffect() 
     {
-        stormDamagePercentage *= 2;
-        base.StormDamage(stormDamagePercentage);
+    }
+
+    public override void SpecifyDamage(float damagePercentage, DamageType damageType)
+    {
+        if (damageType == DamageType.Storm) damagePercentage *= 2;
+        base.SpecifyDamage(damagePercentage, damageType);
     }
 }

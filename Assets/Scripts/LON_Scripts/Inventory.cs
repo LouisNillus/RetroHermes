@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
     public List<Slot> inventorySlots = new List<Slot>();
     public GameObject slotTemplate;
+
+    public GameObject inventoryParent;
+    [SerializeField] TextMeshProUGUI sellingPrice;
+    [SerializeField] TextMeshProUGUI moneyCount;
 
     [Range(0,200)]
     [SerializeField] int yOffset; //In pixels
@@ -32,10 +37,14 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        DisplaySellingPrice();
+        moneyCount.text = money.ToString() + "$";
         if (Input.GetKeyDown(KeyCode.Space))
         {
             BuyItem();
             SellItem();
+            Shop.instance.SaveStocks();
         }
     }
 
@@ -44,31 +53,24 @@ public class Inventory : MonoBehaviour
         GameObject g = EventSystem.current.currentSelectedGameObject;
         if (g != null && g.GetComponent<Slot>() != null)
         {
-            Slot s = g.GetComponent<Slot>();
-
-            if (s.IsEmpty() || inventorySlots.Contains(s) == false) return;
+            Slot invSlot = g.GetComponent<Slot>();
+            if (invSlot.item == null ||invSlot.IsEmpty() || Shop.instance.SellableHere(invSlot.item.itemName) == false || inventorySlots.Contains(invSlot) == false) return;
             else
             {
-                if (HasItem(s.item, true))
+
+                Debug.Log("Can Sell");
+                if (Shop.HasItemShop(invSlot.item.itemName, true)) //maybe false ?
                 {
-                    GetItem(s.item).amount++;
-                    s.amount--;
-                }
-                else if (AnySlotAvailable())
-                {
-                    Slot slot = GetFirstAvailableSlot();
-                    slot.item = s.item;
-                    slot.amount++;
-                    s.amount--;
+                    Shop.instance.AddStock(invSlot.item, 1, false);
                 }
                 else
                 {
-                    return;
+                    Shop.instance.AddStock(invSlot.item, 1, true);
                 }
 
-                CargoManager.instance.RemoveCargo(s.itemName);
-                money += Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName);
-                s.amount--;
+                CargoManager.instance.RemoveCargo(invSlot.item.itemName);
+                Earn(Shop.instance.islandPrices.FindItemPriceByName(invSlot.item.itemName));
+                invSlot.item.amount--;
             }
         }
     }
@@ -78,32 +80,37 @@ public class Inventory : MonoBehaviour
         GameObject g = EventSystem.current.currentSelectedGameObject;
         if (g != null && g.GetComponent<Slot>() != null)
         {
-            Slot s = g.GetComponent<Slot>();
-
-            if (s.IsEmpty() || inventorySlots.Contains(s) == true) return;
+            Slot shopSlot = g.GetComponent<Slot>();
+            Debug.Log(shopSlot.gameObject.name);
+            if (shopSlot.item == null || shopSlot.IsEmpty() || inventorySlots.Contains(shopSlot) == true) return;
             else
             {
-                if(EnoughMoney(Shop.instance.islandPrices.FindItemPriceByName(s.item.itemName)))
+                Debug.Log("Can Buy");
+                if(EnoughMoney(Shop.instance.islandPrices.FindItemPriceByName(shopSlot.item.itemName)))
                 {
-                    if(HasItem(s.item, true))
+                    if(HasItem(shopSlot.item.itemName, true))
                     {
-                        GetItem(s.item).amount++;
-                        s.amount--;
+                        Debug.Log("Add more items");
+                        GetItem(shopSlot.item.itemName).amount++;
+                        shopSlot.item.amount--;
                     }
                     else if(AnySlotAvailable())
                     {
-                        Slot slot = GetFirstAvailableSlot();
-                        slot.item = s.item;
-                        slot.amount++;
-                        s.amount--;
+                        Slot invSlot = GetFirstAvailableSlot();
+                        invSlot.item.data = shopSlot.item.data;
+                        invSlot.item.itemName = shopSlot.item.itemName;
+
+                        invSlot.item.amount++;
+                        shopSlot.item.amount--;
                     }
                     else
                     {
+                        Debug.Log("Exit");
                         return;
                     }
 
-                    CargoManager.instance.AddCargo(s.itemName);
-                    Pay(Shop.instance.islandPrices.FindItemPriceByName(s.itemName));
+                    CargoManager.instance.AddCargo(shopSlot.item.itemName);
+                    Pay(Shop.instance.islandPrices.FindItemPriceByName(shopSlot.item.itemName));
                 }
             }
         }
@@ -115,25 +122,31 @@ public class Inventory : MonoBehaviour
     public void InitSlots()
     {
         Vector3[] vecs = new Vector3[rows * columns];
+        int a = 0;
 
         for (int i = 0; i < rows; i++)
         {
+
             for (int j = 0; j < columns; j++)
             {
+                a++;
                 vecs[i * j].y = i * -(slotTemplate.GetComponent<RectTransform>().rect.height + yOffset) + yMargin;
                 vecs[i * j].x = j * (slotTemplate.GetComponent<RectTransform>().rect.width + xOffset) + xMargin;
                 GameObject go = Instantiate(slotTemplate, vecs[i*j], Quaternion.identity);
+                go.name += a;
                 inventorySlots.Add(go.GetComponent<Slot>());
-                go.transform.SetParent(this.transform, false);
+                go.transform.SetParent(inventoryParent.transform, false);
             }
         }
+
+        EventSystem.current.SetSelectedGameObject(inventorySlots[0].gameObject);
     }
 
     public bool AnySlotAvailable()
     {
         foreach(Slot s in inventorySlots)
         {
-            if (s.item == null) return true;
+            if (s.item.itemName == ItemType.Null) return true;
         }
 
         return false;
@@ -143,34 +156,45 @@ public class Inventory : MonoBehaviour
     {
         foreach (Slot s in inventorySlots)
         {
-            if (s.item == null) return s;
+            if (s.item.itemName == ItemType.Null) return s;
         }
 
         return null;
     }
 
-    public bool HasItem(ItemData item, bool checkMaxStack = false)
+    public bool HasItem(ItemType item, bool checkMaxStack = false)
     {
         foreach (Slot s in inventorySlots)
         {
-            if (checkMaxStack && s.locked) return false;
-
-            if (s.item == item) return true;
+            if (s.item.itemName == item)
+            {
+                if (checkMaxStack && s.IsFull())
+                {
+                    continue;
+                }
+                else return true;
+            }
         }
 
         return false;
     }
 
-    public Slot GetItem(ItemData item)
+    public Item GetItem(ItemType item)
     {
         foreach (Slot s in inventorySlots)
         {
-            if (s.item == item) return s;
+            if (s.item.itemName == item)
+            {
+                if (s.IsFull())
+                {
+                    continue;
+                }
+                else return s.item;
+            }
         }
 
         return null;
     }
-
 
     public bool EnoughMoney(int price)
     {
@@ -186,5 +210,20 @@ public class Inventory : MonoBehaviour
     public void Earn(int value)
     {
         money += value;
+    }
+
+    public void DisplaySellingPrice()
+    {
+        GameObject g = EventSystem.current.currentSelectedGameObject;
+        if (g != null && g.GetComponent<Slot>() != null)
+        {
+            Slot shopSlot = g.GetComponent<Slot>();
+            if (shopSlot.item == null || shopSlot.IsEmpty() || inventorySlots.Contains(shopSlot) == false) return;
+            else if(inventorySlots.Contains(shopSlot))
+            {
+                sellingPrice.text = "Selling Price : " + Shop.instance.islandPrices.FindItemPriceByName(shopSlot.item.itemName) + "$/unit";
+            }
+            else sellingPrice.text = "";
+        }
     }
 }

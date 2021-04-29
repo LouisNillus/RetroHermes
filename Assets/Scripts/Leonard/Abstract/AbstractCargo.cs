@@ -1,17 +1,22 @@
+using System.Linq.Expressions;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class AbstractCargo
 {
-    private float baseIntegrity = 100f;
-    private float currentIntegrity;
+    [ReadOnly] [SerializeField] float baseIntegrity = 100f;
+    [ReadOnly] [SerializeField] float currentIntegrity;
+    public bool cargoDestroyed;
+    
+    public AbstractCargo() =>  currentIntegrity = baseIntegrity;
 
-    public virtual void ApplyEffect() { }
-
-    public virtual void StormDamage(float stormDamagePercentage)
+    public virtual void ApplyEffect()
     {
-        currentIntegrity -= currentIntegrity > 0 ? baseIntegrity * stormDamagePercentage : 0;
-        //integrityText.text = currentIntegrity.ToString();
     }
 
-   // public virtual void PillarDamage();
+    public virtual void SpecifyDamage(float damagePercentage, DamageType damageType)
+    {
+        currentIntegrity -= currentIntegrity > 0 ? baseIntegrity * damagePercentage : 0;
+        if (currentIntegrity <= 0) cargoDestroyed = true;
+    }
 }
