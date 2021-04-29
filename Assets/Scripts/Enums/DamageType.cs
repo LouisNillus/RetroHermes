@@ -3,5 +3,6 @@
     Pillar,
     Storm,
     Cloud,
+    Eggs,
     Explosive,
 }
