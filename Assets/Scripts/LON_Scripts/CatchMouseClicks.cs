@@ -19,7 +19,6 @@ public class CatchMouseClicks : MonoBehaviour
         if(EventSystem.current.currentSelectedGameObject != null)
         lastSelected = EventSystem.current.currentSelectedGameObject;
 
-        Debug.Log(lastSelected);
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
         {
             CatchClicks();
@@ -30,8 +29,6 @@ public class CatchMouseClicks : MonoBehaviour
 
     public void CatchClicks()
     {
-
         EventSystem.current.SetSelectedGameObject(lastSelected);
-
     }
 }

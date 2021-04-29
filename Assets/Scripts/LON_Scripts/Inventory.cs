@@ -26,7 +26,12 @@ public class Inventory : MonoBehaviour
     [SerializeField] int columns;
 
     public int money = 0;
+    public static Inventory instance;
 
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +73,7 @@ public class Inventory : MonoBehaviour
                     Shop.instance.AddStock(invSlot.item, 1, true);
                 }
 
+                MissionManager.instance.CheckShipping(invSlot.item.itemName);
                 CargoManager.instance.RemoveCargo(invSlot.item.itemName);
                 Earn(Shop.instance.islandPrices.FindItemPriceByName(invSlot.item.itemName));
                 invSlot.item.amount--;
