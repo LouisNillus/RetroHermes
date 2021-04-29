@@ -1,5 +1,7 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
 {
@@ -20,6 +22,7 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     [SerializeField] private float rotLimit;
     private Vector3 yaw;
     private Vector3 roll;
+    private Vector3 planePos;
 
     private bool resetAxis = false;
 
@@ -32,6 +35,9 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
 
     private float sway_PassedTime;
     private float swayStart, swayTarget, swayTime = 0.5f;
+
+    private float forward_passedTime;
+    private float startPos, targetPos, defaultPos;
 
     [HideInInspector] public bool isFullSpeed;
     [HideInInspector] public bool isTurning;
@@ -46,6 +52,12 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         direction = Vector3.forward * currentSpeed;
     }
 
+    private void Start()
+    {
+        planePos = planeViz.transform.position;
+        defaultPos = planePos.z;
+    }
+
     public void MovementLogic()
     {
         if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)) resetAxis = true;
@@ -55,10 +67,11 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         if (resetAxis) ResetPlaneAxis(); // rotate plane back to original pos
 
         if (swayingPlane) RotatePlane();
+        if (isFullSpeed) MovePlaneToCenter();
 
         MovePlane();
     }
-
+    
     private void MovePlane()
     {
         // rotation
@@ -94,6 +107,9 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            startPos = defaultPos;
+            targetPos = defaultPos + 50;
+            
             direction = Vector3.forward * (currentSpeed = (baseSpeed * speedMultiplier));
             isFullSpeed = true;
         }
@@ -103,10 +119,6 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     void ResetPlaneAxis()
     {
         isTurning = false;
-        /*rotate_passedTime += Time.deltaTime;
-        float step = rotate_passedTime / rotate_reset;
-        roll.z = Mathf.Lerp(, curve.Evaluate(step));*/
-
         roll.z = roll.z < 0 ? roll.z + resetMultiplier * Time.deltaTime : roll.z - resetMultiplier * Time.deltaTime;
         if (roll.z == 0)
         {
@@ -117,6 +129,10 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
 
     public void ResetSpeed()
     {
+        startPos = planeViz.transform.position.z;
+        targetPos = defaultPos;
+        forward_passedTime = 0;
+        
         speedMultiplier = defaultSpeedMultiplier;
         direction = Vector3.forward * (currentSpeed = baseSpeed);
         isFullSpeed = false;
@@ -139,6 +155,12 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         swayTarget = (swayStart = transform.eulerAngles.y) + swayDirection;
         swayingPlane = true;
         sway_PassedTime = 0;
+    }
+    
+    private void MovePlaneToCenter()
+    {
+        forward_passedTime += Time.deltaTime;
+        planeViz.transform.position = new Vector3(planePos.x, planePos.y , Mathf.Lerp(startPos, targetPos, forward_passedTime));
     }
 
     public void RotatePlane()
