@@ -269,7 +269,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346910649}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 47, y: 48, z: 88}
@@ -304,7 +304,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181054755}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf0cfb44f8f7fd4a8d8cc1517e65abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planeManagerRef: {fileID: 0}
   planedamagePercentage: 0.05
   cargodamagePercentage: 0.1
 --- !u!114 &1181054761
@@ -398,6 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddc77647f5b7444382377c1169c0114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planeManagerRef: {fileID: 0}
   travelDistance: 300
   travelTime: 6
 --- !u!114 &1181054762
@@ -599,6 +601,7 @@ GameObject:
   - component: {fileID: 1879196226}
   - component: {fileID: 1879196231}
   - component: {fileID: 1879196230}
+  - component: {fileID: 1879196232}
   m_Layer: 0
   m_Name: Cloud
   m_TagString: Untagged
@@ -614,10 +617,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879196225}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1879196227
@@ -677,7 +680,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879196225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -74, y: 35, z: 134}
+  m_LocalPosition: {x: -74, y: -1.2, z: 134}
   m_LocalScale: {x: 13.238387, y: 9.5847, z: 17.911886}
   m_Children: []
   m_Father: {fileID: 0}
@@ -695,6 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddc77647f5b7444382377c1169c0114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planeManagerRef: {fileID: 0}
   travelDistance: 0
   travelTime: 0
 --- !u!114 &1879196231
@@ -711,6 +715,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cloudBehaviours:
   - {fileID: 1879196230}
+--- !u!114 &1879196232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879196225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4687d04e668749b09f35f217cdab725e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planeManagerRef: {fileID: 0}
 --- !u!1 &2138971658
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,6 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48ed6c74d5f1d54795e077b6b74e77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planeManagerRef: {fileID: 0}
   windForce: 90
   windDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &2138971664
@@ -895,9 +913,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 1451230021914633349, guid: 662760de1a90049499dbca94f94499f8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1451230022936312773, guid: 662760de1a90049499dbca94f94499f8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3194628350023790465, guid: 662760de1a90049499dbca94f94499f8, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 1323871337}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 662760de1a90049499dbca94f94499f8, type: 3}
