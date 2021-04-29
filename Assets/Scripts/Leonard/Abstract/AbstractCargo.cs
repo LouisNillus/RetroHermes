@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AbstractCargo
 {
-    [ReadOnly] [SerializeField] float baseIntegrity = 100f;
-    [ReadOnly] [SerializeField] float currentIntegrity;
+    [ReadOnly] [SerializeField] protected float baseIntegrity = 100f;
+    [ReadOnly] [SerializeField] protected float currentIntegrity;
     public bool cargoDestroyed;
     
     public AbstractCargo() =>  currentIntegrity = baseIntegrity;

@@ -42,13 +42,15 @@ public class PlaneManager : MonoBehaviour
         }
     }
 
-    // TODO : TakeOff Call
-    public void TakeOff() => landed = false;
+    public void TakeOff()
+    {
+        landed = false;
+        _planeMovement.Takeoff();
+    }
 
     public void StormDamage(float planeDamage, float cargoDamage)
     {
         _planeIntegrity.TakeDamage(_planeIntegrity.baseIntegrity * planeDamage);
-        // TODO : _planeMovement.KillSpeed();
 
         foreach (var cargo in _cargoManager.cargoHold)
             cargo.SpecifyDamage(cargoDamage, DamageType.Storm);
@@ -60,5 +62,11 @@ public class PlaneManager : MonoBehaviour
 
         foreach (var cargo in _cargoManager.cargoHold)
             cargo.SpecifyDamage(cargoDamage, DamageType.Pillar);
+    }
+
+    public void ExplosiveDamage()
+    {
+        // TODO : explosion FX call
+        _planeIntegrity.currentIntegrity /= 2;
     }
 }
