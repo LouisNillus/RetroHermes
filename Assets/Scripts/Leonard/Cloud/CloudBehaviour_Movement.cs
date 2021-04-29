@@ -43,4 +43,22 @@ public class CloudBehaviour_Movement : AbstractCloudBehaviour
 
         elapsedTime = 0;
     }
-}
+
+    
+    Vector3 posRight;
+    Vector3 posLeft;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        
+        if (!Application.isPlaying)
+        {
+            posRight = new Vector3(transform.position.x + (travelDistance * 0.5f), transform.position.y, transform.position.z);
+            posLeft = new Vector3(transform.position.x - (travelDistance * 0.5f), transform.position.y, transform.position.z);
+        }
+        
+        Gizmos.DrawSphere(posLeft, 10);
+        Gizmos.DrawSphere(posRight, 10);
+        Gizmos.DrawLine(posLeft, posRight);
+    }
+} 

@@ -9,12 +9,16 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/CloudBehavior_Wind.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CloudBehaviour_Storm.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Manager/CloudManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CloudBehaviour_Movement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Plane/PlaneBehaviour_Movement.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/CloudBehavior_Wind.cs" />
+        <option value="$PROJECT_DIR$/CloudBehaviour_Movement.cs" />
       </list>
     </option>
   </component>
@@ -36,7 +40,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619705410618</updated>
       <workItem from="1619705413118" duration="214000" />
-      <workItem from="1619705682554" duration="1356000" />
+      <workItem from="1619705682554" duration="3814000" />
     </task>
     <servers />
   </component>
