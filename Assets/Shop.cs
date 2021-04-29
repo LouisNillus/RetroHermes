@@ -64,13 +64,17 @@ public class Shop : MonoBehaviour
 
     public void SaveStocks() //FULL PAS OPTI
     {
-        currentIsland.shopStocks.Clear();
-        for (int i = 0; i < allItems.Count; i++)
+        if(currentIsland != null)
         {
-            ShopItem si = allItems[i].GetComponent<ShopItem>();
-            Item ip = new Item(si.slot.item.amount, true, si.slot.item.itemName);
-            ip.data = si.slot.item.data;
-            currentIsland.shopStocks.Add(ip);
+            currentIsland.shopStocks.Clear();
+
+            for (int i = 0; i < allItems.Count; i++)
+            {
+                ShopItem si = allItems[i].GetComponent<ShopItem>();
+                Item ip = new Item(si.slot.item.amount, true, si.slot.item.itemName);
+                ip.data = si.slot.item.data;
+                currentIsland.shopStocks.Add(ip);
+            }
         }
     }
 
