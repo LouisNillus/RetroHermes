@@ -8,7 +8,7 @@ public class PlaneManager : MonoBehaviour
     [SerializeField] PlaneBehaviour_Integrity _planeIntegrity;
     [SerializeField] PlaneBehaviour_Fuel _planeFuel;
     [SerializeField] PlaneBehaviour_Landing _planeLanding;
-    private bool landed;
+    [HideInInspector] public bool landed, openedMap;
     [SerializeField] CargoManager _cargoManager;
 
     private static PlaneManager _instance;
@@ -35,7 +35,7 @@ public class PlaneManager : MonoBehaviour
 
     private void Update()
     {
-        if (!landed)
+        if (!landed)// && !openedMap)
         {
             _planeFuel.ConsumeFuel();
             _planeMovement.MovementLogic();

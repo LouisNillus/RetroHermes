@@ -6,13 +6,17 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     [SerializeField] private AnimationCurve curve;
     [SerializeField] GameObject planeViz;
 
-    [Space] [Header("Speed")] [SerializeField] private float baseSpeed;
+    [Space] [Header("Speed")] [SerializeField]
+    private float baseSpeed;
+
     [SerializeField] private float maxSpeed;
     [SerializeField] private float speedMultiplier;
     [HideInInspector] public Vector3 direction;
     [HideInInspector] public float defaultSpeedMultiplier;
 
-    [Space][Header("Rotation")]  [SerializeField] private float baseRotation;
+    [Space] [Header("Rotation")] [SerializeField]
+    private float baseRotation;
+
     [SerializeField] private float rotLimit;
     private Vector3 yaw;
     private Vector3 roll;
@@ -25,7 +29,7 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     float resetMultiplier = 200f;
     private float rotate_passedTime;
     private float rotate_reset;
-    
+
     private float sway_PassedTime;
     private float swayStart, swayTarget, swayTime = 0.5f;
 
@@ -113,9 +117,10 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
 
     public void ResetSpeed()
     {
+        speedMultiplier = defaultSpeedMultiplier;
         direction = Vector3.forward * (currentSpeed = baseSpeed);
         isFullSpeed = false;
-        
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
             direction = Vector3.forward * (currentSpeed = (baseSpeed * speedMultiplier));

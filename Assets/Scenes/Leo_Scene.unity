@@ -575,6 +575,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 683620300, guid: 662760de1a90049499dbca94f94499f8, type: 3}
+      propertyPath: m_Name
+      value: Player Map
+      objectReference: {fileID: 0}
     - target: {fileID: 1451230021754064856, guid: 662760de1a90049499dbca94f94499f8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -626,90 +630,6 @@ PrefabInstance:
     - target: {fileID: 1451230021914633345, guid: 662760de1a90049499dbca94f94499f8, type: 3}
       propertyPath: m_Name
       value: Player Controller
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: maxSpeed
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: resetSpeedTime
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: speedMultiplier
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[0].time
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[2].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[2].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[0].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[2].inSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].inWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[2].outSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[0].outWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].outWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[0].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633347, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].tangentMode
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1451230022936312773, guid: 662760de1a90049499dbca94f94499f8, type: 3}
       propertyPath: m_AnchorMax.y
