@@ -575,10 +575,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 683620300, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: m_Name
-      value: Player Map
-      objectReference: {fileID: 0}
     - target: {fileID: 1451230021754064856, guid: 662760de1a90049499dbca94f94499f8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

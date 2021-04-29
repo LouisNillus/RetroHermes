@@ -35,7 +35,7 @@ public class PlaneManager : MonoBehaviour
 
     private void Update()
     {
-        if (!landed)// && !openedMap)
+        if (!landed) // && !openedMap)
         {
             _planeFuel.ConsumeFuel();
             _planeMovement.MovementLogic();
@@ -45,7 +45,7 @@ public class PlaneManager : MonoBehaviour
     public void TakeOff()
     {
         landed = false;
-        _planeMovement.Takeoff();
+        _planeMovement.ResetMovement();
     }
 
     public void StormDamage(float planeDamage, float cargoDamage)
