@@ -4,6 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class Slot : MonoBehaviour
@@ -12,6 +13,8 @@ public class Slot : MonoBehaviour
     public Item item;
     public Image visual;
     public TextMeshProUGUI stackText;
+    public Image overlapFrame;
+    public Image initialFrame;
 
     [Header("Data")]
     public bool unlimitedStack = false;
@@ -30,6 +33,9 @@ public class Slot : MonoBehaviour
 
     private void Update()
     {
+        if (EventSystem.current.currentSelectedGameObject == this.gameObject) overlapFrame.enabled = true;
+        else overlapFrame.enabled = false;
+
         if (item != null && lastAmount != item.amount)
         {
             visual.sprite = item.data.sprite != null ? item.data.sprite : null;
