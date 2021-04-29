@@ -8,7 +8,6 @@ public class Cargo_Crocodile : AbstractCargo
     
     public override void ApplyEffect()
     {
-        Debug.Log("Crocodile");
         elapsedTime += Time.deltaTime;
 
         if (elapsedTime >= thrashFrequency)

@@ -5,8 +5,5 @@ using UnityEngine;
 public class Cargo_Painting : AbstractCargo
 {
     public override void ApplyEffect()
-    {
-        Debug.Log("Painting");
-        
-    }
+    { }
 }

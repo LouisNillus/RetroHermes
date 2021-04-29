@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Cargo_Bottles : AbstractCargo
 {
-    public override void ApplyEffect() => Debug.Log("Glass");
+    public override void ApplyEffect()
+    {
+    }
 
     public override void StormDamage(float stormDamagePercentage)
     {
