@@ -12,10 +12,8 @@ public class CloudBehavior_Wind : AbstractCloudBehaviour
         if (planeManagerRef)
         {
             windDirection = transform.forward;
-            float pushedDirection =
-                Vector3.Dot(-planeManagerRef.transform.forward.normalized, windDirection.normalized) * windForce;
-            var planeMovementDirection = planeManagerRef._planeMovement.direction;
-            planeMovementDirection.z += pushedDirection * Time.deltaTime;
+            float pushedDirection = Vector3.Dot(-planeManagerRef.transform.forward.normalized, windDirection.normalized) * windForce;
+            planeManagerRef._planeMovement.offsetDirection += pushedDirection * Time.deltaTime;
         }
     }
 
@@ -23,7 +21,7 @@ public class CloudBehavior_Wind : AbstractCloudBehaviour
     {
         if (other.GetComponent<PlaneManager>())
         {
-            planeManagerRef._planeMovement.ResetMovement();
+            planeManagerRef._planeMovement.EaseOut_Cloud();
             planeManagerRef = null;
         }
     }

@@ -16,23 +16,23 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     private Vector3 _direction = Vector3.zero;
 
     [HideInInspector]
-    public Vector3 direction
+    private Vector3 direction
     {
         get
         {
-            if (stopMoving) _direction = Vector3.zero;
+            if (stopMoving) _direction =  Vector3.zero;
             else if (heavyLoad) _direction = Vector3.forward * (currentSpeed = (baseSpeed * 0.8f));
             else if (Input.GetKey(KeyCode.UpArrow)) _direction = Vector3.forward * (currentSpeed = (baseSpeed * speedMultiplier));
+            else _direction = Vector3.forward * (currentSpeed = baseSpeed);
+            
+            _direction.z += offsetDirection;
+
             return _direction;
         }
-        set
-        {
-            _direction.x = value.x;
-            _direction.y = value.y;
-            _direction.z = value.z;
-        }
+        set { _direction = value; }
     }
 
+    public float offsetDirection;
     private bool heavyLoad, stopMoving;
 
     [HideInInspector] public float defaultSpeedMultiplier;
@@ -57,9 +57,6 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     private float sway_PassedTime;
     private float swayStart, swayTarget, swayTime = 0.5f;
 
-    private float forward_passedTime;
-    private float startPos, targetPos, defaultPos;
-
     [HideInInspector] public bool isFullSpeed;
     [HideInInspector] public bool isTurning;
     bool swayingPlane;
@@ -69,14 +66,6 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         defaultSpeedMultiplier = speedMultiplier;
         roll = yaw = transform.eulerAngles;
         currentSpeed = baseSpeed;
-
-        direction = Vector3.forward * currentSpeed;
-    }
-
-    private void Start()
-    {
-        planePos = planeViz.transform.position;
-        defaultPos = planePos.z;
     }
 
     public void MovementLogic()
@@ -86,9 +75,7 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
 
         if (Input.anyKey) CheckInputs(); // update plane rotation + orientation
         if (resetAxis) ResetPlaneAxis(); // rotate plane back to original pos
-
         if (swayingPlane) RotatePlane();
-        if (isFullSpeed) MovePlaneToCenter();
 
         MovePlane();
     }
@@ -99,6 +86,7 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         planeViz.transform.eulerAngles = roll;
         transform.eulerAngles = yaw;
 
+        // clamp max speed
         if (currentSpeed > baseSpeed * speedMultiplier) currentSpeed = baseSpeed * speedMultiplier;
 
         // movement
@@ -126,12 +114,7 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
             roll.z += roll.z < rotLimit ? baseRotation * Time.deltaTime : 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            startPos = defaultPos;
-            targetPos = defaultPos + 50;
-            isFullSpeed = true;
-        }
+        if (Input.GetKeyDown(KeyCode.UpArrow)) isFullSpeed = true;
     }
 
     // rotate plane to indicate in which direction it is travelling
@@ -151,6 +134,8 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         isFullSpeed = false;
         heavyLoad = false;
         stopMoving = false;
+        offsetDirection = 0.0f;
+        currentSpeed = baseSpeed;
     }
 
     public void HeavyLoad() => heavyLoad = true;
@@ -164,11 +149,10 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         sway_PassedTime = 0;
     }
 
-    private void MovePlaneToCenter()
+    public void EaseOut_Cloud()
     {
-        forward_passedTime += Time.deltaTime;
-        planeViz.transform.position =
-            new Vector3(planePos.x, planePos.y, Mathf.Lerp(startPos, targetPos, forward_passedTime));
+        // TODO : ease out of fast speed
+        ResetMovement();
     }
 
     public void RotatePlane()

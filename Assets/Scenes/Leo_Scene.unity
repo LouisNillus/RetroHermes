@@ -338,14 +338,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7828004105244776530, guid: 72b7fe700d3b704468b0c6c026ae79ae, type: 3}
-      propertyPath: travelTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7828004105244776530, guid: 72b7fe700d3b704468b0c6c026ae79ae, type: 3}
-      propertyPath: travelDistance
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 7828004105244776533, guid: 72b7fe700d3b704468b0c6c026ae79ae, type: 3}
       propertyPath: m_Name
       value: Cloud
