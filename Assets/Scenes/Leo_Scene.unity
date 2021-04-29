@@ -913,17 +913,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Controller
       objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633349, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1451230022936312773, guid: 662760de1a90049499dbca94f94499f8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3194628350023790465, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: timerText
-      value: 
-      objectReference: {fileID: 1323871337}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 662760de1a90049499dbca94f94499f8, type: 3}

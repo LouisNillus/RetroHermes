@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f370fa64fcc37d4cb027600cfb83107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
+  timerText: {fileID: 1451230021774609888}
 --- !u!1 &1451230021836359412
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca95c4a9aa0cbde489137a992015b139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  garbage: 
 --- !u!54 &1451230021914633346
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -432,7 +431,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451230021914633345}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 22, y: 12, z: 18}
