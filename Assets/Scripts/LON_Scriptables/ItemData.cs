@@ -7,6 +7,8 @@ using Sirenix.OdinInspector;
 public class ItemData : ScriptableObject
 {
     public int maxStack;
+    [TextArea(2,3)]
+    public string effect;
     public Sprite sprite;
 }
 
