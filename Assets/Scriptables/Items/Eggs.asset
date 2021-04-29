@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2486320aad377b143bb8859c1ca0b106, type: 3}
   m_Name: Eggs
   m_EditorClassIdentifier: 
-  itemName: 0
   maxStack: 20
-  sprite: {fileID: 21300000, guid: 5fdef4f071b96d44cb129701913bd6bc, type: 3}
+  sprite: {fileID: 21300000, guid: 1a597d2eac9692542ae42a46050d5065, type: 3}

@@ -23,7 +23,7 @@ public class PlaneBehaviour_Fuel : AbstractPlaneBehaviour
         fuelSlider.value = (float) (currentFuel / baseFuel);
     }
 
-    private void Update()
+    public void ConsumeFuel()
     {
         currentFuel -= currentFuel > 0 ? Time.deltaTime * depletionRate : 0;
         fuelSlider.value = (currentFuel / baseFuel);

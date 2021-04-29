@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Island : MonoBehaviour
 {
-    public List<ItemPrice> shopStocks = new List<ItemPrice>();
+    public List<Item> shopStocks = new List<Item>();
     public IslandPrices islandPrices;
 
     // Update is called once per frame

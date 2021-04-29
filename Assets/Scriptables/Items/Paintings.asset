@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a5ae8414ab99c44c9300f945c7f327a, type: 3}
-  m_Name: Commodore_1
+  m_Script: {fileID: 11500000, guid: 2486320aad377b143bb8859c1ca0b106, type: 3}
+  m_Name: Paintings
   m_EditorClassIdentifier: 
-  prices:
-  - itemName: Coffee
-    price: 10
-  - itemName: Bananas
-    price: 5
-  - itemName: Jewels
-    price: 50
-  - itemName: Oil
-    price: 20
+  maxStack: 20
+  sprite: {fileID: 21300000, guid: eba0c9e6cadd5ee428df1aaf5ac751c9, type: 3}
