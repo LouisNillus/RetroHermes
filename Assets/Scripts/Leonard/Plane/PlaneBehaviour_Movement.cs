@@ -6,6 +6,8 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     [SerializeField] GameObject planeViz;
     [SerializeField] private float baseSpeed, speedMultiplier, baseRotation, rotLimit;
 
+    public float defaultSpeedMultiplier;
+
     [SerializeField] float resetSpeed = 1.5f;
     private bool resetAxis = false;
 
@@ -23,6 +25,7 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
 
     private void Awake()
     {
+        defaultSpeedMultiplier = speedMultiplier;
         roll = yaw = transform.eulerAngles;
         currentSpeed = baseSpeed;
 
@@ -82,7 +85,11 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         if (roll.z == 0) resetAxis = false;
     }
 
-    public void ResetSpeed() => direction = Vector3.forward * (currentSpeed = baseSpeed);
+    public void ResetSpeed()
+    {
+        direction = Vector3.forward * (currentSpeed = baseSpeed);
+        speedMultiplier = defaultSpeedMultiplier;
+    }
 
     public void HeavyLoad() => speedMultiplier = 0.8f;
 

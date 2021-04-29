@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class CloudBehaviour_Storm : AbstractCloudBehaviour
 {
-    private PlaneManager planeIntegrityRef;
     private float totalDamage;
     float elapsedTime;
     private float damageFrequency = 1f;
@@ -11,28 +10,23 @@ public class CloudBehaviour_Storm : AbstractCloudBehaviour
 
     private void Update()
     {
-        if (planeIntegrityRef)
+        if (planeManagerRef)
         {
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= damageFrequency)
             {
                 elapsedTime = 0;
-                planeIntegrityRef.StormDamage(planedamagePercentage, cargodamagePercentage);
+                planeManagerRef.StormDamage(planedamagePercentage, cargodamagePercentage);
             }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<PlaneManager>()) planeIntegrityRef = other.GetComponent<PlaneManager>();
-    }
-
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<PlaneManager>() && planeIntegrityRef)
+        if (other.GetComponent<PlaneManager>())
         {
             elapsedTime = 0;
-            planeIntegrityRef = null;
+            if(planeManagerRef) planeManagerRef = null;
         }
     }
 }

@@ -7,6 +7,5 @@ public class Cargo_Ore : AbstractCargo
     public override void ApplyEffect()
     {
         PlaneManager.instance._planeMovement.HeavyLoad();
-        Debug.Log("Minerals");
     }
 }
