@@ -9,7 +9,7 @@ public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
     [SerializeField] Text integrityText;
     
     [Space][Header("Debugging")]
-    [ReadOnly] [SerializeField] float currentIntegrity;
+    [ReadOnly] [SerializeField] public float currentIntegrity;
 
     private void Awake()
     {
