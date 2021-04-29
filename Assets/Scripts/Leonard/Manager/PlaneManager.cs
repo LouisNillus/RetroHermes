@@ -19,6 +19,8 @@ public class PlaneManager : MonoBehaviour
         private set { _instance = value; }
     }
 
+    public bool isInCloud;
+
     private void Awake() => instance = this;
 
     public void LandingSequence()
@@ -49,7 +51,7 @@ public class PlaneManager : MonoBehaviour
         // TODO : _planeMovement.KillSpeed();
 
         foreach (var cargo in _cargoManager.cargoHold)
-            cargo.StormDamage(cargoDamage);
+            cargo.SpecifyDamage(cargoDamage, DamageType.Storm);
     }
 
     public void PillarDamage(float planeDamage, float cargoDamage)
@@ -57,6 +59,6 @@ public class PlaneManager : MonoBehaviour
         _planeIntegrity.TakeDamage(_planeIntegrity.baseIntegrity * planeDamage);
 
         foreach (var cargo in _cargoManager.cargoHold)
-            cargo.PillarDamage(cargoDamage);
+            cargo.SpecifyDamage(cargoDamage, DamageType.Pillar);
     }
 }

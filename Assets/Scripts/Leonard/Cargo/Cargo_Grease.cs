@@ -8,9 +8,9 @@ public class Cargo_Grease : AbstractCargo
     {
     }
 
-    public override void StormDamage(float stormDamagePercentage)
+    /*public override void StormDamage(float stormDamagePercentage)
     {
         stormDamagePercentage *= 2;
         base.StormDamage(stormDamagePercentage);
-    }
+    }*/
 }
