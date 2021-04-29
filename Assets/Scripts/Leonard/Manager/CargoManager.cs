@@ -98,7 +98,6 @@ public class CargoManager : MonoBehaviour
                 break;
             case ItemType.Ore:
                 cargoHold.Remove(cargoHold.Find(x => x.GetType() == typeof(Cargo_Ore)));
-                PlaneManager.instance._planeMovement.ResetSpeed();
                 break;
             case ItemType.Paintings:
                 cargoHold.Remove(cargoHold.Find(x => x.GetType() == typeof(Cargo_Painting)));
@@ -107,5 +106,8 @@ public class CargoManager : MonoBehaviour
                 Debug.Log("Couldn't destroy that type of cargo");
                 break;
         }
+
+        // reset movement just in case
+        PlaneManager.instance._planeMovement.ResetMovement();
     }
 }
