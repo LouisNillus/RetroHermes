@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   islandPrices: {fileID: 11400000, guid: 90d42a667726b7a4d81e9e18b25ebf0a, type: 2}
   ID: 1
-  islandName: 
+  islandName: Island 1
   shopStocks:
   - itemName: 1
     data: {fileID: 11400000, guid: fbed24aa1c5bc2e49bcfd404681c912c, type: 2}
@@ -1645,7 +1645,7 @@ MonoBehaviour:
   xMargin: 220
   rows: 2
   columns: 4
-  money: 550
+  money: 3000
 --- !u!114 &360140105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1853,12 +1853,14 @@ MonoBehaviour:
       4.
       The Island should be south behind the mountain : find a path.'
     destinationID: 2
-    rewardPerStar: 0
+    rewardPerStar: 400
     stars: 0
     complete: 0
     packages:
-    - itemName: 8
-      quantity: 5
+    - itemName: 1
+      quantity: 2
+    - itemName: 2
+      quantity: 2
   - missionName: Crocodile Omelette
     missionText: Bring 1 crocodile and at least two egg cargoes to Island 3
     missionPath: '1. From island two, go to the South until the island with an aqueduct
@@ -1870,14 +1872,14 @@ MonoBehaviour:
       Go to the North-West and you should arrive to the Island 3
 
 '
-    destinationID: 1
-    rewardPerStar: 0
+    destinationID: 3
+    rewardPerStar: 400
     stars: 0
     complete: 0
     packages:
-    - itemName: 8
-      quantity: 3
-    - itemName: 1
+    - itemName: 3
+      quantity: 1
+    - itemName: 4
       quantity: 2
   - missionName: Lighter
     missionText: "Deliver 5 ores and 2 monster greases at the Island 4.\r"
@@ -1886,19 +1888,27 @@ MonoBehaviour:
       north until you see an island with another lighthouse next another island.\r\n3.
       Head North one last time and you should see an island with a shipwreck on it,
       \r\n4. From the shipwreck go to the East and you should reach Island 4\r\n\n"
-    destinationID: 0
-    rewardPerStar: 0
+    destinationID: 4
+    rewardPerStar: 400
     stars: 0
     complete: 0
-    packages: []
+    packages:
+    - itemName: 8
+      quantity: 5
+    - itemName: 6
+      quantity: 2
   - missionName: Tic Tac
     missionText: Bring explosive and magnetized cargoes to Island 1
     missionPath: Find your way back to island 1 at the west.
-    destinationID: 0
-    rewardPerStar: 0
+    destinationID: 1
+    rewardPerStar: 400
     stars: 0
     complete: 0
-    packages: []
+    packages:
+    - itemName: 5
+      quantity: 5
+    - itemName: 7
+      quantity: 5
 --- !u!4 &393176541 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 451757399880392378, guid: 9a4f15ce57154ac4b9356db6aff23902, type: 3}
@@ -2305,7 +2315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   islandPrices: {fileID: 11400000, guid: 28c0862847d74ee45b7c3be6397ac5e7, type: 2}
   ID: 3
-  islandName: 
+  islandName: Island 3
   shopStocks:
   - itemName: 8
     data: {fileID: 11400000, guid: 6ea898fd82c73ce4ea3926bca46f31f5, type: 2}
@@ -3573,7 +3583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   islandPrices: {fileID: 11400000, guid: 28c0862847d74ee45b7c3be6397ac5e7, type: 2}
   ID: 2
-  islandName: 
+  islandName: Island 2
   shopStocks:
   - itemName: 3
     data: {fileID: 11400000, guid: 1d110f77d00fca841ba134a100b92453, type: 2}
@@ -5254,6 +5264,80 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3669582800500550665, guid: 4b1e1e6e37e8a7142adcc0d2d52ba890, type: 3}
   m_PrefabInstance: {fileID: 6775045215506692792}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1010874942
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7194742373504534470}
+    m_Modifications:
+    - target: {fileID: 1088047635102954148, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_Name
+      value: Buildings_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3789
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 285
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1626
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+--- !u!4 &1010874943 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+  m_PrefabInstance: {fileID: 1010874942}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1013814388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6058898252726423469, guid: e498103e95377254680e9f22f455ac04, type: 3}
@@ -6449,7 +6533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   islandPrices: {fileID: 11400000, guid: 28c0862847d74ee45b7c3be6397ac5e7, type: 2}
   ID: 4
-  islandName: 
+  islandName: Island 4
   shopStocks:
   - itemName: 5
     data: {fileID: 11400000, guid: 5c1dc241eef182a44895b6e1f6882765, type: 2}
@@ -7648,6 +7732,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1607743187}
   m_CullTransparentMesh: 1
+--- !u!1001 &1608754821
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7194742373504534470}
+    m_Modifications:
+    - target: {fileID: 1088047635102954148, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_Name
+      value: Buildings_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3789
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 214
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+--- !u!4 &1608754822 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5331549004509902237, guid: 8bf408bb0fdb5d143a05969046b6e2b9, type: 3}
+  m_PrefabInstance: {fileID: 1608754821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1616262754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35418,6 +35576,8 @@ Transform:
   - {fileID: 7194742372654176100}
   - {fileID: 7194742373874521133}
   - {fileID: 7194742373132747431}
+  - {fileID: 1010874943}
+  - {fileID: 1608754822}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
