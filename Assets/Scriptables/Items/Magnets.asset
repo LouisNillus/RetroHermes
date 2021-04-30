@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Magnets
   m_EditorClassIdentifier: 
   maxStack: 20
-  effect: 
+  effect: break the compass.
   sprite: {fileID: 21300000, guid: 61abd2a82f3bd4642b785e2508f2f49f, type: 3}

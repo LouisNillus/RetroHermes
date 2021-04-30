@@ -8,18 +8,27 @@ public class PillarBehaviour : MonoBehaviour
     [SerializeField] PlaneManager planeIntegrityRef;
     [SerializeField] private float planedamagePercentage = 0.15f;
     [SerializeField] private float cargodamagePercentage = 0.20f;
-    
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.GetComponent<PlaneManager>())
+        if (collision.gameObject.GetComponent<PlaneManager>())
         {
-            planeIntegrityRef = other.GetComponent<PlaneManager>();
+            planeIntegrityRef = collision.gameObject.GetComponent<PlaneManager>();
             planeIntegrityRef.PillarDamage(planedamagePercentage, cargodamagePercentage);
+            planeIntegrityRef._planeMovement.KillSpeed();
+
+            collision.gameObject.GetComponent<Rigidbody>().velocity =
+                (planeIntegrityRef.transform.position - transform.position) *3f;
         }
     }
-    
-    private void OnTriggerExit(Collider other)
+
+    private void OnCollisionExit(Collision collision)
     {
-        if (other.GetComponent<PlaneManager>() && planeIntegrityRef) planeIntegrityRef = null;
+        if (collision.gameObject.GetComponent<PlaneManager>() && planeIntegrityRef)
+        {
+            planeIntegrityRef.isBouncing = true;
+            planeIntegrityRef._planeMovement.ResetMovement();
+            planeIntegrityRef = null;
+        }
     }
 }
