@@ -21,6 +21,8 @@ public class PlaneManager : MonoBehaviour
 
     public bool isInCloud;
     public bool demag_Compass;
+    public bool isBouncing;
+    public float bounceTime;
 
     private void Awake() => instance = this;
 
@@ -32,6 +34,21 @@ public class PlaneManager : MonoBehaviour
         _planeFuel.Refuel();
         _planeIntegrity.RegenPlane();
         _planeMovement.KillSpeed();
+    }
+
+    private void FixedUpdate()
+    {
+        if (isBouncing)
+        {
+            bounceTime += Time.deltaTime;
+            if (bounceTime >= .25f)
+            {
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                bounceTime = 0f;
+                isBouncing = false;
+            }
+
+        }
     }
 
     private void Update()
