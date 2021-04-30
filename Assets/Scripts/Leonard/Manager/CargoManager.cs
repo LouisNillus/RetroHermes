@@ -29,6 +29,63 @@ public class CargoManager : MonoBehaviour
         }
     }
 
+    public int GetAverage(ItemType itemType)
+    {
+        float total = 0;
+        List<AbstractCargo> temp;
+        
+        switch (itemType)
+        {
+            case ItemType.Bananas:
+                temp = cargoHold.FindAll(x => x.GetType() == typeof(Cargo_Banana));
+                foreach (var Cargo in cargoHold)
+                    total += Cargo.currentIntegrity;
+                return (int)total / temp.Count;
+            case ItemType.Bottles:
+                temp = cargoHold.FindAll(x => x.GetType() == typeof(Cargo_Bottles));
+                foreach (var Cargo in cargoHold)
+                    total += Cargo.currentIntegrity;
+                return (int)total / temp.Count;
+            case ItemType.Crocodile:
+                temp = cargoHold.FindAll(x => x.GetType() == typeof(Cargo_Crocodile));
+                foreach (var Cargo in cargoHold)
+                    total += Cargo.currentIntegrity;
+                return (int)total / temp.Count;
+            case ItemType.Eggs:
+                temp = cargoHold.FindAll(x => x.GetType() == typeof(Cargo_Eggs));
+                foreach (var Cargo in cargoHold)
+                    total += Cargo.currentIntegrity;
+                return (int)total / temp.Count;
+            case ItemType.Explosive:
+                temp = cargoHold.FindAll(x => x.GetType() == typeof(Cargo_Explosive));
+                foreach (var Cargo in cargoHold)
+                    total += Cargo.currentIntegrity;
+                return (int)total / temp.Count;
+            case ItemType.Grease:
+                temp = cargoHold.FindAll(x => x.GetType() == typeof(Cargo_Grease));
+                foreach (var Cargo in cargoHold)
+                    total += Cargo.currentIntegrity;
+                return (int)total / temp.Count;
+            case ItemType.Magnets:
+                temp = cargoHold.FindAll(x => x.GetType() == typeof(Cargo_Magnets));
+                foreach (var Cargo in cargoHold)
+                    total += Cargo.currentIntegrity;
+                return (int)total / temp.Count;
+            case ItemType.Ore:
+                temp = cargoHold.FindAll(x => x.GetType() == typeof(Cargo_Ore));
+                foreach (var Cargo in cargoHold)
+                    total += Cargo.currentIntegrity;
+                return (int)total / temp.Count;
+            case ItemType.Paintings:
+                temp = cargoHold.FindAll(x => x.GetType() == typeof(Cargo_Painting));
+                foreach (var Cargo in cargoHold)
+                    total += Cargo.currentIntegrity;
+                return (int)total / temp.Count;
+            default:
+                return 0;
+        }
+    }
+
     // called when the player buys cargo of a certain type
     public void AddCargo(ItemType cargoType, int count = 1)
     {

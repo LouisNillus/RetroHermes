@@ -7,9 +7,9 @@ public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
 {
     [SerializeField] public float baseIntegrity;
     [SerializeField] Text integrityText;
-    
-    [Space][Header("Debugging")]
-    [ReadOnly] [SerializeField] public float currentIntegrity;
+
+    [Space] [Header("Debugging")] [ReadOnly] [SerializeField]
+    public float currentIntegrity;
 
     private void Awake()
     {
@@ -21,6 +21,8 @@ public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) TakeDamage();
     }
+
+    public void RegenPlane() => currentIntegrity = baseIntegrity;
 
     public void TakeDamage()
     {
