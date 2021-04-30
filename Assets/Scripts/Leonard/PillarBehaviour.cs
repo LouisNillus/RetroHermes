@@ -16,7 +16,9 @@ public class PillarBehaviour : MonoBehaviour
             planeIntegrityRef = collision.gameObject.GetComponent<PlaneManager>();
             planeIntegrityRef.PillarDamage(planedamagePercentage, cargodamagePercentage);
             planeIntegrityRef._planeMovement.KillSpeed();
-
+            
+            AudioManager.instance.PlaySFX(PlaneManager.instance.planeImpact);
+            
             collision.gameObject.GetComponent<Rigidbody>().velocity =
                 (planeIntegrityRef.transform.position - transform.position) *3f;
         }

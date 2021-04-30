@@ -28,6 +28,11 @@ public class PlaneManager : MonoBehaviour
     public float respawnTime;
     public float bounceTime;
 
+    public AudioClip explosion;
+    public AudioClip planeFying;
+    public AudioClip planeLanding;
+    public AudioClip planeImpact;
+
     private void Awake() => instance = this;
 
     public void LandingSequence()
@@ -38,6 +43,7 @@ public class PlaneManager : MonoBehaviour
         _planeFuel.Refuel();
         _planeIntegrity.RegenPlane();
         _planeMovement.KillSpeed();
+        AudioManager.instance.PlaySFX(planeLanding);
     }
 
     private void Respawn()
