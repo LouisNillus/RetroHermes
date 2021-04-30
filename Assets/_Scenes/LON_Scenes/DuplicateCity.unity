@@ -849,20 +849,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionName: {fileID: 1075323249}
   missionText: {fileID: 46441722}
+  suggestedPath: {fileID: 0}
   currentMission:
     missionName: 
     missionText: 
+    missionPath: 
     destinationID: 0
     rewardPerStar: 0
     stars: 0
     complete: 0
     packages: []
   missions:
-  - missionName: Flight to the sky
-    missionText: 'Land properly on island 4
+  - missionName: Banana liquor
+    missionText: 'Bring at least 2 bananas and 2 bottles to the second island.
 
 
-      Reward : 2000$'
+      Reward
+      : 2000$'
+    missionPath: '1. From Island 1 go to the South until you reach a small triangular
+      island.
+
+      2. Go to the South-East following 3 ship wrecks.
+
+      3. At
+      the third wreck go the South between clouds, until you reach a lighthouse.
+
+      4.
+      The Island should be south behind the mountain : find a path.'
     destinationID: 2
     rewardPerStar: 0
     stars: 0
@@ -870,8 +883,17 @@ MonoBehaviour:
     packages:
     - itemName: 8
       quantity: 5
-  - missionName: Indiana Jones
-    missionText: Gather ore and bananas and bring it to island 3
+  - missionName: Crocodile Omelette
+    missionText: Bring 1 crocodile and at least two egg cargoes to Island 3
+    missionPath: '1. From island two, go to the South until the island with an aqueduct
+
+      2.
+      Go to the West, pass near the mountain island then fly until you reach a lighthouse
+
+      3.
+      Go to the North-West and you should arrive to the Island 3
+
+'
     destinationID: 1
     rewardPerStar: 0
     stars: 0
@@ -881,6 +903,26 @@ MonoBehaviour:
       quantity: 3
     - itemName: 1
       quantity: 2
+  - missionName: Lighter
+    missionText: "Deliver 5 ores and 2 monster greases at the Island 4.\r"
+    missionPath: "1. From Island 3, go to North-East, you will pass near an Island
+      that is split in two, with a lighthouse on it.\n2. From there keep heading
+      north until you see an island with another lighthouse next another island.\r\n3.
+      Head North one last time and you should see an island with a shipwreck on it,
+      \r\n4. From the shipwreck go to the East and you should reach Island 4\r\n\n"
+    destinationID: 0
+    rewardPerStar: 0
+    stars: 0
+    complete: 0
+    packages: []
+  - missionName: Tic Tac
+    missionText: Bring explosive and magnetized cargoes to Island 1
+    missionPath: Find your way back to island 1 at the west.
+    destinationID: 0
+    rewardPerStar: 0
+    stars: 0
+    complete: 0
+    packages: []
 --- !u!1 &249795800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2873,6 +2915,8 @@ MonoBehaviour:
   _cargoManager: {fileID: 1445987601}
   isInCloud: 0
   demag_Compass: 0
+  isBouncing: 0
+  bounceTime: 0
 --- !u!114 &1445987601
 MonoBehaviour:
   m_ObjectHideFlags: 0
