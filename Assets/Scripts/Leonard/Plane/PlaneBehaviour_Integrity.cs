@@ -19,7 +19,7 @@ public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) TakeDamage();
+        //if (Input.GetKeyDown(KeyCode.Space)) TakeDamage();
     }
 
     public void RegenPlane()

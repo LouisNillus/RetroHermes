@@ -156,6 +156,10 @@ PrefabInstance:
       value: PS_Clouds
       objectReference: {fileID: 0}
     - target: {fileID: 3436893784010751646, guid: 157a22c4e75b03c4e88ac20ffdaf7ae4, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436893784010751646, guid: 157a22c4e75b03c4e88ac20ffdaf7ae4, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.6132076
       objectReference: {fileID: 0}
