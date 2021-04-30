@@ -61,6 +61,7 @@ public class Inventory : MonoBehaviour
             Shop.instance.SaveStocks();
         }
 
+        if(EventSystem.current.currentSelectedGameObject != null)
         if (EventSystem.current.currentSelectedGameObject.GetComponent<Slot>() != null && EventSystem.current.currentSelectedGameObject.GetComponent<Slot>().item.itemName != ItemType.Null)
             itemEffectText.text = EventSystem.current.currentSelectedGameObject.GetComponent<Slot>().item.data.effect;
         else itemEffectText.text = "";
@@ -129,6 +130,7 @@ public class Inventory : MonoBehaviour
 
                     AudioManager.instance.PlaySFX(instance.buyClip);
                     CargoManager.instance.AddCargo(shopSlot.item.itemName);
+                    CargoManager.instance.GetAverage(shopSlot.item.itemName);
                     Pay(Shop.instance.islandPrices.FindItemPriceByName(shopSlot.item.itemName));
                 }
             }

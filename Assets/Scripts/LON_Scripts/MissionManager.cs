@@ -53,6 +53,9 @@ public class MissionManager : MonoBehaviour
             for (int i = 0; i < currentMission.packages.Count; i++)
             {
                 ShippingPackage sp = currentMission.packages[i];
+
+                if (sp.quantity == 1) sp.lastAverage = CargoManager.instance.GetAverage(sp.itemName);
+
                 if (soldItem == sp.itemName) sp.quantity--;
             }
 
@@ -68,7 +71,7 @@ public class MissionManager : MonoBehaviour
         {
             if (sp.quantity > 0) return;
 
-            totalAverage += CargoManager.instance.GetAverage(sp.itemName);
+            totalAverage += sp.lastAverage;
         }
 
         if (PlaneManager.instance._planeIntegrity.currentIntegrity < 50) currentMission.stars--;
@@ -110,4 +113,5 @@ public class ShippingPackage
     public ItemType itemName;
     [Range(0, 20)]
     public int quantity;
+    public int lastAverage;
 }
