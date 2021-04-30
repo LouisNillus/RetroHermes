@@ -70,8 +70,8 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Tiling1: 0.02
-    - _Tiling2: 0.04
+    - _Tiling1: 0.01
+    - _Tiling2: 0.02
     - _TimeStep: 8
     - _UVSec: 0
     - _ZWrite: 1

@@ -1,4 +1,4 @@
-Shader "Custom/SH_Water"
+Shader "Custom/Water"
 {
     Properties
     {
@@ -17,24 +17,34 @@ Shader "Custom/SH_Water"
 
         Pass
         {
+            Tags { "LightMode" = "ForwardBase" }
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             // make fog work
             #pragma multi_compile_fog
 
+            #pragma multi_compile_fwdbase nolightmap nodirlightmap nodynlightmap novertexlight
+
+
             #include "UnityCG.cginc"
+            #include "Lighting.cginc"
+            #include "AutoLight.cginc"
 
             struct appdata
             {
-                float4 vertex : POSITION;
+                float4 pos : POSITION;
+                float3 normal : NORMAL;
+                SHADOW_COORDS(2)
             };
 
             struct v2f
             {
                 float2 uv : TEXCOORD0;
                 UNITY_FOG_COORDS(1)
-                float4 vertex : SV_POSITION;
+                float4 pos : SV_POSITION;
+                SHADOW_COORDS(2)
+                fixed3 ambient : COLOR1;
             };
 
             sampler2D _MainTex;
@@ -45,9 +55,12 @@ Shader "Custom/SH_Water"
             v2f vert (appdata v)
             {
                 v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = mul(unity_ObjectToWorld, v.vertex).xz;
-                UNITY_TRANSFER_FOG(o,o.vertex);
+                o.pos = UnityObjectToClipPos(v.pos);
+                o.uv = mul(unity_ObjectToWorld, v.pos).xz;
+                half3 worldNormal = UnityObjectToWorldNormal(v.normal);
+                o.ambient = ShadeSH9(half4(worldNormal, 1));
+                UNITY_TRANSFER_FOG(o,o.pos);
+                TRANSFER_SHADOW(o)
                 return o;
             }
 
@@ -59,10 +72,14 @@ Shader "Custom/SH_Water"
                 fixed noise1 = tex2D(_MainTex, i.uv*_Tiling1 + time * _Scrolling.xy);
                 fixed noise2 = tex2D(_MainTex, i.uv*_Tiling2 + time * _Scrolling.zw);
 
+                //UNITY_LIGHT_ATTENUATION(shadow, i, 0)
+                fixed shadow = SHADOW_ATTENUATION(i);
+
                 fixed noise = noise1 * noise2;
 
-                fixed4 col = lerp(_Color1, _Color2, noise);
-                //col.rgb = noise.rrr;
+                fixed4 col = lerp(_Color1, _Color2, noise) * shadow;
+                col.rgb += i.ambient;
+                //col.rgb = shadow.rrr;
 
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
@@ -70,5 +87,8 @@ Shader "Custom/SH_Water"
             }
             ENDCG
         }
+
+        // shadow casting support
+        UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
     }
 }

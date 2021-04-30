@@ -1,4 +1,4 @@
-Shader "Custom/SH_AirplanePropeller"
+Shader "Custom/AirplanePropeller"
 {
     Properties
     {
