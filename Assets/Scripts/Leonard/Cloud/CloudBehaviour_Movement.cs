@@ -13,7 +13,8 @@ public class CloudBehaviour_Movement : AbstractCloudBehaviour
     private void Awake()
     {
         startPos = transform.position;
-        targetPos = new Vector3(transform.position.x + (travelDistance * 0.5f), transform.position.y, transform.position.z);
+        //targetPos = new Vector3(transform.position.x + (travelDistance * 0.5f), transform.position.y, transform.position.z);
+        targetPos = transform.position + transform.right * (travelDistance * 0.5f);
         right = true;
     }
 
@@ -31,13 +32,15 @@ public class CloudBehaviour_Movement : AbstractCloudBehaviour
         startPos = transform.position;
         if (right)
         {
-            targetPos = new Vector3(transform.position.x - travelDistance, transform.position.y, transform.position.z);
+            //targetPos = new Vector3(transform.position.x - travelDistance, transform.position.y, transform.position.z);
+            targetPos = transform.position + transform.right * (-travelDistance);
             right = false;
         }
 
         else
         {
-            targetPos = new Vector3(transform.position.x + travelDistance, transform.position.y, transform.position.z);
+            //targetPos = new Vector3(transform.position.x + travelDistance, transform.position.y, transform.position.z);
+            targetPos = transform.position + transform.right * (travelDistance);
             right = true;
         }
 
@@ -45,16 +48,18 @@ public class CloudBehaviour_Movement : AbstractCloudBehaviour
     }
 
     
-    Vector3 posRight;
-    Vector3 posLeft;
+    private Vector3 posRight;
+    private Vector3 posLeft;
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         
         if (!Application.isPlaying)
         {
-            posRight = new Vector3(transform.position.x + (travelDistance * 0.5f), transform.position.y, transform.position.z);
-            posLeft = new Vector3(transform.position.x - (travelDistance * 0.5f), transform.position.y, transform.position.z);
+            //posRight = new Vector3(transform.position.x + (travelDistance * 0.5f), transform.position.y, transform.position.z);
+            //posLeft = new Vector3(transform.position.x - (travelDistance * 0.5f), transform.position.y, transform.position.z);
+            posRight = transform.position + transform.right * (travelDistance * 0.5f);
+            posLeft = transform.position + transform.right * (-travelDistance * 0.5f);
         }
         
         Gizmos.DrawSphere(posLeft, 10);
