@@ -847,8 +847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6a6617c864fd34e9e9aad96f6b534d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionName: {fileID: 1075323249}
-  missionText: {fileID: 46441722}
+  missionName: {fileID: 0}
+  missionText: {fileID: 0}
   suggestedPath: {fileID: 0}
   currentMission:
     missionName: 
@@ -1874,7 +1874,7 @@ MonoBehaviour:
   xMargin: 220
   rows: 2
   columns: 4
-  money: 550
+  money: 4000
 --- !u!114 &951149227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2910,13 +2910,21 @@ MonoBehaviour:
   _planeIntegrity: {fileID: 1445987598}
   _planeFuel: {fileID: 1445987599}
   _planeLanding: {fileID: 1445987597}
+  _planeRespawn: {fileID: 0}
+  _planeExplosion: {fileID: 0}
   landed: 0
   openedMap: 0
   _cargoManager: {fileID: 1445987601}
   isInCloud: 0
   demag_Compass: 0
   isBouncing: 0
+  mustRespawn: 0
+  respawnTime: 0
   bounceTime: 0
+  explosion: {fileID: 0}
+  planeFying: {fileID: 0}
+  planeLanding: {fileID: 0}
+  planeImpact: {fileID: 0}
 --- !u!114 &1445987601
 MonoBehaviour:
   m_ObjectHideFlags: 0
