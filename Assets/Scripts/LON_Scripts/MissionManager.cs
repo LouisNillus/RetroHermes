@@ -65,7 +65,10 @@ public class MissionManager : MonoBehaviour
             if (sp.quantity > 0) return;
         }
 
-        Inventory.instance.Earn(currentMission.reward);
+        /*if(PlaneManager.instance.)
+        if(PlaneManager.instance.)*/
+
+        Inventory.instance.Earn(currentMission.rewardPerStar * (currentMission.stars + 1));
 
         currentMission.complete = true;
 
@@ -85,7 +88,8 @@ public class ShippingMission
     [Range(0,4)]
     public int destinationID;
     [Range(0,2000)]
-    public int reward;
+    public int rewardPerStar;
+    [ReadOnly] public int stars;
     [ReadOnly] public bool complete = false;
     public List<ShippingPackage> packages = new List<ShippingPackage>();
 

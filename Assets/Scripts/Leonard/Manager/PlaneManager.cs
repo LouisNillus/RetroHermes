@@ -30,12 +30,13 @@ public class PlaneManager : MonoBehaviour
         //_planeLanding.currentCity.SetIslandPrices();
         _planeLanding.currentCity.OpenShop();
         _planeFuel.Refuel();
+        _planeIntegrity.RegenPlane();
         _planeMovement.KillSpeed();
     }
 
     private void Update()
     {
-        if (!landed) // && !openedMap)
+        if (!landed && _planeFuel.currentFuel > 0) // && !openedMap)
         {
             _planeFuel.ConsumeFuel();
             _planeMovement.MovementLogic();
