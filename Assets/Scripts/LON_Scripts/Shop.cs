@@ -93,6 +93,7 @@ public class Shop : MonoBehaviour
             else
             {
                 stock.GetComponent<ShopItem>().slot.item.amount += quantity;
+                AudioManager.instance.PlaySFX(Inventory.instance.sellClip);
             }
         }
     }
@@ -156,6 +157,7 @@ public class Shop : MonoBehaviour
 
     public void WeDontButThis()
     {
+        AudioManager.instance.PlaySFX(Inventory.instance.errorClip);
         StopAllCoroutines();
         StartCoroutine(ShowHide(wedontbuythis));
     }

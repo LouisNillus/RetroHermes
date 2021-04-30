@@ -9,6 +9,11 @@ public class Inventory : MonoBehaviour
     public List<Slot> inventorySlots = new List<Slot>();
     public GameObject slotTemplate;
 
+    public AudioClip sellClip;
+    public AudioClip buyClip;
+    public AudioClip errorClip;
+
+
     public GameObject inventoryParent;
     [SerializeField] TextMeshProUGUI sellingPrice;
     [SerializeField] TextMeshProUGUI moneyCount;
