@@ -9,6 +9,7 @@ public class PlaneManager : MonoBehaviour
     public PlaneBehaviour_Fuel _planeFuel;
     public PlaneBehaviour_Landing _planeLanding;
     public PlaneBehaviour_Respawn _planeRespawn;
+    public PlaneBehavior_Explosion _planeExplosion;
     [HideInInspector] public bool landed, openedMap;
     [SerializeField] CargoManager _cargoManager;
 
@@ -23,6 +24,8 @@ public class PlaneManager : MonoBehaviour
     public bool isInCloud;
     public bool demag_Compass;
     public bool isBouncing;
+    public bool mustRespawn;
+    public float respawnTime;
     public float bounceTime;
 
     private void Awake() => instance = this;
@@ -37,12 +40,15 @@ public class PlaneManager : MonoBehaviour
         _planeMovement.KillSpeed();
     }
 
-    public void Respawn()
+    private void Respawn()
     {
         _planeFuel.Refuel();
         _planeIntegrity.RegenPlane();
         _planeMovement.ResetMovement();
         transform.position = _planeRespawn.respawnLocation;
+
+        respawnTime = 0f;
+        mustRespawn = false;
     }
 
     private void FixedUpdate()
@@ -56,7 +62,6 @@ public class PlaneManager : MonoBehaviour
                 bounceTime = 0f;
                 isBouncing = false;
             }
-
         }
     }
 
@@ -66,6 +71,15 @@ public class PlaneManager : MonoBehaviour
         {
             _planeFuel.ConsumeFuel();
             _planeMovement.MovementLogic();
+        }
+
+        if (mustRespawn)
+        {
+            respawnTime += Time.deltaTime;
+            if (respawnTime >= 2)
+            {
+                Respawn();
+            }
         }
     }
 
