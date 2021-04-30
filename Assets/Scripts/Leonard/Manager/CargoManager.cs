@@ -20,12 +20,9 @@ public class CargoManager : MonoBehaviour
         for (int i = 0; i < cargoHold.Count; i++)
         {
             cargoHold[i].ApplyEffect();
+            
             if (cargoHold[i].cargoDestroyed)
-            {
-                PlaneManager.instance.compass.TrackPlayerNorth();
-                cargoHold.RemoveAt(i);
-                i--;
-            }
+                cargoHold.RemoveAt(i--);
         }
     }
 
@@ -166,5 +163,6 @@ public class CargoManager : MonoBehaviour
 
         // reset movement just in case
         PlaneManager.instance._planeMovement.ResetMovement();
+        PlaneManager.instance.demag_Compass = false;
     }
 }

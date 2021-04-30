@@ -68,7 +68,7 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         roll = yaw = transform.eulerAngles;
         currentSpeed = baseSpeed;
     }
-
+    
     public void MovementLogic()
     {
         if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)) resetAxis = true;
@@ -102,6 +102,8 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
             resetAxis = false;
             yaw.y += baseRotation * Time.deltaTime;
             roll.y += baseRotation * Time.deltaTime;
+            
+            // turn plane on axis
             roll.z -= roll.z > -rotLimit ? baseRotation * Time.deltaTime : 0;
         }
 
@@ -110,8 +112,9 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
             isTurning = true;
             resetAxis = false;
             yaw.y -= baseRotation * Time.deltaTime;
-
             roll.y -= baseRotation * Time.deltaTime;
+            
+            // turn plane on axis
             roll.z += roll.z < rotLimit ? baseRotation * Time.deltaTime : 0;
         }
 
@@ -161,8 +164,10 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
     {
         sway_PassedTime += Time.deltaTime;
         float step = sway_PassedTime / swayTime;
+        
         yaw.y = Mathf.Lerp(swayStart, swayTarget, curve.Evaluate(step));
         roll.y = Mathf.Lerp(swayStart, swayTarget, curve.Evaluate(step));
+        
         if (yaw.y == swayTarget)
         {
             swayingPlane = false;
