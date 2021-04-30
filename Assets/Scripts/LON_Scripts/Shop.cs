@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Shop : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Shop : MonoBehaviour
     public IslandPrices islandPrices;
     public GameObject shopItemTemplate;
     public Island currentIsland;
+
+    public TextMeshProUGUI islandNameText;
 
     public GameObject shopParent;
     public GameObject islandPanel;
@@ -34,6 +37,9 @@ public class Shop : MonoBehaviour
             PlaneManager.instance.TakeOff();
             ShopState(false);
         }
+
+        if(currentIsland != null)
+        islandNameText.text = currentIsland.islandName;
     }
 
     public void FillShopWithItems()
