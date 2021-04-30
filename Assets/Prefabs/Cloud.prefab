@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeManagerRef: {fileID: 0}
-  travelDistance: 0
-  travelTime: 0
+  travelDistance: 90
+  travelTime: 3
 --- !u!114 &7828004105244776540
 MonoBehaviour:
   m_ObjectHideFlags: 0

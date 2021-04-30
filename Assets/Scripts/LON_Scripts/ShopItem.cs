@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using TMPro;
 public class ShopItem : MonoBehaviour
 {
@@ -35,8 +35,20 @@ public class ShopItem : MonoBehaviour
     {
         if(slot.item.amount <= 0)
         {
+            int i = Shop.instance.allItems.IndexOf(this.gameObject);
+
+            if(i == 0 && Shop.instance.allItems.Count == 1) 
+            EventSystem.current.SetSelectedGameObject(Inventory.instance.inventorySlots[0].gameObject);
+
+
             Shop.instance.allItems.Remove(this.gameObject);
             Destroy(this.gameObject);
+
+            if(Shop.instance.allItems.Count > 0)
+            {
+                i = Mathf.Clamp(i, 0, Shop.instance.allItems.Count - 1);
+                EventSystem.current.SetSelectedGameObject(Shop.instance.allItems[i].GetComponent<ShopItem>().slot.gameObject);
+            }
         }
     }
 }

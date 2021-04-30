@@ -9,14 +9,11 @@ public class PlaneBehaviour_Landing : AbstractPlaneBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y) && currentCity) 
+        if (Input.GetKeyDown(KeyCode.Y) && currentCity)
             PlaneManager.instance.LandingSequence();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        currentCity = other?.GetComponent<CityBehaviour>();
-    }
+    private void OnTriggerStay(Collider other) => currentCity = other?.GetComponent<CityBehaviour>();
 
     private void OnTriggerExit(Collider other)
     {

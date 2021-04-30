@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Bottles
   m_EditorClassIdentifier: 
   maxStack: 20
-  sprite: {fileID: 21300000, guid: ab3d638d114eb2d4f867cdba1610d22d, type: 3}
+  effect: 
+  sprite: {fileID: 21300000, guid: 76675a7362a7c4540a96043a98e7e86a, type: 3}

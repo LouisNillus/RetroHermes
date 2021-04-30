@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbstractCargo
 {
     [ReadOnly] [SerializeField] protected float baseIntegrity = 100f;
-    [ReadOnly] [SerializeField] protected float currentIntegrity;
+    [ReadOnly] [SerializeField] public float currentIntegrity;
     public bool cargoDestroyed;
     
     public AbstractCargo() =>  currentIntegrity = baseIntegrity;

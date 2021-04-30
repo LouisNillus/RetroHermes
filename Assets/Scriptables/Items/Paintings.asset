@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Paintings
   m_EditorClassIdentifier: 
   maxStack: 20
-  sprite: {fileID: 21300000, guid: eba0c9e6cadd5ee428df1aaf5ac751c9, type: 3}
+  effect: 
+  sprite: {fileID: 21300000, guid: 580f32767fe6fcb4f8d5f5a28d69d1f6, type: 3}

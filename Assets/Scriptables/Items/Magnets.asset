@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Magnets
   m_EditorClassIdentifier: 
   maxStack: 20
-  sprite: {fileID: 21300000, guid: 7700162918539f04e8f829ee4cece9e1, type: 3}
+  effect: 
+  sprite: {fileID: 21300000, guid: 61abd2a82f3bd4642b785e2508f2f49f, type: 3}
