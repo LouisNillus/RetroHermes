@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2486320aad377b143bb8859c1ca0b106, type: 3}
   m_Name: Paintings
   m_EditorClassIdentifier: 
-  maxStack: 20
-  effect: 
+  maxStack: 10
+  effect: Take damages in clouds.
   sprite: {fileID: 21300000, guid: 580f32767fe6fcb4f8d5f5a28d69d1f6, type: 3}

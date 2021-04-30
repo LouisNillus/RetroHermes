@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2486320aad377b143bb8859c1ca0b106, type: 3}
   m_Name: Crocodile
   m_EditorClassIdentifier: 
-  maxStack: 20
-  effect: 
+  maxStack: 1
+  effect: Kicks the plane.
   sprite: {fileID: 21300000, guid: c8f4fb2051fa6d5448c6d2474b38796b, type: 3}

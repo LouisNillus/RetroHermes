@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2486320aad377b143bb8859c1ca0b106, type: 3}
   m_Name: Grease
   m_EditorClassIdentifier: 
-  maxStack: 20
-  effect: 
+  maxStack: 5
+  effect: Takes more damages from thunder.
   sprite: {fileID: 21300000, guid: 65ebc2c4b18f76a47a14e295add3c009, type: 3}
