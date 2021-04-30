@@ -86,9 +86,12 @@ public class MissionManager : MonoBehaviour
 [System.Serializable]
 public class ShippingMission
 {
+    [Header("Mission")]
     public string missionName;
-    [TextArea(2,3)]
+    [TextArea(3,4)]
     public string missionText;
+    [TextArea(5, 10)]
+    public string missionPath;
     [Range(0,4)]
     public int destinationID;
     [Range(0,2000)]
