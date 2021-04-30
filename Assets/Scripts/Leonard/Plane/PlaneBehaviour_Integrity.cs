@@ -22,17 +22,33 @@ public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) TakeDamage();
     }
 
-    public void RegenPlane() => currentIntegrity = baseIntegrity;
+    public void RegenPlane()
+    {
+        currentIntegrity = baseIntegrity;
+        integrityText.text = currentIntegrity.ToString();
+    }
 
     public void TakeDamage()
     {
-        currentIntegrity -= currentIntegrity > 0 ? 5 : 0;
+        currentIntegrity -= 5;
         integrityText.text = currentIntegrity.ToString();
+
+        if (currentIntegrity <= 0)
+        {
+            PlaneManager.instance._planeExplosion.Explode();
+            PlaneManager.instance.Respawn();
+        }
     }
 
     public void TakeDamage(float damageAmount)
     {
-        currentIntegrity -= currentIntegrity > 0 ? damageAmount : 0;
+        currentIntegrity -= damageAmount;
         integrityText.text = currentIntegrity.ToString();
+
+        if (currentIntegrity <= 0)
+        {
+            PlaneManager.instance._planeExplosion.Explode();
+            PlaneManager.instance.Respawn();
+        }
     }
 }

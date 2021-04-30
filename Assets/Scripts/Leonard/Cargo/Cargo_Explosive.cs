@@ -28,6 +28,7 @@ public class Cargo_Explosive : AbstractCargo
             if (currentIntegrity <= (baseIntegrity * 0.5f) && !explosion)
             {
                 explosion = true;
+                PlaneManager.instance._planeExplosion.Explode();
                 PlaneManager.instance.ExplosiveDamage();
             }
         }

@@ -71,8 +71,8 @@ public class MissionManager : MonoBehaviour
             totalAverage += CargoManager.instance.GetAverage(sp.itemName);
         }
 
-        if (PlaneManager.instance._planeIntegrity.currentIntegrity > 50) currentMission.stars++;
-        if (totalAverage / currentMission.packages.Count > 50) currentMission.stars++;
+        if (PlaneManager.instance._planeIntegrity.currentIntegrity < 50) currentMission.stars--;
+        if (totalAverage / currentMission.packages.Count < 50) currentMission.stars--;
 
         Inventory.instance.Earn(currentMission.rewardPerStar * (currentMission.stars + 1));
 
