@@ -29,7 +29,6 @@ public class PlaneManager : MonoBehaviour
    [HideInInspector]public float bounceTime;
 
     public AudioClip explosion;
-    public AudioClip planeFying;
     public AudioClip planeLanding;
     public AudioClip planeImpact;
 
