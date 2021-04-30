@@ -26,13 +26,17 @@ public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
 
     public void TakeDamage()
     {
-        currentIntegrity -= currentIntegrity > 0 ? 5 : 0;
+        currentIntegrity -= 5;
         integrityText.text = currentIntegrity.ToString();
+        
+        if (currentIntegrity <= 0) PlaneManager.instance.Respawn();
     }
 
     public void TakeDamage(float damageAmount)
     {
-        currentIntegrity -= currentIntegrity > 0 ? damageAmount : 0;
+        currentIntegrity -= damageAmount;
         integrityText.text = currentIntegrity.ToString();
+
+        if (currentIntegrity <= 0) PlaneManager.instance.Respawn();
     }
 }
