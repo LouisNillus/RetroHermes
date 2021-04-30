@@ -366,7 +366,6 @@ GameObject:
   - component: {fileID: 1451230021914633368}
   - component: {fileID: 1451230021914633346}
   - component: {fileID: 1451230021914633349}
-  - component: {fileID: 1764728363}
   - component: {fileID: 832660645}
   m_Layer: 0
   m_Name: Player Controller
@@ -581,19 +580,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 22, y: 12, z: 18}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1764728363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451230021914633345}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247bca353a545134392b30de00ca5e03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMap: {fileID: 0}
 --- !u!82 &832660645
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1309,13 +1295,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b2c6140eccb253409c26108347d47d3, type: 3}
---- !u!1 &1451230022600209030 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 149168, guid: 5b2c6140eccb253409c26108347d47d3, type: 3}
-  m_PrefabInstance: {fileID: 1451230022600094774}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1451230022599860634 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 497068, guid: 5b2c6140eccb253409c26108347d47d3, type: 3}
+  m_PrefabInstance: {fileID: 1451230022600094774}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1451230022600209030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 149168, guid: 5b2c6140eccb253409c26108347d47d3, type: 3}
   m_PrefabInstance: {fileID: 1451230022600094774}
   m_PrefabAsset: {fileID: 0}
