@@ -91,6 +91,7 @@ MonoBehaviour:
   planeIntegrityRef: {fileID: 0}
   planedamagePercentage: 0.15
   cargodamagePercentage: 0.2
+  pushBackForce: 1.5
 --- !u!1001 &4142684532212504205
 PrefabInstance:
   m_ObjectHideFlags: 0
