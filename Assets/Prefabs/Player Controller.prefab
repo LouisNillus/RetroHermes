@@ -417,6 +417,10 @@ MonoBehaviour:
   mustRespawn: 0
   respawnTime: 0
   bounceTime: 0
+  explosion: {fileID: 8300000, guid: b6d13a8c00725194182a79192aab2f55, type: 3}
+  planeFying: {fileID: 8300000, guid: 23d55f94e5404da449f9b892ce7cc0e5, type: 3}
+  planeLanding: {fileID: 8300000, guid: 89d10ea310078f144b05a6f139656537, type: 3}
+  planeImpact: {fileID: 8300000, guid: c313e4c78c1f4e3419d22345c074c89e, type: 3}
 --- !u!114 &1451230021914633347
 MonoBehaviour:
   m_ObjectHideFlags: 0

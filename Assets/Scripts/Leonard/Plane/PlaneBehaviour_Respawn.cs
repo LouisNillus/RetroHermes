@@ -9,14 +9,16 @@ public class PlaneBehaviour_Respawn : MonoBehaviour
 
     private void Awake()
     {
-        respawnLocation = transform.position;
+        respawnLocation.x = transform.position.x;
+        respawnLocation.z = transform.position.z;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<CityBehaviour>())
         {
-            respawnLocation = other.GetComponent<CityBehaviour>().transform.position;
+            respawnLocation.x = other.GetComponent<CityBehaviour>().transform.position.x;
+            respawnLocation.z = other.GetComponent<CityBehaviour>().transform.position.z;
         }
     }
 }

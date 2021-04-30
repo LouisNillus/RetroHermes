@@ -9,5 +9,6 @@ public class PlaneBehavior_Explosion : MonoBehaviour
     public void Explode()
     {
         Instantiate(ps, transform.position, Quaternion.identity);
+        AudioManager.instance.PlaySFX(PlaneManager.instance.explosion);
     }
 }

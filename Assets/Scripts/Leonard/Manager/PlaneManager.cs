@@ -20,13 +20,18 @@ public class PlaneManager : MonoBehaviour
         get { return _instance; }
         private set { _instance = value; }
     }
+    
+   [HideInInspector]public bool isInCloud;
+   [HideInInspector]public bool demag_Compass;
+   [HideInInspector]public bool isBouncing;
+   [HideInInspector]public bool mustRespawn;
+   [HideInInspector]public float respawnTime;
+   [HideInInspector]public float bounceTime;
 
-    public bool isInCloud;
-    public bool demag_Compass;
-    public bool isBouncing;
-    public bool mustRespawn;
-    public float respawnTime;
-    public float bounceTime;
+    public AudioClip explosion;
+    public AudioClip planeFying;
+    public AudioClip planeLanding;
+    public AudioClip planeImpact;
 
     private void Awake() => instance = this;
 
@@ -38,6 +43,7 @@ public class PlaneManager : MonoBehaviour
         _planeFuel.Refuel();
         _planeIntegrity.RegenPlane();
         _planeMovement.KillSpeed();
+        AudioManager.instance.PlaySFX(planeLanding);
     }
 
     private void Respawn()
