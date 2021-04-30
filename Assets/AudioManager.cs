@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioSource musicSource;
+    public AudioSource sfxSource;
 
     public static AudioManager instance;
 
@@ -25,5 +26,9 @@ public class AudioManager : MonoBehaviour
         
     }
 
+    public void PlaySFX(AudioClip clip)
+    {
+        sfxSource.PlayOneShot(clip);
+    }
 
 }
