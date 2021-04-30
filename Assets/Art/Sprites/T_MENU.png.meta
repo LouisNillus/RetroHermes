@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 65ebc2c4b18f76a47a14e295add3c009
-=======
-guid: 8330039a1ec3d6441bf4203e17f87ca1
->>>>>>> Lea_Dev
+guid: 675fb5b9f133a3047aafc8dd49b3a2a4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,11 +32,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-<<<<<<< HEAD
-    filterMode: 0
-=======
     filterMode: -1
->>>>>>> Lea_Dev
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -95,21 +87,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<< HEAD
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-=======
->>>>>>> Lea_Dev
   spriteSheet:
     serializedVersion: 2
     sprites: []
