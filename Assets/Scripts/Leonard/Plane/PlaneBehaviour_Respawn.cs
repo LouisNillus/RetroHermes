@@ -17,8 +17,8 @@ public class PlaneBehaviour_Respawn : MonoBehaviour
     {
         if (other.GetComponent<CityBehaviour>())
         {
-            respawnLocation.x = other.GetComponent<CityBehaviour>().transform.position.x;
-            respawnLocation.z = other.GetComponent<CityBehaviour>().transform.position.z;
+            respawnLocation.x = transform.position.x;
+            respawnLocation.z = transform.position.z;
         }
     }
 }
