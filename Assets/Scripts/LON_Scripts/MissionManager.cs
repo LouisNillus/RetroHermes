@@ -9,6 +9,7 @@ public class MissionManager : MonoBehaviour
 
     public TextMeshProUGUI missionName;
     public TextMeshProUGUI missionText;
+    public TextMeshProUGUI suggestedPath;
     public ShippingMission currentMission;
 
     public List<ShippingMission> missions = new List<ShippingMission>();
@@ -35,6 +36,7 @@ public class MissionManager : MonoBehaviour
         {
             missionName.text = "#" + (missionIndex + 1) + " " + currentMission.missionName;
             missionText.text = currentMission.missionText;
+            suggestedPath.text = currentMission.missionPath;
         }
     }
 
