@@ -9,8 +9,7 @@ public class PlaneBehaviour_Respawn : MonoBehaviour
 
     private void Awake()
     {
-        respawnLocation.x = transform.position.x;
-        respawnLocation.z = transform.position.z;
+        respawnLocation = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
