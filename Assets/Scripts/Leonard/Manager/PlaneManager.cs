@@ -42,7 +42,8 @@ public class PlaneManager : MonoBehaviour
         _planeFuel.Refuel();
         _planeIntegrity.RegenPlane();
         _planeMovement.ResetMovement();
-        transform.position = _planeRespawn.lastCity.transform.position;
+        transform.position = _planeRespawn.respawnLocation;
+        transform.eulerAngles = _planeRespawn.respawnRotation;
     }
 
     private void FixedUpdate()
