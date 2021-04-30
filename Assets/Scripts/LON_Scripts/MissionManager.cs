@@ -9,6 +9,7 @@ public class MissionManager : MonoBehaviour
 
     public TextMeshProUGUI missionName;
     public TextMeshProUGUI missionText;
+    public TextMeshProUGUI suggestedPath;
     public ShippingMission currentMission;
 
     public List<ShippingMission> missions = new List<ShippingMission>();
@@ -35,6 +36,7 @@ public class MissionManager : MonoBehaviour
         {
             missionName.text = "#" + (missionIndex + 1) + " " + currentMission.missionName;
             missionText.text = currentMission.missionText;
+            suggestedPath.text = currentMission.missionPath;
         }
     }
 
@@ -60,13 +62,17 @@ public class MissionManager : MonoBehaviour
 
     public void MissionCompletion()
     {
+        int totalAverage = 0;
+
         foreach(ShippingPackage sp in currentMission.packages)
         {
             if (sp.quantity > 0) return;
+
+            totalAverage += CargoManager.instance.GetAverage(sp.itemName);
         }
 
-        /*if(PlaneManager.instance.)
-        if(PlaneManager.instance.)*/
+        if (PlaneManager.instance._planeIntegrity.currentIntegrity > 50) currentMission.stars++;
+        if (totalAverage / currentMission.packages.Count > 50) currentMission.stars++;
 
         Inventory.instance.Earn(currentMission.rewardPerStar * (currentMission.stars + 1));
 
@@ -82,9 +88,12 @@ public class MissionManager : MonoBehaviour
 [System.Serializable]
 public class ShippingMission
 {
+    [Header("Mission")]
     public string missionName;
-    [TextArea(2,3)]
+    [TextArea(3,4)]
     public string missionText;
+    [TextArea(5, 10)]
+    public string missionPath;
     [Range(0,4)]
     public int destinationID;
     [Range(0,2000)]

@@ -13,19 +13,13 @@ MonoBehaviour:
   m_Name: Island 2
   m_EditorClassIdentifier: 
   prices:
-  - itemName: 2
-    price: 4
   - itemName: 3
-    price: 8
+    price: 250
   - itemName: 4
-    price: 11
-  - itemName: 5
-    price: 55
-  - itemName: 6
-    price: 0
-  - itemName: 7
-    price: 0
-  - itemName: 8
-    price: 0
+    price: 10
   - itemName: 9
-    price: 12
+    price: 75
+  - itemName: 1
+    price: 45
+  - itemName: 2
+    price: 75

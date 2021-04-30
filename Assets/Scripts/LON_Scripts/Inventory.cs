@@ -121,6 +121,7 @@ public class Inventory : MonoBehaviour
                         return;
                     }
 
+                    AudioManager.instance.PlaySFX(instance.buyClip);
                     CargoManager.instance.AddCargo(shopSlot.item.itemName);
                     Pay(Shop.instance.islandPrices.FindItemPriceByName(shopSlot.item.itemName));
                 }
