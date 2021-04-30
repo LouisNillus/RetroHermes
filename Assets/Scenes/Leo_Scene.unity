@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &857333193 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1863005139314948882, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-  m_PrefabInstance: {fileID: 1451230022620324233}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa4e3107d6163c74da8d8de0b761bc69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1270531590
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,6 +401,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1451230021754064856, guid: 662760de1a90049499dbca94f94499f8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451230021754064856, guid: 662760de1a90049499dbca94f94499f8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -463,13 +456,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Controller
       objectReference: {fileID: 0}
-    - target: {fileID: 1451230021914633369, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: _planeRespawn
-      value: 
-      objectReference: {fileID: 857333193}
-    - target: {fileID: 1451230022936312773, guid: 662760de1a90049499dbca94f94499f8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 1451230022118146033, guid: 662760de1a90049499dbca94f94499f8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -990
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451230022118146033, guid: 662760de1a90049499dbca94f94499f8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -540
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 662760de1a90049499dbca94f94499f8, type: 3}
