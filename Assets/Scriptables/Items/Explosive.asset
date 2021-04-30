@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2486320aad377b143bb8859c1ca0b106, type: 3}
   m_Name: Explosive
   m_EditorClassIdentifier: 
-  maxStack: 20
-  effect: 
+  maxStack: 10
+  effect: takes damage if the plane is too slow. Explode at 50%.
   sprite: {fileID: 21300000, guid: 560d0c6ee952e4848a1ab164bb3abede, type: 3}

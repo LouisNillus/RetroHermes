@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bananas
   m_EditorClassIdentifier: 
   maxStack: 20
-  effect: 
+  effect: no effects.
   sprite: {fileID: 21300000, guid: d7fd2934ad81539419be80f2d9ae6f6f, type: 3}

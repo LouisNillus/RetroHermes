@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2486320aad377b143bb8859c1ca0b106, type: 3}
   m_Name: Eggs
   m_EditorClassIdentifier: 
-  maxStack: 20
-  effect: 
+  maxStack: 30
+  effect: Take damage if the plane is too leaned
   sprite: {fileID: 21300000, guid: cafad4b46bc514242a8c44e162d7b7c3, type: 3}
