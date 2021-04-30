@@ -13,8 +13,11 @@ public class Slot : MonoBehaviour
     public Item item;
     public Image visual;
     public TextMeshProUGUI stackText;
+    public TextMeshProUGUI priceText;
     public Image overlapFrame;
     public Image initialFrame;
+    public Sprite initialFrameSprite;
+    public Image coin;
 
     [Header("Data")]
     public bool unlimitedStack = false;
@@ -38,11 +41,13 @@ public class Slot : MonoBehaviour
 
         if (item != null && lastAmount != item.amount)
         {
-            visual.sprite = item.data.sprite != null ? item.data.sprite : null;
+            visual.sprite = item.data.sprite != null ? item.data.sprite : initialFrameSprite;
             OnStackValueChange.Invoke();
             lastAmount = item.amount;
             ClearSlot();
         }
+
+        DisplaySellingPrice();
     }
 
     public bool IsFull()
@@ -59,7 +64,7 @@ public class Slot : MonoBehaviour
     {
         if (IsEmpty())
         {
-            visual.sprite = null;
+            visual.sprite = initialFrameSprite;
             item = new Item();
             locked = false;          
         }
@@ -80,5 +85,25 @@ public class Slot : MonoBehaviour
         stackText.text = item.amount > 0 ? item.amount.ToString() : "";
     }
 
+    public void DisplaySellingPrice()
+    {
+        if (Inventory.instance.inventorySlots.Contains(this) == false) return;
 
+        if (item == null || IsEmpty())
+        {
+            coin.enabled = false;
+            priceText.text = "";
+            return;
+        }
+        else if (Inventory.instance.inventorySlots.Contains(this))
+        {
+            coin.enabled = true;
+            priceText.text = Shop.instance.islandPrices.FindItemPriceByName(item.itemName).ToString();
+            return;
+        }
+        
+        priceText.text = "";
+        
+        
+    }
 }

@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Island 2
   m_EditorClassIdentifier: 
   prices:
-  - itemName: 1
-    price: 3
   - itemName: 2
     price: 4
   - itemName: 3
