@@ -14,20 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prices:
   - itemName: 1
-    price: 10
+    price: 20
   - itemName: 2
-    price: 5
-  - itemName: 3
-    price: 20
-  - itemName: 4
-    price: 50
-  - itemName: 5
-    price: 20
-  - itemName: 6
-    price: 0
-  - itemName: 7
-    price: 0
+    price: 25
   - itemName: 8
-    price: 0
-  - itemName: 9
-    price: 0
+    price: 220
+  - itemName: 5
+    price: 500
+  - itemName: 7
+    price: 160
