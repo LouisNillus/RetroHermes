@@ -32,7 +32,7 @@ public class PlaneBehaviour_Fuel : AbstractPlaneBehaviour
         if (currentFuel <= 0)
         {
             PlaneManager.instance._planeExplosion.Explode();
-            PlaneManager.instance.Respawn();
+            PlaneManager.instance.mustRespawn = true;
         }
     }
 

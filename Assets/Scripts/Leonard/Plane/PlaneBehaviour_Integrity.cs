@@ -36,7 +36,7 @@ public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
         if (currentIntegrity <= 0)
         {
             PlaneManager.instance._planeExplosion.Explode();
-            PlaneManager.instance.Respawn();
+            PlaneManager.instance.mustRespawn = true;
         }
     }
 
@@ -48,7 +48,7 @@ public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
         if (currentIntegrity <= 0)
         {
             PlaneManager.instance._planeExplosion.Explode();
-            PlaneManager.instance.Respawn();
+            PlaneManager.instance.mustRespawn = true;
         }
     }
 }
