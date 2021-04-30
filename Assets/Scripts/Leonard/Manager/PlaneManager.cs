@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 public class PlaneManager : MonoBehaviour
 {
     [SerializeField] public PlaneBehaviour_Movement _planeMovement;
-    [SerializeField] PlaneBehaviour_Integrity _planeIntegrity;
+    [SerializeField] public PlaneBehaviour_Integrity _planeIntegrity;
     [SerializeField] PlaneBehaviour_Fuel _planeFuel;
     [SerializeField] PlaneBehaviour_Landing _planeLanding;
     [HideInInspector] public bool landed, openedMap;
