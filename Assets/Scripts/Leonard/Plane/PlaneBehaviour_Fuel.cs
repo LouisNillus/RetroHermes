@@ -16,7 +16,8 @@ public class PlaneBehaviour_Fuel : AbstractPlaneBehaviour
     [SerializeField] Slider fuelSlider;
 
     [Space][Header("Debugging")]
-    [ReadOnly] [SerializeField] private float currentFuel;
+    [ReadOnly] public float currentFuel;
+    
     private void Awake()
     {
         currentFuel = baseFuel;
@@ -32,5 +33,4 @@ public class PlaneBehaviour_Fuel : AbstractPlaneBehaviour
     }
 
     public void Refuel() => currentFuel = baseFuel; // full tank
-    public void Refuel(int fuelAmount) => currentFuel += fuelAmount; // specified amount
 }
