@@ -6,6 +6,7 @@ public class Island : MonoBehaviour
 {
     public IslandPrices islandPrices;
     public int ID;
+    public string islandName;
     public List<Item> shopStocks = new List<Item>();
 
     // Update is called once per frame
