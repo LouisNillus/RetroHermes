@@ -9,6 +9,7 @@ public class PlaneManager : MonoBehaviour
     public PlaneBehaviour_Fuel _planeFuel;
     public PlaneBehaviour_Landing _planeLanding;
     public PlaneBehaviour_Respawn _planeRespawn;
+    public PlaneBehavior_Explosion _planeExplosion;
     [HideInInspector] public bool landed, openedMap;
     [SerializeField] CargoManager _cargoManager;
 

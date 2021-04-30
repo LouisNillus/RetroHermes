@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 1451230021914633350}
   - component: {fileID: 1451230021914633348}
   - component: {fileID: 1863005139314948882}
+  - component: {fileID: 6366599430553132352}
   - component: {fileID: 1451230021914633368}
   - component: {fileID: 1451230021914633346}
   - component: {fileID: 1451230021914633349}
@@ -483,6 +484,7 @@ MonoBehaviour:
   _planeFuel: {fileID: 1451230021914633350}
   _planeLanding: {fileID: 1451230021914633348}
   _planeRespawn: {fileID: 1863005139314948882}
+  _planeExplosion: {fileID: 6366599430553132352}
   landed: 0
   openedMap: 0
   _cargoManager: {fileID: 1451230021914633368}
@@ -594,6 +596,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnLocation: {x: 0, y: 0, z: 0}
+--- !u!114 &6366599430553132352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451230021914633345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fffde931ff338ca418f42cacca020702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 2920028409379854282, guid: 699e07df33aaa2f49904dd0761a4b367, type: 3}
 --- !u!114 &1451230021914633368
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,7 +29,11 @@ public class PlaneBehaviour_Fuel : AbstractPlaneBehaviour
         currentFuel -= currentFuel > 0 ? Time.deltaTime * depletionRate : 0;
         fuelSlider.value = (currentFuel / baseFuel);
         
-        if (currentFuel <= 0) PlaneManager.instance.Respawn();
+        if (currentFuel <= 0)
+        {
+            PlaneManager.instance._planeExplosion.Explode();
+            PlaneManager.instance.Respawn();
+        }
     }
 
     public void Refuel() => currentFuel = baseFuel; // full tank
