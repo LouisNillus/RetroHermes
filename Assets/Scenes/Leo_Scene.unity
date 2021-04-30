@@ -171,6 +171,7 @@ MonoBehaviour:
   currentIsland: {fileID: 0}
   shopParent: {fileID: 0}
   islandPanel: {fileID: 0}
+  wedontbuythis: {fileID: 0}
   allItems: []
 --- !u!1001 &173234348
 PrefabInstance:
@@ -510,6 +511,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9077669016276379376, guid: f482b1a7409c27b43b8e35da0ba7256e, type: 3}
+      propertyPath: m_Size.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 9077669016276379377, guid: f482b1a7409c27b43b8e35da0ba7256e, type: 3}
       propertyPath: m_Name
       value: Wind
@@ -520,7 +525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9077669016276379381, guid: f482b1a7409c27b43b8e35da0ba7256e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.9
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 9077669016276379381, guid: f482b1a7409c27b43b8e35da0ba7256e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -528,7 +533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9077669016276379381, guid: f482b1a7409c27b43b8e35da0ba7256e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 133.4
+      value: 133
       objectReference: {fileID: 0}
     - target: {fileID: 9077669016276379381, guid: f482b1a7409c27b43b8e35da0ba7256e, type: 3}
       propertyPath: m_LocalRotation.w

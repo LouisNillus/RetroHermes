@@ -25,14 +25,15 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
             else if (Input.GetKey(KeyCode.UpArrow)) _direction = Vector3.forward * (currentSpeed = (baseSpeed * speedMultiplier));
             else _direction = Vector3.forward * (currentSpeed = baseSpeed);
             
-            _direction.z += offsetDirection;
+            _direction.z += offsetDirectionZ;
+            _direction.x += offsetDirectionX;
 
             return _direction;
         }
         set { _direction = value; }
     }
 
-    public float offsetDirection;
+    public float offsetDirectionZ, offsetDirectionX;
     private bool heavyLoad, stopMoving;
 
     [HideInInspector] public float defaultSpeedMultiplier;
@@ -134,7 +135,8 @@ public class PlaneBehaviour_Movement : AbstractPlaneBehaviour
         isFullSpeed = false;
         heavyLoad = false;
         stopMoving = false;
-        offsetDirection = 0.0f;
+        offsetDirectionZ = 0.0f;
+        offsetDirectionX = 0.0f;
         currentSpeed = baseSpeed;
     }
 
