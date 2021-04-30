@@ -4,10 +4,11 @@ using Random = UnityEngine.Random;
 
 public class PlaneManager : MonoBehaviour
 {
-    [SerializeField] public PlaneBehaviour_Movement _planeMovement;
-    [SerializeField] public PlaneBehaviour_Integrity _planeIntegrity;
-    [SerializeField] PlaneBehaviour_Fuel _planeFuel;
-    [SerializeField] public PlaneBehaviour_Landing _planeLanding;
+    public PlaneBehaviour_Movement _planeMovement;
+    public PlaneBehaviour_Integrity _planeIntegrity;
+    public PlaneBehaviour_Fuel _planeFuel;
+    public PlaneBehaviour_Landing _planeLanding;
+    public PlaneBehaviour_Respawn _planeRespawn;
     [HideInInspector] public bool landed, openedMap;
     [SerializeField] CargoManager _cargoManager;
 
@@ -36,12 +37,20 @@ public class PlaneManager : MonoBehaviour
         _planeMovement.KillSpeed();
     }
 
+    public void Respawn()
+    {
+        _planeFuel.Refuel();
+        _planeIntegrity.RegenPlane();
+        _planeMovement.ResetMovement();
+        transform.position = _planeRespawn.respawnLocation;
+    }
+
     private void FixedUpdate()
     {
         if (isBouncing)
         {
             bounceTime += Time.deltaTime;
-            if (bounceTime >= .25f)
+            if (bounceTime >= .5f)
             {
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
                 bounceTime = 0f;
