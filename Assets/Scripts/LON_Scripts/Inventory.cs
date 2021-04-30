@@ -43,7 +43,9 @@ public class Inventory : MonoBehaviour
     void Update()
     {
 
-        DisplaySellingPrice();
+        if(Input.GetKeyDown(KeyCode.Y)) EventSystem.current.SetSelectedGameObject(inventorySlots[0].gameObject);
+
+        //DisplaySellingPrice();
         moneyCount.text = money.ToString() + "$";
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -87,7 +89,6 @@ public class Inventory : MonoBehaviour
         if (g != null && g.GetComponent<Slot>() != null)
         {
             Slot shopSlot = g.GetComponent<Slot>();
-            Debug.Log(shopSlot.gameObject.name);
             if (shopSlot.item == null || shopSlot.IsEmpty() || inventorySlots.Contains(shopSlot) == true) return;
             else
             {

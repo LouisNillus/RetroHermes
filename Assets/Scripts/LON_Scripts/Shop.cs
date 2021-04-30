@@ -12,6 +12,8 @@ public class Shop : MonoBehaviour
     public GameObject shopParent;
     public GameObject islandPanel;
 
+    public GameObject wedontbuythis;
+
     public List<GameObject> allItems = new List<GameObject>();
     
 
@@ -148,7 +150,23 @@ public class Shop : MonoBehaviour
             if (ip.itemName == itemName) return true;
         }
 
-        Debug.Log("We don't buy " + itemName.ToString() + " here");
+        WeDontButThis();
         return false;
     }
+
+    public void WeDontButThis()
+    {
+        StopAllCoroutines();
+        StartCoroutine(ShowHide(wedontbuythis));
+    }
+
+    public IEnumerator ShowHide(GameObject go)
+    {
+        go.SetActive(true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        go.SetActive(false);
+    }
 }
+
