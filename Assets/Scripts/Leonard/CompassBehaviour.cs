@@ -14,5 +14,5 @@ public class CompassBehaviour : MonoBehaviour
         }
     }
 
-    public void Update() => transform.eulerAngles = rotation;
+    public void Update() => transform.eulerAngles = -rotation;
 }

@@ -18,6 +18,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] TextMeshProUGUI sellingPrice;
     [SerializeField] TextMeshProUGUI moneyCount;
 
+    public TextMeshProUGUI itemEffectText;
+
     [Range(0,200)]
     [SerializeField] int yOffset; //In pixels
     [Range(0,200)]
@@ -58,6 +60,10 @@ public class Inventory : MonoBehaviour
             SellItem();
             Shop.instance.SaveStocks();
         }
+
+        if (EventSystem.current.currentSelectedGameObject.GetComponent<Slot>() != null && EventSystem.current.currentSelectedGameObject.GetComponent<Slot>().item.itemName != ItemType.Null)
+            itemEffectText.text = EventSystem.current.currentSelectedGameObject.GetComponent<Slot>().item.data.effect;
+        else itemEffectText.text = "";
     }
 
     public void SellItem()
