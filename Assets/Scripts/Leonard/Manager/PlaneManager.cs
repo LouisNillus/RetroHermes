@@ -20,7 +20,7 @@ public class PlaneManager : MonoBehaviour
     }
 
     public bool isInCloud;
-    public CompassBehaviour compass;
+    public bool demag_Compass;
 
     private void Awake() => instance = this;
 
