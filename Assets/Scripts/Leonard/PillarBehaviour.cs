@@ -8,7 +8,7 @@ public class PillarBehaviour : MonoBehaviour
     [SerializeField] PlaneManager planeIntegrityRef;
     [SerializeField] private float planedamagePercentage = 0.15f;
     [SerializeField] private float cargodamagePercentage = 0.20f;
-
+    [SerializeField] private float pushBackForce = 2f;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<PlaneManager>())
@@ -20,7 +20,7 @@ public class PillarBehaviour : MonoBehaviour
             AudioManager.instance.PlaySFX(PlaneManager.instance.planeImpact);
             
             collision.gameObject.GetComponent<Rigidbody>().velocity =
-                (planeIntegrityRef.transform.position - transform.position) *3f;
+                (planeIntegrityRef.transform.position - transform.position) * pushBackForce;
         }
     }
 
