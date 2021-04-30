@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Grease
   m_EditorClassIdentifier: 
   maxStack: 20
-  sprite: {fileID: 21300000, guid: f98823a629c50d04b986e111d5998f63, type: 3}
+  effect: 
+  sprite: {fileID: 21300000, guid: 65ebc2c4b18f76a47a14e295add3c009, type: 3}
