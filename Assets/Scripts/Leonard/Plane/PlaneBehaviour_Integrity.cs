@@ -31,7 +31,7 @@ public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
     public void TakeDamage()
     {
         currentIntegrity -= 5;
-        integrityText.text = currentIntegrity.ToString();
+        integrityText.text = ((int)currentIntegrity).ToString();
 
         if (currentIntegrity <= 0)
         {
@@ -43,7 +43,8 @@ public class PlaneBehaviour_Integrity : AbstractPlaneBehaviour
     public void TakeDamage(float damageAmount)
     {
         currentIntegrity -= damageAmount;
-        integrityText.text = currentIntegrity.ToString();
+        integrityText.text = ((int)currentIntegrity).ToString();
+        
 
         if (currentIntegrity <= 0)
         {
